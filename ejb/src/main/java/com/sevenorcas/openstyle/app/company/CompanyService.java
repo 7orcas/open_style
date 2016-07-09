@@ -1,13 +1,9 @@
-package com.progenso.desma.service.app;
+package com.sevenorcas.openstyle.app.company;
 
 import java.util.List;
 
 import javax.ejb.Local;
 
-import com.progenso.desma.entities.app.Company;
-import com.progenso.desma.entities.app.CompanyDto;
-import com.progenso.desma.entities.app.CompanySql;
-import com.progenso.desma.entities.app.UserParam;
 
 /**
  * Local interface to Company Service

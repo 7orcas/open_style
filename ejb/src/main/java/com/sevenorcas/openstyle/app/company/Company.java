@@ -13,10 +13,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.progenso.desma.app.Utilities;
-import com.progenso.desma.app.anno.Field;
-import com.progenso.desma.app.entities.BaseEntity;
-import com.progenso.desma.entities.plan.config.ViewConfig;
+import com.sevenorcas.openstyle.app.entity.Field;
+
+
 
 /**
  * Company entity<p>

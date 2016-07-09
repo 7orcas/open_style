@@ -15,7 +15,6 @@ CREATE TABLE cntrl.company (
     create_ts         timestamp with time zone default current_timestamp,
     create_id         bigint,
     update_ts         timestamp with time zone default current_timestamp,
-    update_id         bigint,
     active            boolean default true,
     config            varchar,
     code              varchar(20) UNIQUE,
@@ -47,7 +46,6 @@ CREATE TABLE menu_type (
     create_ts         timestamp with time zone default current_timestamp,
     create_id         bigint,
     update_ts         timestamp with time zone default current_timestamp,
-    update_id         bigint,
     active            boolean default true,
     
     code              varchar(20) NOT NULL,
@@ -64,7 +62,6 @@ CREATE TABLE menu (
     create_ts         timestamp with time zone default current_timestamp,
     create_id         bigint,
     update_ts         timestamp with time zone default current_timestamp,
-    update_id         bigint,
     active            boolean default true,
     
     menu_type_id      bigint NOT NULL references menu_type(id),
