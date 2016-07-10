@@ -18,12 +18,10 @@ CREATE TABLE cntrl.company (
     active            boolean default true,
     config            varchar,
     code              varchar(20) UNIQUE,
-    codeId            varchar(20) NOT NULL,
     customer_nr       int NOT NULL DEFAULT 0
 );
 COMMENT ON TABLE cntrl.company IS 'Companies, ie Maintable';
 COMMENT ON COLUMN  cntrl.company.config IS 'Unique configuration for company';
-COMMENT ON COLUMN  cntrl.company.codeId IS 'IDs to identify special processing requirements';
 COMMENT ON COLUMN  cntrl.company.customer_nr IS 'ID to identify the actual customer';
 
 

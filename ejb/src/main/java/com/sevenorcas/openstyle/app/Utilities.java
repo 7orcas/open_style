@@ -33,22 +33,20 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.app.anno.Dto;
-import com.sevenorcas.openstyle.app.app.anno.EntityAttributes;
-import com.sevenorcas.openstyle.app.app.entities.BaseDto;
+import com.sevenorcas.openstyle.app.cache.ServerCache;
+import com.sevenorcas.openstyle.app.company.Company;
+import com.sevenorcas.openstyle.app.dto.BaseDto;
+import com.sevenorcas.openstyle.app.dto.Dto;
 import com.sevenorcas.openstyle.app.entity.BaseEntity;
 import com.sevenorcas.openstyle.app.entity.CodeI;
+import com.sevenorcas.openstyle.app.entity.EntityAttributes;
 import com.sevenorcas.openstyle.app.entity.IdI;
-import com.sevenorcas.openstyle.app.app.entities.lang.LangCodeI;
-import com.sevenorcas.openstyle.app.app.entities.lang.LangDescrI;
-import com.sevenorcas.openstyle.app.AppException;
-import com.sevenorcas.openstyle.app.perm.NoPermissionException;
+import com.sevenorcas.openstyle.app.lang.LangCodeI;
+import com.sevenorcas.openstyle.app.lang.LangDescrI;
+import com.sevenorcas.openstyle.app.lang.Language;
 import com.sevenorcas.openstyle.app.log.ApplicationLog;
-import com.sevenorcas.openstyle.app.app.servercache.ServerCache;
-import com.sevenorcas.openstyle.app.company.Company;
-import com.sevenorcas.openstyle.app.entities.app.UserParam;
-import com.sevenorcas.openstyle.app.service.app.LanguageServiceImp.Language;
+import com.sevenorcas.openstyle.app.perm.NoPermissionException;
+import com.sevenorcas.openstyle.app.user.UserParam;
 
 
 /**
@@ -1280,7 +1278,6 @@ public class Utilities implements ApplicationI{
 		//must be an update
 		else if (entity.isChanged()){
 			entity.setUpdated(new Date());
-			entity.setUpdatedId(params.getUser_id());
 		}
 		
 		List<java.lang.reflect.Field> fields  = cache.getFieldList(ent.getClass(), true);

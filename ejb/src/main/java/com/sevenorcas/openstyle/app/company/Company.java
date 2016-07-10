@@ -1,8 +1,6 @@
 package com.sevenorcas.openstyle.app.company;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Hashtable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
+import com.sevenorcas.openstyle.app.entity.BaseEntity;
 import com.sevenorcas.openstyle.app.entity.Field;
 
 
@@ -41,9 +39,6 @@ public class Company extends BaseEntity implements Serializable {
 	@Field(edit="true", min=1, max=20) 
 	private String code;
 	
-	@Field(edit="true", notNull=false, max=20, label="Ids") 
-    private String codeId;
-	
 	@Field(edit="new", notNull=true, label="Company") 
 	@Column(name="customer_nr")
 	private Integer customerNr;
@@ -62,6 +57,32 @@ public class Company extends BaseEntity implements Serializable {
 		super();
 	}
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getConfig() {
+		return config;
+	}
+	public void setConfig(String config) {
+		this.config = config;
+	}
+
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	
+	public Integer getCustomerNr() {
+		return customerNr;
+	}
+	public void setCustomerNr(Integer customerNr) {
+		this.customerNr = customerNr;
+	}
 	
 }

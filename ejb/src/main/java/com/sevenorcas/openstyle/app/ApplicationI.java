@@ -11,7 +11,35 @@ package com.sevenorcas.openstyle.app;
  */
 public interface ApplicationI {
 
+	///////////////////////////  General definitions    /////////////////////////////////////
+		
+	final static public int    COMPANY_NUMBER_IGNORE     = 0;
+	final static public long   MISSING_REFERENCE_ID      = 0L;
+	final static public String MISSING_REFERENCE_LANGKEY = "Invalid";
+	final static public String MISSING_ENTITY_CODE       = "000";
+	final static public String UNKNOWN_CODE              = "?";
+	
+	final static public String DATE_FORMAT_JSON          = "dd.MM.yyyy";
+	
 	final static public String APP_NAME                  = "openstyle";
+//D	final static public String WEB_MODULE_CONTEXT_ROOT   = "/" + APP_NAME + "/"; //defined in ear/pom.xml
+	final static public String SERVICE_INDEX_PAGE_EXT    = "/service";
+	
+	final static public String NAME_CONTEXT_LOOKUP       = "java:app/" + APP_NAME  + "-ejb-1.0-SNAPSHOT/";
+	
+	final static public String DOMAIN_NAME               = "com.progenso.desma";
+	final static public String ENTITY_BASE_PACKAGE       = DOMAIN_NAME + ".entities.";
+	final static public String APP_ENTITY_BASE_PACKAGE   = DOMAIN_NAME + ".app.entities.";
+	
+	/** Entities with ids below this number require service status to update or delete */
+	final static public long   ENTITY_PERMANENT_ID       = 10000L;
+
+	
+    ///////////////////////////  Encoding fields  /////////////////////////////////////////////////////////
+    /** Encoded key-value delimiter1         */ final static public String ENCODE_DELIMITER_1          = ",";
+    /** Encoded key-value delimiter2         */ final static public String ENCODE_DELIMITER_2          = "=";
+    /** Encoded key-value level 2 delimiter1 */ final static public String ENCODE_LEVEL2_DELIMITER_1   = "|";
+
 	
 	/*-******************************************************************************
 	 * Entity field types.
@@ -134,6 +162,16 @@ public interface ApplicationI {
 	/*-******************************************************************************
 	 * Application defaults.
 	 *******************************************************************************/
+	
+	/** Java Object            */   final static public int TYPE_OBJECT            = 0;
+	/** Java Integer           */   final static public int TYPE_INTEGER           = 1;
+	/** Java Long              */   final static public int TYPE_LONG              = 2;
+	/** Java String            */   final static public int TYPE_STRING            = 3;
+	/** Java Double            */   final static public int TYPE_DOUBLE            = 4;
+	/** Java Boolean           */   final static public int TYPE_BOOLEAN           = 5;
+	/** Java Date              */   final static public int TYPE_DATE              = 6;
+	/** Java List or ArrayList */   final static public int TYPE_LIST              = 20;
+
 	
 	/**
 	 * Default maximum <code>String</code> field length, ie if <code>max</code> element in <code>@Field</code> annotation is not defined.<p>

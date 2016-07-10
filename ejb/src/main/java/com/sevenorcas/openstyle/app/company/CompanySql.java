@@ -1,12 +1,11 @@
 package  com.sevenorcas.openstyle.app.company;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonProperty;
-
-import com.progenso.desma.app.anno.Field;
-import com.progenso.desma.app.entities.BaseUserParam;
-import com.progenso.desma.app.entities.sql.BaseSql;
-import com.progenso.desma.interfaces.rest.RestUtilities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sevenorcas.openstyle.app.entity.Field;
+import com.sevenorcas.openstyle.app.rest.RestUtilities;
+import com.sevenorcas.openstyle.app.sql.BaseSql;
+import com.sevenorcas.openstyle.app.user.BaseUserParam;
 
 /**
  * Company SQL object

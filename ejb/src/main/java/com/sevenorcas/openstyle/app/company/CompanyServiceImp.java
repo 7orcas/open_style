@@ -1,4 +1,4 @@
-package com.progenso.desma.service.app;
+package com.sevenorcas.openstyle.app.company;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,16 +7,11 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.interceptor.Interceptors;
 
-import com.progenso.desma.app.anno.Permission;
-import com.progenso.desma.app.interceptors.ServiceAroundInvoke;
-import com.progenso.desma.entities.app.Company;
-import com.progenso.desma.entities.app.CompanyDto;
-import com.progenso.desma.entities.app.CompanySql;
-import com.progenso.desma.entities.app.UserParam;
-import com.progenso.desma.repo.app.CompanyDao;
-import com.progenso.desma.service.app.LanguageServiceImp.Language;
+import com.sevenorcas.openstyle.app.lang.Language;
+import com.sevenorcas.openstyle.app.lang.LanguageService;
+import com.sevenorcas.openstyle.app.perm.Permission;
+import com.sevenorcas.openstyle.app.user.UserParam;
 
 
 /**
@@ -26,7 +21,7 @@ import com.progenso.desma.service.app.LanguageServiceImp.Language;
  * @author John Stewart
  */
 @Stateless
-@Interceptors(ServiceAroundInvoke.class)
+//WF10 TODO @Interceptors(ServiceAroundInvoke.class)
 public class CompanyServiceImp implements CompanyService {
 	
 	@EJB private LanguageService   languageService;

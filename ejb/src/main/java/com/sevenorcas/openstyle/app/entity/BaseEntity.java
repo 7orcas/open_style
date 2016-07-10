@@ -50,6 +50,9 @@ abstract public class BaseEntity implements ApplicationI, EntityI, Serializable{
 	
 	/** ID from dto object */
 	@Transient
+	@Field
+	private Long id_dto;
+	@Transient
 	private Boolean delete;
 	@Transient
 	private Boolean changed;
@@ -284,6 +287,11 @@ abstract public class BaseEntity implements ApplicationI, EntityI, Serializable{
 		this.changed = true;
 	}
 	
-	
+	public Long getId_dto() {
+		return id_dto;
+	}
+	public void setId_dto(Long id_dto) {
+		this.id_dto = id_dto;
+	} 
 	
 }

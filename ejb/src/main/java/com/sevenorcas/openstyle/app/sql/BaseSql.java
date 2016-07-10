@@ -3,9 +3,17 @@ package com.sevenorcas.openstyle.app.sql;
 import java.io.Serializable;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.cache.ServerCache;
+import com.sevenorcas.openstyle.app.entity.EntityI;
+import com.sevenorcas.openstyle.app.entity.Field;
+import com.sevenorcas.openstyle.app.entity.ValidateI;
+import com.sevenorcas.openstyle.app.entity.ValidationException;
+import com.sevenorcas.openstyle.app.user.BaseUserParam;
+
 
 
 
@@ -17,10 +25,11 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
  *     <li><code>Service and Dao</code> method call attibutes</li>
  * </ul><p>
  * 
+ * [License]
  * @author John Stewart
  */
 @SuppressWarnings("serial")
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//WF10 TODO @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class BaseSql implements Serializable, SqlI, ApplicationI, ValidateI {
 
     static final public String DESCR_SEPARATOR   = ":";
