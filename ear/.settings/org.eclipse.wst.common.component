@@ -14,6 +14,9 @@
         <dependent-module archiveName="activation.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/activation/activation/1.1.1/activation-1.1.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="recaptcha4j.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/google/code/maven-play-plugin/net/tanesha/recaptcha4j/recaptcha4j/0.0.8/recaptcha4j-0.0.8.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="jackson-annotations.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.2.2/jackson-annotations-2.2.2.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>

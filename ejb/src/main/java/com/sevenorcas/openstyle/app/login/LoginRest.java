@@ -1,4 +1,4 @@
-package com.progenso.desma.interfaces.rest.app;
+package com.sevenorcas.openstyle.app.login;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,42 +7,23 @@ import java.util.TimeZone;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
+import javax.enterprise.inject.Produces;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
 
 import org.jboss.logging.Logger;
-import org.jboss.resteasy.annotations.GZIP;
-import org.jboss.resteasy.annotations.interception.HeaderDecoratorPrecedence;
 
-import com.progenso.desma.ApplicationI;
-import com.progenso.desma.app.ApplicationParameters;
-import com.progenso.desma.app.anno.NoSessionRequired;
-import com.progenso.desma.app.entities.ReturnDto;
-import com.progenso.desma.app.entities.lang.LangKey;
-import com.progenso.desma.app.entities.login.ChangePasswordDto;
-import com.progenso.desma.app.entities.login.LoginI;
-import com.progenso.desma.app.entities.useradmin.User;
-import com.progenso.desma.app.entities.useradmin.UserDto;
-import com.progenso.desma.app.interceptors.RestAroundInvoke;
-import com.progenso.desma.entities.app.Company;
-import com.progenso.desma.entities.app.Login;
-import com.progenso.desma.entities.app.LoginDto;
-import com.progenso.desma.entities.app.UserParam;
-import com.progenso.desma.html.app.entities.login.ChangePasswordHtml;
-import com.progenso.desma.service.app.ApplicationService;
-import com.progenso.desma.service.app.CompanyService;
-import com.progenso.desma.service.app.LanguageService;
-import com.progenso.desma.service.app.LanguageServiceImp.Language;
-import com.progenso.desma.service.app.LoginService;
-
-
+import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.ApplicationService;
+import com.sevenorcas.openstyle.app.company.Company;
+import com.sevenorcas.openstyle.app.company.CompanyService;
+import com.sevenorcas.openstyle.app.lang.LangKey;
+import com.sevenorcas.openstyle.app.lang.Language;
+import com.sevenorcas.openstyle.app.lang.LanguageService;
+import com.sevenorcas.openstyle.app.user.User;
+import com.sevenorcas.openstyle.app.user.UserDto;
+import com.sevenorcas.openstyle.app.user.UserParam;
 
 
 /**
@@ -57,7 +38,7 @@ import com.progenso.desma.service.app.LoginService;
 @GZIP
 @Consumes({"application/json"})
 @HeaderDecoratorPrecedence
-@Interceptors(RestAroundInvoke.class)
+//WF10 TODO @Interceptors(RestAroundInvoke.class)
 public class LoginRest {
 
     /** Application singleton */ 
