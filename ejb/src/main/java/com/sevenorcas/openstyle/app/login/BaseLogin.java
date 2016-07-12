@@ -11,14 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
-import com.progenso.desma.ApplicationI;
-import com.progenso.desma.app.ApplicationParameters;
-import com.progenso.desma.app.entities.BaseEntity;
-import com.progenso.desma.app.entities.lang.LangKey;
-import com.progenso.desma.app.entities.useradmin.User;
-import com.progenso.desma.entities.app.Login;
-import com.progenso.desma.interfaces.rest.app.LoginRest;
-import com.progenso.desma.service.app.LoginServiceImp;
+import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.entity.BaseEntity;
+import com.sevenorcas.openstyle.app.lang.LangKey;
+import com.sevenorcas.openstyle.app.user.User;
 
 
 /**

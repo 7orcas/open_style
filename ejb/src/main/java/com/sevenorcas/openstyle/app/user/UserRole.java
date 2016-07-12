@@ -1,4 +1,4 @@
-package com.progenso.desma.app.entities.useradmin;
+package com.sevenorcas.openstyle.app.user;
 
 import java.io.Serializable;
 
@@ -9,10 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.progenso.desma.ApplicationI;
-import com.progenso.desma.app.anno.Field;
-import com.progenso.desma.app.entities.BaseEntity;
-import com.progenso.desma.service.app.LoginServiceImp;
+import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.entity.BaseEntity;
+import com.sevenorcas.openstyle.app.entity.Field;
 
 
 /**

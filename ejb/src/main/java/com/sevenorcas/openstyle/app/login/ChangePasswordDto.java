@@ -2,8 +2,12 @@ package com.sevenorcas.openstyle.app.login;
 
 import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sevenorcas.openstyle.app.dto.BaseDto;
+import com.sevenorcas.openstyle.app.dto.Dto;
+import com.sevenorcas.openstyle.app.entity.Field;
+import com.sevenorcas.openstyle.app.user.User;
 
 
 

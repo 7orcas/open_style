@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
 import com.sevenorcas.openstyle.app.lang.LangKey;
+import com.sevenorcas.openstyle.app.log.AuditLog;
+import com.sevenorcas.openstyle.app.login.BaseLogin;
 import com.sevenorcas.openstyle.app.perm.Permission;
 
 

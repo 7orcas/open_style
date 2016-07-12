@@ -2,18 +2,17 @@ package com.sevenorcas.openstyle.app.lang;
 
 import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonProperty;
-
-import com.progenso.desma.app.anno.Dto;
-import com.progenso.desma.app.anno.DtoEncode;
-import com.progenso.desma.app.anno.Field;
-import com.progenso.desma.app.entities.BaseDto;
-import com.progenso.desma.app.entities.EntityI;
-import com.progenso.desma.app.entities.ValidateI;
-import com.progenso.desma.app.exception.AppException;
-import com.progenso.desma.app.exception.ValidationException;
-import com.progenso.desma.entities.app.UserParam;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sevenorcas.openstyle.app.AppException;
+import com.sevenorcas.openstyle.app.dto.BaseDto;
+import com.sevenorcas.openstyle.app.dto.Dto;
+import com.sevenorcas.openstyle.app.dto.DtoEncode;
+import com.sevenorcas.openstyle.app.entity.EntityI;
+import com.sevenorcas.openstyle.app.entity.Field;
+import com.sevenorcas.openstyle.app.entity.ValidateI;
+import com.sevenorcas.openstyle.app.entity.ValidationException;
+import com.sevenorcas.openstyle.app.user.UserParam;
 
 
 
@@ -25,6 +24,7 @@ import com.progenso.desma.entities.app.UserParam;
  * <ul>- export to spreadsheet</ul>
  * <p>
  * 
+ * [License]
  * @author John Stewart
  */
 @SuppressWarnings("serial")

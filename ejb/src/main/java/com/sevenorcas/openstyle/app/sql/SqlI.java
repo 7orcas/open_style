@@ -5,6 +5,7 @@ package com.sevenorcas.openstyle.app.sql;
  * 
  * <b>This</b> interface contains essential attributes and methods for default sql behavior.<p>
  * 
+ * [License]
  * @author John Stewart
  */
 public interface SqlI {

@@ -17,12 +17,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.progenso.desma.app.Utilities;
-import com.progenso.desma.app.anno.Dto;
-import com.progenso.desma.app.anno.Field;
-import com.progenso.desma.app.entities.BaseEntity;
-import com.progenso.desma.app.entities.lang.LangKey;
-import com.progenso.desma.app.exception.ValidationException;
+import com.sevenorcas.openstyle.app.Utilities;
+import com.sevenorcas.openstyle.app.dto.Dto;
+import com.sevenorcas.openstyle.app.entity.BaseEntity;
+import com.sevenorcas.openstyle.app.entity.Field;
+import com.sevenorcas.openstyle.app.entity.ValidationException;
+import com.sevenorcas.openstyle.app.lang.LangKey;
 
 /**
  * User entity<p>
@@ -66,7 +66,7 @@ public class User extends BaseEntity implements Serializable {
 	
 	/** ID Field. */   
 	@Id  
-	@Field(appType=APP_TYPE_ID)
+	@Field(appType=FIELD_TYPE_ID)
 	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE")
 	private Long id;
 	

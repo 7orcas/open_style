@@ -5,15 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-
-import com.progenso.desma.app.anno.Dto;
-import com.progenso.desma.app.anno.Field;
-import com.progenso.desma.app.entities.BaseDto;
-import com.progenso.desma.app.entities.BaseUserParam;
-import com.progenso.desma.app.entities.lang.LangKey;
-import com.progenso.desma.app.exception.AppException;
-import com.progenso.desma.entities.app.UserParam;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sevenorcas.openstyle.app.AppException;
+import com.sevenorcas.openstyle.app.dto.BaseDto;
+import com.sevenorcas.openstyle.app.dto.Dto;
+import com.sevenorcas.openstyle.app.entity.Field;
+import com.sevenorcas.openstyle.app.lang.LangKey;
 
 /**
  * User entity data transfer object<p>

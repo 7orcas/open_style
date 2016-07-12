@@ -9,6 +9,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sevenorcas.openstyle.app.ApplicationI;
 import com.sevenorcas.openstyle.app.Utilities;
+import com.sevenorcas.openstyle.app.dto.DefinitionService;
 import com.sevenorcas.openstyle.app.dto.FieldDefDto;
 import com.sevenorcas.openstyle.app.entity.ValidationException;
 import com.sevenorcas.openstyle.app.log.ApplicationLog;

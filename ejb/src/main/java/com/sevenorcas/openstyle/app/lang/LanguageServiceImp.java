@@ -11,14 +11,12 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.interceptor.Interceptors;
 
+import com.sevenorcas.openstyle.app.cache.ServerCache;
+import com.sevenorcas.openstyle.app.dto.ReturnIdDto;
+import com.sevenorcas.openstyle.app.entity.ReturnId;
 import com.sevenorcas.openstyle.app.perm.Permission;
 import com.sevenorcas.openstyle.app.user.BaseUserParam;
-import com.progenso.desma.app.entities.ReturnId;
-import com.progenso.desma.app.entities.ReturnIdDto;
-
-import com.progenso.desma.app.servercache.ServerCache;
 import com.sevenorcas.openstyle.app.user.UserParam;
 
 

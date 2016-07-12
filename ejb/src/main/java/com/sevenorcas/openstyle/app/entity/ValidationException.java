@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 import javax.ejb.ApplicationException;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sevenorcas.openstyle.app.AppException;
 import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.lang.Language;
 
 
 

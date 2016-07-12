@@ -5,13 +5,9 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import com.progenso.desma.app.entities.BaseUserParam;
-import com.progenso.desma.app.entities.ReturnIdDto;
-import com.progenso.desma.app.entities.lang.LangKey;
-import com.progenso.desma.app.entities.lang.LangListDto;
-import com.progenso.desma.app.entities.lang.LangSql;
-import com.progenso.desma.entities.app.UserParam;
-import com.progenso.desma.service.app.LanguageServiceImp.Language;
+import com.sevenorcas.openstyle.app.dto.ReturnIdDto;
+import com.sevenorcas.openstyle.app.user.BaseUserParam;
+import com.sevenorcas.openstyle.app.user.UserParam;
 
 /**
  * Local <code>LanguageService</code> bean interface.

@@ -1,15 +1,16 @@
 package com.sevenorcas.openstyle.app.dto;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sevenorcas.openstyle.app.AppException;
 import com.sevenorcas.openstyle.app.ApplicationI;
 import com.sevenorcas.openstyle.app.ApplicationParameters;
 import com.sevenorcas.openstyle.app.Utilities;
 import com.sevenorcas.openstyle.app.entity.BaseEntity;
 import com.sevenorcas.openstyle.app.entity.Field;
+import com.sevenorcas.openstyle.app.perm.NoPermissionException;
 import com.sevenorcas.openstyle.app.user.UserParam;
 
 
@@ -23,7 +24,7 @@ import com.sevenorcas.openstyle.app.user.UserParam;
  * [License] 
  * @author John Stewart
  */
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//WF10 TODO @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class BaseDto implements ApplicationI{
 
 	//Here for convenience

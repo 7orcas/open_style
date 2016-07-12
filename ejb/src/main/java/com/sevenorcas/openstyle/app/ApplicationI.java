@@ -35,6 +35,49 @@ public interface ApplicationI {
 	final static public long   ENTITY_PERMANENT_ID       = 10000L;
 
 	
+
+	///////////////////////////  Schemas  /////////////////////////////////////////////////////////
+	final static public String SCHEMA_TEMP            = "temp";
+	final static public String SCHEMA_CNTRL           = "cntrl";
+	
+	///////////////////////////  Sequences  /////////////////////////////////////////////////////////
+	final static public String SEQUENCE_TEMP          = SCHEMA_TEMP + ".seq_id_temp";
+	final static public String SEQUENCE_REPORT        = "seq_id_report";
+	final static public String SEQUENCE_ENTITY        = "seq_id_entity";
+	final static public String SEQUENCE_LANGUAGE      = SCHEMA_CNTRL + ".seq_id_language";
+	final static public String SEQUENCE_INSTANCE      = "seq_nr_instance"; //+ comp_nr
+    final static public String [] SEQUENCE_COMP_NRS   = {SEQUENCE_INSTANCE}; 
+    
+
+	///////////////////////////  Client return statuses    /////////////////////////////////////	
+	
+	final static public int RETURN_STATUS_OK        = 0;
+	final static public int RETURN_STATUS_WARNING   = 1;
+	final static public int RETURN_STATUS_ERROR     = 2;
+	final static public int RETURN_STATUS_MAX_ROWS  = 3;
+	final static public int RETURN_STATUS_INVALID   = 4;
+	final static public int RETURN_STATUS_EXISTS    = 5;
+	final static public int RETURN_STATUS_NO_PERM   = 6;
+	final static public int RETURN_STATUS_REFERENCE = 7;
+	
+
+	
+	///////////////////////////  Permission Values (CRUD)  ///////////////////////////////////////////	
+	
+	final static public String PERM_CREATE            = "C";
+	final static public String PERM_READ              = "R";
+	final static public String PERM_UPDATE            = "U";
+	final static public String PERM_DELETE            = "D";
+	
+	///////////////////////////  System Task Status  ///////////////////////////////////////////	
+		
+	final static public int TASK_STATUS_NOT_CREATED    = 1;
+	final static public int TASK_STATUS_RUNNING        = 2;
+	final static public int TASK_STATUS_FINISHED       = 3;
+	final static public int TASK_STATUS_FINISHED_ERROR = 4;
+	final static public int TASK_STATUS_FINISHED_WARN  = 5;
+
+	
     ///////////////////////////  Encoding fields  /////////////////////////////////////////////////////////
     /** Encoded key-value delimiter1         */ final static public String ENCODE_DELIMITER_1          = ",";
     /** Encoded key-value delimiter2         */ final static public String ENCODE_DELIMITER_2          = "=";

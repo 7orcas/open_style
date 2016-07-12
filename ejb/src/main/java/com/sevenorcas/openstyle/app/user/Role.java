@@ -6,9 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.progenso.desma.ApplicationI;
-import com.progenso.desma.app.entities.BaseEntity;
-import com.progenso.desma.service.app.LoginServiceImp;
+import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.entity.BaseEntity;
 
 
 /**

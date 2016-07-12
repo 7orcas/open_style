@@ -7,6 +7,7 @@ import com.sevenorcas.openstyle.app.entity.ValidationException;
  * 
  * Objects that implement <b>this</b> interface will be validated via their <code>isValid()</code> method. 
  * 
+ * [License]
  * @author John Stewart
  */
 public interface ValidateI {

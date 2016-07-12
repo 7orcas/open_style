@@ -15,9 +15,9 @@ import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.progenso.desma.app.ApplicationParameters;
-import com.progenso.desma.app.anno.Field;
-import com.progenso.desma.app.entities.BaseEntity;
+import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.entity.BaseEntity;
+import com.sevenorcas.openstyle.app.entity.Field;
 
 /**
  * Language Key entity<p>
@@ -43,7 +43,7 @@ public class LangKey extends BaseEntity implements Serializable {
 	
 	/** ID Field. */   
 	@Id  
-	@Field(appType=APP_TYPE_ID)
+	@Field(appType=FIELD_TYPE_ID)
 	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE")
 	private Long id;
 	

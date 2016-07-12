@@ -1,10 +1,6 @@
 package com.sevenorcas.openstyle.app.spreadsheet;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Hashtable;
-import java.util.List;
 
 import org.apache.poi.hssf.record.ExtendedFormatRecord;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -14,10 +10,10 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 
-
 import com.sevenorcas.openstyle.app.ApplicationI;
 import com.sevenorcas.openstyle.app.company.Company;
-import com.sevenorcas.openstyle.app.lang.LanguageServiceImp.Language;
+import com.sevenorcas.openstyle.app.lang.Language;
+import com.sevenorcas.openstyle.app.user.UserParam;
 
 
 
@@ -44,6 +40,10 @@ public class BaseSS implements ApplicationI, SpreadSheetI {
     protected Hashtable <String, Integer> bgColorsIds;
     protected Hashtable <String, Integer> styleIds;
     
+    //Cell styles
+    private HSSFCellStyle styleInvalid;
+    private HSSFCellStyle styleQuantityRed;
+    private HSSFCellStyle styleQuantityBlue;
     
     protected Language lang;
     protected Company company;
@@ -55,18 +55,6 @@ public class BaseSS implements ApplicationI, SpreadSheetI {
     public BaseSS(UserParam params, Language lang, Company comp){
         this.lang    = lang;
         this.company = comp;
-        initialise();
-    }
-    
-    /**
-     * Constructor 
-     * Initialize objects
-     */
-    public BaseSS(UserParam params, Language lang, Company comp, List<Size> listSz, SizeMap sizeMap){
-        this.lang    = lang;
-        this.company = comp;
-        this.listSz  = listSz;
-        this.sizeMap = sizeMap;
         initialise();
     }
 
@@ -81,149 +69,7 @@ public class BaseSS implements ApplicationI, SpreadSheetI {
     	styleIds    = new Hashtable<>();
     }
     
-    /**
-     * Set <b>this</b> objects size index.<p>
-     * 
-     * Thanks to http://stackoverflow.com/questions/933447/how-do-you-cast-a-list-of-supertypes-to-a-list-of-subtypes
-     * 
-     * @param List of row objects that contain the size code to process
-     */
-    protected void setSizeIndex(List<SizeMapI> list){
-        
-        //Use StyleGroupI records to build list
-        if (listSz == null && sizeMap == null){
-            setSizeIndex_NoSize(list);
-        }
-        else if (sizeMap != null){
-            setSizeIndex_SizeMap(list);
-        }
-        else {
-            setSizeIndex_SizeList(list);
-        }
-        
-    }
-    
-    /**
-     * Build sorted list of sizes based on row objects and size object list 
-     * 
-     * @param List of row objects that contain the size code to process
-     * @param size map object
-     */
-    private void setSizeIndex_SizeMap(List<SizeMapI> list){
-        
-        List<String> groups = new ArrayList<>();
-        
-        List<Long> ids = new ArrayList<>();
-        List<MSize> sizes = new ArrayList<>();
-        
-        //Find empty group sizes
-        for (SizeMapI rec: list){
-            Long s_id = rec.getSizepId();
-            String gr = rec.getStyleGroup();
-            
-            //Look up size to find group
-            if (gr == null){
-                gr = findFirstNonEmptyGroupForSizeId(s_id);
-            }
-            
-            if (gr.isEmpty() && !ids.contains(s_id)){
-                ids.add(s_id);
-                sizes.add(sizeMap.findSize(s_id));
-            }
-            
-            if (!gr.isEmpty() && !groups.contains(gr)){
-                groups.add(gr);
-            }
-        }
-        
-        Collections.sort(sizes, new Comparator<MSize>(){
-            public int compare(MSize s1, MSize s2) {
-                return s1.getSort().compareTo(s2.getSort());
-            }});
-        
-        //Reconfigure size map object
-        List<String> groupsX = sizeMap.getGroupsExcludeEmpty();
-        for (String gr : groupsX){
-            if (!groups.contains(gr)){
-                sizeMap.removeGroup(gr); 
-            }
-        }
-        
-        sizeMap.removeEmptyGroupAndSizeIds();
-        for (MSize s : sizes){
-            sizeMap.addSize(s.getId(), s.getCode(), s.getCombine(), "", s.getSort());
-        }
-        
-        sizeMap.configThisObject();
-        numberOfSizes = sizeMap.getAdjustedNumberOfIndexes();
-    }
-    
-    /**
-     * Return the first size group for the passed in size id
-     * @param sizepId
-     * @return
-     */
-    protected String findFirstNonEmptyGroupForSizeId (Long sizepId){
-        if (!isMouldGroups){
-            return "";
-        }
-        return sizeMap != null? sizeMap.findFirstNonEmptyGroupForSizeId(sizepId) : "";
-    }
-    
-    
-    /**
-     * Build sorted list of sizes based on row objects only 
-     * 
-     * @param List of row objects that contain the size code to process
-     */
-    private void setSizeIndex_NoSize(List<SizeMapI> list){
-        sizeMap = new SizeMap(SizeMap.STYLE_GROUP);
-        List<Long> ids = new ArrayList<>();
-        int sort = 1;
-        
-        for (SizeMapI rec: list){
-            if (!ids.contains(rec.getSizepId())){
-                numberOfSizes++;
-                ids.add(rec.getSizepId());
-                sizeMap.addSize(rec.getSizepId(), 
-                        rec.getSize(), 
-                        "", //combine 
-                        "", //group
-                        sort++);        
-            }
-        }
-        sizeMap.configThisObject();
-    }
-    
-    
-    /**
-     * Build sorted list of sizes based on row objects and size object list 
-     * 
-     * @param List of row objects that contain the size code to process
-     */
-    private void setSizeIndex_SizeList(List<SizeMapI> list){
-        sizeMap = new SizeMap(SizeMap.STYLE_GROUP);
-        
-        for (Size sz : listSz){
-            boolean found = false;
-            for (SizeMapI rec: list){
-                if (rec.getSizepId().equals(sz.getId())){
-                    found = true;
-                    break;
-                }
-            }
-            
-            if (found){
-                numberOfSizes++;
-                sizeMap.addSize(sz.getId(), 
-                        sz.getCode(), 
-                        "", //combine 
-                        "", //group
-                        sz.getSort());  
-            }
-        }
-        sizeMap.configThisObject();
-    }
+  
     
      
     /**

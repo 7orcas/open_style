@@ -6,7 +6,7 @@ import org.apache.poi.hssf.util.HSSFColor;
  * Spreadsheet customer color index control object.<p>
  *  
  * [License] 
- * @author John Stewart*
+ * @author John Stewart
  */
 public class Colors {
 

@@ -6,10 +6,6 @@ import com.sevenorcas.openstyle.app.ApplicationI;
 import com.sevenorcas.openstyle.app.ApplicationParameters;
 import com.sevenorcas.openstyle.app.log.ApplicationLog;
 
-
-
-
-
 /**
  * Email service.
  * 

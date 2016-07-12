@@ -428,7 +428,7 @@ public class DefinitionServiceImp implements DefinitionService, ApplicationI {
 			    if (fieldAnno.min() > 0
 			    	   || fieldAnno.max() > 0
 			    	   || fieldAnno.notNull()
-					   || fieldAnno.appType() == APP_TYPE_SORT_NR){
+					   || fieldAnno.appType() == FIELD_TYPE_SORT_NR){
 			 	    def.setEdit("true");   
 			    }
 			    else{
@@ -440,13 +440,13 @@ public class DefinitionServiceImp implements DefinitionService, ApplicationI {
 		    //Application Type defaults (if not previously set)
 		    switch(fieldAnno.appType()){
 		   
-		    	case APP_TYPE_ID:
-		    	case APP_TYPE_REF_CODE:
-		    	case APP_TYPE_KEY:
+		    	case FIELD_TYPE_ID:
+		    	case FIELD_TYPE_REF_CODE:
+		    	case FIELD_TYPE_KEY:
 		    		def.setNotNull(true);
 		    		break;
 		    		
-		    	case APP_TYPE_SORT_NR:
+		    	case FIELD_TYPE_SORT_NR:
 		    		if (fieldAnno.min() == 0D){
 		    			def.setMin(1D);
 		 		    }		

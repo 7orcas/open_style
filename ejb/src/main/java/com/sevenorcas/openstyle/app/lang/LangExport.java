@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sevenorcas.openstyle.app.entity.Export;
+import com.sevenorcas.openstyle.app.spreadsheet.Colors;
+import com.sevenorcas.openstyle.app.spreadsheet.FreeFormSpreadsSheetI;
+import com.sevenorcas.openstyle.app.spreadsheet.SpreadSheet;
+import com.sevenorcas.openstyle.app.spreadsheet.SpreadSheetI;
+
 
 
 /**

@@ -2,12 +2,10 @@ package com.sevenorcas.openstyle.app.user;
 
 import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sevenorcas.openstyle.app.AppException;
+import com.sevenorcas.openstyle.app.dto.BaseDto;
 import com.sevenorcas.openstyle.app.dto.Dto;
-
-
-
 
 /**
  * User-Role configuration entity data transfer object<p>

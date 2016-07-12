@@ -1,6 +1,8 @@
 package com.sevenorcas.openstyle.app.company;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.sevenorcas.openstyle.app.Utilities;
 import com.sevenorcas.openstyle.app.entity.BaseEntity;
+import com.sevenorcas.openstyle.app.entity.ConfigI;
 import com.sevenorcas.openstyle.app.entity.Field;
 
 
@@ -26,7 +31,7 @@ import com.sevenorcas.openstyle.app.entity.Field;
 @Entity
 @Table(name="company", schema="cntrl")
 @SequenceGenerator(name="ID_SEQUENCE",sequenceName="seq_id_entity",allocationSize=1)
-public class Company extends BaseEntity implements Serializable {
+public class Company extends BaseEntity implements ConfigI, Serializable {
 
 		
 	/** ID Field. */   
@@ -56,6 +61,28 @@ public class Company extends BaseEntity implements Serializable {
 	public Company() {
 		super();
 	}
+	
+	/**
+	 * Convert <b>this</b> entities configuration to a <code>String</code> for saving.
+	 * @return encoded String
+	 */
+	@Transient
+	public String encode(){
+		ArrayList<String> params = new ArrayList<>();
+		return Utilities.toParameterEncode(params);
+	}
+	
+	
+	/**
+	 * Convert encoded configuration <b>String</b> to <b>this</b> entities attributes.
+	 * @param String configuration
+	 */
+	@Transient
+	public void decode(String config){
+		Hashtable<String, String> params = Utilities.fromParameterEncode(config);
+	}
+	
+    ////////////////////// Getters / Setters //////////////////////////////////	
 	
 	public Long getId() {
 		return id;

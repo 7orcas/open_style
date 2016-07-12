@@ -3,6 +3,7 @@ package com.sevenorcas.openstyle.app.log;
 import com.sevenorcas.openstyle.app.AppException;
 import com.sevenorcas.openstyle.app.ApplicationI;
 import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.Utilities;
 import com.sevenorcas.openstyle.app.mail.MailService;
 
 /**
@@ -137,7 +138,7 @@ abstract public class BaseLog implements ApplicationI {
 	 */
 	private static <T> T lookupService(T service, String name) {
 		if (service == null && !mailServicelookup) {
-			service = BaseIntercepter.lookupService(service, name);
+			service = Utilities.lookupService(service, name);
 			mailServicelookup = true;
 		}
 		return service;

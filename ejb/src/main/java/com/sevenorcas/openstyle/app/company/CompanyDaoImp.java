@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
+import com.sevenorcas.openstyle.app.repo.BaseDao;
+import com.sevenorcas.openstyle.app.sql.ResultSetX;
+import com.sevenorcas.openstyle.app.sql.StatementX;
 import com.sevenorcas.openstyle.app.user.UserParam;
 
 /**
@@ -33,7 +36,7 @@ public class CompanyDaoImp extends BaseDao implements CompanyDao{
     public List<Company> list (UserParam params, CompanySql sql) throws Exception{
 	    
         StatementX x = StatementX
-				.create("SELECT t.code, t.customer_nr, t.codeId, t.config "
+				.create("SELECT t.code, t.customer_nr, t.config "
 						+ "FROM " + T_COMPANY + " t "
 						+ "ORDER BY " + (sql.isOrderByName()?"t.code":"t.comp_nr") + " ")
 			    .addActive(sql, "t")
@@ -55,7 +58,6 @@ public class CompanyDaoImp extends BaseDao implements CompanyDao{
 			
 			m.setCode(rs.getString(count++));
 			m.setCustomerNr(rs.getInt(count++));
-			m.setCodeId(rs.getString(count++));
 			m.setConfig(rs.getString(count++));
 			m.decode(m.getConfig());
 			rs.setBaseEntityFields(m, "t");
@@ -123,8 +125,6 @@ public class CompanyDaoImp extends BaseDao implements CompanyDao{
      */
     private void initialise(UserParam params, Company rec) throws Exception{
         rec.decode(rec.getConfig());
-        Long p_id = plantService.findDefaultId(params, rec.getCompanyNr());
-        rec.setDefaultPlantId(p_id);
         cache(rec);
     }
     
@@ -227,7 +227,7 @@ public class CompanyDaoImp extends BaseDao implements CompanyDao{
 	 */
 	private Company loadCompany (UserParam params, Long id) throws Exception{
 	    StatementX x = StatementX
-                .create("SELECT t.id,t.comp_nr,t.customer_nr,t.code,t.codeId,t.config "
+                .create("SELECT t.id,t.comp_nr,t.customer_nr,t.code,t.config "
                         + "FROM " + T_COMPANY + " t ")
                 .addWhere("id=" + id)
                 .appendBaseEntityFields("t");
@@ -245,7 +245,6 @@ public class CompanyDaoImp extends BaseDao implements CompanyDao{
             c.setCompanyNr(rs.getInt(count++));
             c.setCustomerNr(rs.getInt(count++));
             c.setCode(rs.getString(count++));
-            c.setCodeId(rs.getString(count++));
             c.setConfig(rs.getString(count++));
             c.decode(c.getConfig());
             rs.setBaseEntityFields(c, "t");

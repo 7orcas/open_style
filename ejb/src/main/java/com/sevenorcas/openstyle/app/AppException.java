@@ -2,7 +2,7 @@ package com.sevenorcas.openstyle.app;
 
 import java.io.Serializable;
 
-import com.progenso.desma.app.log.ApplicationLog;
+import com.sevenorcas.openstyle.app.log.ApplicationLog;
 
 
 

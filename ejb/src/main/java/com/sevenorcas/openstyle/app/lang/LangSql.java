@@ -1,18 +1,18 @@
 package com.sevenorcas.openstyle.app.lang;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonProperty;
-
-import com.progenso.desma.app.anno.Dto;
-import com.progenso.desma.app.anno.Field;
-import com.progenso.desma.app.entities.sql.BaseSql;
-import com.progenso.desma.entities.app.UserParam;
-import com.progenso.desma.interfaces.rest.RestUtilities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sevenorcas.openstyle.app.dto.Dto;
+import com.sevenorcas.openstyle.app.entity.Field;
+import com.sevenorcas.openstyle.app.rest.RestUtilities;
+import com.sevenorcas.openstyle.app.sql.BaseSql;
+import com.sevenorcas.openstyle.app.user.UserParam;
 
 /**
  * Language sql search object
+ * 
+ * [License]
  * @author john.stewart
- *
  */
 @SuppressWarnings("serial")
 public class LangSql extends BaseSql{
@@ -38,7 +38,7 @@ public class LangSql extends BaseSql{
 	
 	/** Include/Exclude client flag */     
 	@JsonProperty(value="lf") 
-	@Field (appType=APP_TYPE_LOOKUP_REF, values=SELECTION_VALUES)
+	@Field (appType=FIELD_TYPE_LOOKUP_REF, values=SELECTION_VALUES)
 	private Integer client;
 	
 	

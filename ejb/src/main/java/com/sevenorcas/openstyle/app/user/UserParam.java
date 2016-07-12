@@ -2,7 +2,8 @@ package com.sevenorcas.openstyle.app.user;
 
 import java.io.Serializable;
 
-import com.progenso.desma.app.anno.Dto;
+import com.sevenorcas.openstyle.app.dto.Dto;
+import com.sevenorcas.openstyle.app.login.Login;
 
 
 /**
