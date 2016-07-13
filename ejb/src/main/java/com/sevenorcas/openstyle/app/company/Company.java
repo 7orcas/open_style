@@ -50,7 +50,7 @@ public class Company extends BaseEntity implements ConfigI, Serializable {
 	
     ////////////////////// Transient Fields //////////////////////////////////
 
-	
+	/** true == this is a test company              */ @Transient @Field(edit="true", label="CompT")      private Boolean testCompany;
 	
     
     ////////////////////// Methods //////////////////////////////////	
@@ -69,6 +69,9 @@ public class Company extends BaseEntity implements ConfigI, Serializable {
 	@Transient
 	public String encode(){
 		ArrayList<String> params = new ArrayList<>();
+		
+		Utilities.toParameter(params, "P1", testCompany);
+		
 		return Utilities.toParameterEncode(params);
 	}
 	
@@ -80,6 +83,8 @@ public class Company extends BaseEntity implements ConfigI, Serializable {
 	@Transient
 	public void decode(String config){
 		Hashtable<String, String> params = Utilities.fromParameterEncode(config);
+		
+		testCompany                = Utilities.fromParameter(params, "P1", false);
 	}
 	
     ////////////////////// Getters / Setters //////////////////////////////////	
@@ -112,4 +117,14 @@ public class Company extends BaseEntity implements ConfigI, Serializable {
 		this.customerNr = customerNr;
 	}
 	
+	public Boolean getTestCompany() {
+		return testCompany;
+	}
+	public void setTestCompany(Boolean testCompany) {
+		this.testCompany = testCompany;
+	}
+	@Transient
+	public boolean isTestCompany() {
+		return testCompany != null && testCompany;
+	}
 }

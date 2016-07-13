@@ -73,6 +73,13 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <scope>provided</scope>
+<exclusions>
+   <exclusion>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+   </exclusion>
+</exclusions>            
+            
         </dependency>
 
 		<dependency>
@@ -90,6 +97,12 @@
 		<dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
+        </dependency>
+
+		<!-- Rest Interface -->
+		<dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
         </dependency>
 
 		<!-- Recapture -->

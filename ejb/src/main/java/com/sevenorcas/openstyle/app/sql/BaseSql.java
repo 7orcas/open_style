@@ -12,6 +12,7 @@ import com.sevenorcas.openstyle.app.entity.EntityI;
 import com.sevenorcas.openstyle.app.entity.Field;
 import com.sevenorcas.openstyle.app.entity.ValidateI;
 import com.sevenorcas.openstyle.app.entity.ValidationException;
+import com.sevenorcas.openstyle.app.rest.RestUtilities;
 import com.sevenorcas.openstyle.app.user.BaseUserParam;
 
 

@@ -71,7 +71,7 @@ public abstract class BaseDao implements ApplicationI {
 	 * 
 	 * For multiple contexts see http://www.hostettler.net/blog/2012/11/20/multi-tenancy/ (this in not yet implemented)
 	 */
-	@PersistenceContext(name="desma")
+	@PersistenceContext(unitName = "desmaDS")
 	protected static EntityManager em;
 	
 	

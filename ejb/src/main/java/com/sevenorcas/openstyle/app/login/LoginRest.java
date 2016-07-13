@@ -10,17 +10,27 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 
 import org.jboss.logging.Logger;
+import org.jboss.resteasy.annotations.GZIP;
+import org.jboss.resteasy.annotations.interception.HeaderDecoratorPrecedence;
 
 import com.sevenorcas.openstyle.app.ApplicationI;
 import com.sevenorcas.openstyle.app.ApplicationParameters;
 import com.sevenorcas.openstyle.app.application.ApplicationService;
 import com.sevenorcas.openstyle.app.company.Company;
 import com.sevenorcas.openstyle.app.company.CompanyService;
+import com.sevenorcas.openstyle.app.dto.ReturnDto;
 import com.sevenorcas.openstyle.app.lang.LangKey;
 import com.sevenorcas.openstyle.app.lang.Language;
 import com.sevenorcas.openstyle.app.lang.LanguageService;
+import com.sevenorcas.openstyle.app.user.ChangePasswordHtml;
+import com.sevenorcas.openstyle.app.user.NoSessionRequired;
 import com.sevenorcas.openstyle.app.user.User;
 import com.sevenorcas.openstyle.app.user.UserDto;
 import com.sevenorcas.openstyle.app.user.UserParam;
@@ -34,7 +44,7 @@ import com.sevenorcas.openstyle.app.user.UserParam;
  */
 @Stateless
 @Path("/login")
-@Produces({"application/json"})
+//WF10 TODO @Produces({"application/json"})
 @GZIP
 @Consumes({"application/json"})
 @HeaderDecoratorPrecedence
@@ -229,13 +239,7 @@ public class LoginRest {
 			
             Company c = companyService.findByNr(params, params.getCompany());
             rec.setTestCompany(c.isTestCompany());
-            
-            if (c.isHelpFileRoot()){
-                rec.setHelpUrlRoot(c.getHelpFileRoot());
-            }
-            else{
-                rec.setHelpUrlRoot(appParam.getHelpFileRoot());
-            }
+            rec.setHelpUrlRoot(appParam.getHelpFileRoot());
 			
 			if (params.isService()){
 			    rec.setCompanyCode(c.getCompanyNr() + ":" + c.getCode());
@@ -283,7 +287,7 @@ public class LoginRest {
 	 * @return HTML
 	 */
 	@GET
-	@Produces({"text/html;charset=UTF-8"})
+//WF10 TODO 	@Produces({"text/html;charset=UTF-8"})
 	@Path("/changepassword/message")
 	public String includeChangepasswordMessage(@QueryParam(UserParam.QUERY_PARAM) UserParam userParam) throws Exception {
 		return ChangePasswordHtml.getView(userParam.getLanguageCode());
