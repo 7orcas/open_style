@@ -1,0 +1,79 @@
+    
+    <div class="dialog-message-header">
+        {{label('LangSrc');}}
+    </div>
+    
+    <form novalidate >
+    <div class="modal-body">
+        
+        <table class="autowidth table-condensed">
+            <thead>
+                <tr>
+                    <td class="lang-src-label"/>
+                    <td class="lang-src-field"/>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+                <tr>    
+                     <td class="field-label">{{label('LangKey');}}</td>
+                     <td class="tdata">
+                         <input class="field-edit form-control dialog-t-mid" 
+                                type="text" 
+                                maxlength="{{model.getFieldParameter ('Key', 'max');}}"
+                                focus-on="focusMe"
+                                ng-model="dto[model.getKey_F()]">
+                     </td>
+                </tr>
+                <tr>    
+                     <td class="field-label">{{label('LangCode');}}</td>
+                     <td class="tdata">
+                         <input class="field-edit form-control dialog-t-short" 
+                                type="text" 
+                                maxlength="{{model.getFieldParameter ('Code', 'max');}}"
+                                ng-model="dto[model.getCode_F()]">
+                     </td>
+                </tr>
+                <tr>    
+                     <td class="field-label">{{label('Text');}}</td>
+                     <td class="tdata">
+                         <input class="field-edit form-control dialog-t-long" 
+                                type="text" 
+                                maxlength="{{model.getFieldParameter ('Text', 'max');}}"
+                                ng-model="dto[model.getText_F()]">
+                     </td>
+                </tr>
+                <tr>    
+                     <td class="field-label">{{label('Sets');}}</td>
+                     <td class="tdata">
+                         <input class="field-edit form-control dialog-t-long" 
+                                type="text" 
+                                maxlength="{{model.getFieldParameter ('Sets', 'max');}}"
+                                ng-model="dto[model.getSets_F()]">
+                     </td>
+                </tr>
+
+                <tr>    
+                     <td class="field-label">{{label('Lang.M');}}</td>
+                     <td class="tdata">
+                         <input class="dialog-checkboxXX"  
+                               type="checkbox" 
+                               ng-model="dto[model.getMissingCodes_F()]">
+                     </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+          
+      
+    <div class="dialog-footer modal-footer">
+        <button class="btn dialog-footer-btn" ng-click="search()">{{label('Search');}}</button>
+        <button class="btn dialog-footer-btn" ng-click="cancel()">{{label('Cancel');}}</button>
+        
+        <div class="dialog-validation-message"><div ng-bind-html-unsafe="validationMessage"></div></div>
+    </div>
+    </form>  

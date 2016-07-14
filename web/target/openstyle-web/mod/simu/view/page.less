@@ -1,0 +1,1697 @@
+ /*
+  * Simulation Page css settings
+  */
+
+@import (reference) "../../../app/css/app.less";
+@import (reference) "../../../app/css/page.less";
+@import (reference) "../../../app/css/table.less";
+
+
+/*******************************************************
+ * List Table  
+ *******************************************************/
+.simu-list-d .modal-dialog{
+  width: 870px;
+}
+
+/* thanks to http://stackoverflow.com/questions/9707397/making-a-div-vertically-scrollable-using-css */
+form.simu-list-d {
+    margin-left: 45px;
+    height: 600px;
+    overflow-y: scroll;
+}
+
+.so2-lxh{
+  background-color: @RowHeaderBGColor;
+  background: linear-gradient(to top, @HeaderBannerColorStrong, @HeaderBannerColorWeak);
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+}
+
+tr.so2-even{
+  background-color: @RowBGEvenColor;
+}
+td.so2-lih{
+  .so2-lxh;
+  width: 80px;
+  min-width: 80px;
+}
+td.so2-lsh{
+  .so2-lxh;  
+  width: 100px;
+  min-width: 80px;
+}
+td.so2-ldh{
+  .so2-lxh;  
+  width: 140px;
+  min-width: 140px;
+}
+td.so2-lxh{
+  .so2-lxh;  
+  width: 150px;
+  min-width: 80px;
+}
+td.so2-li{
+  text-align:center;
+}
+td.so2-ls{
+  text-align:center;
+}
+td.so2-lc{
+  color: @SidebarColor;
+  cursor: pointer;
+  text-align: center;
+}
+div.so2-lc{
+  color: @TextWeakColor;
+  margin: 20px;
+}
+
+/*******************************************************
+ * Selection 
+ *******************************************************/
+
+#result_table-simu{
+  margin-left: 20px;
+  margin-top: 25px;
+}
+
+tr.simu-row{
+    vertical-align: top;
+}
+
+tr.simu-row1{
+    height: 57px;
+    vertical-align: middle;
+}
+
+td.s02-lb{
+    color:@TextWeakColor;
+    font-size: 16px;
+    padding-right: 10px;
+    text-align: right;
+    vertical-align: middle;
+}
+a.s02-lb{
+    text-decoration: underline;
+}
+td.so2-sr{
+    text-align: left;
+    width: 40px;
+    min-width: 40px;
+    vertical-align: middle;
+}
+button.so2-sr{
+    border: 1px solid #ccc;
+    float: left;
+    margin-left:3px;
+    height: 34px;
+    width: 30px;
+}
+td.simu-com{
+    color:@TextWeakColor;
+    padding-right: 10px;
+    min-width: 400px;
+    text-align: right;
+    width: 400px;
+    vertical-align: middle;
+}
+
+td.so2-da{
+    text-align: left;
+    width: 80px;
+    min-width: 80px;
+    vertical-align: middle;
+}
+
+
+button.so2-r{
+    background-color: @RowHeaderBGColor;
+    background: linear-gradient(to top, @HeaderBannerColorStrong, @HeaderBannerColorWeak);
+    border: 1px solid @RowHeaderBGColor;
+    color: #ffffff;
+    margin-left:15px;
+    margin-top:11px;
+    width: 150px;
+}
+
+input.simu-planNr{
+  border: 3px solid #ccc;
+  width: 50px;
+}
+
+#back-to-simu{
+    font-size:20px;
+}
+
+/*******************************************************
+ * Simulation Legend
+ * Thanks to http://stackoverflow.com/questions/11333624/css-float-right-and-position-absolute-doesnt-work-together
+ *******************************************************/
+div.simu-legend{
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    margin-top: -40px;
+    padding:2px;
+    position: absolute;
+    right: 0;
+}
+span.simu-legend-itm{
+	width: 30px;
+    margin-left: 5px;
+    min-width: 30px;
+    max-height: 10px;
+    border-radius: 2px;
+}
+
+
+
+/*******************************************************
+ * Simulation Summary
+ * Thanks to http://stackoverflow.com/questions/11333624/css-float-right-and-position-absolute-doesnt-work-together
+ *******************************************************/
+div.so2-ss{
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    margin-left:420px;
+    margin-top: -69px;
+    position: absolute;
+    width: 210px;
+}
+div.so2-ss-row{
+   .so0-rb;
+}
+div.so2-ss-lab{
+    display: table-cell;
+    padding-right: 5px;
+    text-align: right;
+    width: 150px;
+}
+div.so2-ss-itm{
+    display: table-cell;
+    width: 70px;
+}
+
+
+/*******************************************************
+ * Simulation Table  
+ *******************************************************/
+@RowHeightSimu:           20px;
+@CalCellBGColor:          #FFFF99;
+@CalCellBGColorEven:      #f1f18b;
+@SimuCellHoverColor:      green;         
+
+@simutab-box-w:   85px;
+@simutab-colq-w:  35px;
+@simutab-col-w:   63px;
+@simutab-cold-w:  50px;
+@simutab-coldx-w: 100px;
+@simutab-cols-w:  50px;
+@simutab-colc-w:  40px;
+@simutab-colp-w:  50px;
+@simutab-colz-w:  75px;
+@simutab-mch-w:   100px;
+@simutab-ove-w:   20px;
+@simutab-colw-w:  35px;
+
+
+div.so2ro{
+  background-color: red;
+  border: 1px solid red;
+  color: white;
+  font-size: 14px;
+  margin-top: -106px;
+  max-width: 100px;
+  padding: 3px;
+  position: absolute;
+  text-align: center;
+}
+
+/* override in java */
+div.so2zz{
+  max-width: @simutab-box-w !important;
+  min-width: @simutab-box-w !important;
+}
+
+
+div.so2h{
+  background-color: #a1ff72 !important;
+}
+div.so2hp{
+  background-color: #adde7e !important;
+}
+
+
+#so2l{
+    margin-top:6px;
+}
+
+.so2m{
+  background-color: white;
+  margin-right: 10px;
+  max-width: none;
+  min-width: @simutab-mch-w;
+  outline: 1px solid #cccccc;
+  white-space: nowrap;
+  width: @simutab-mch-w;
+}
+
+div.so2m{
+  .so2m;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+div.so2ml{
+  .so2m;
+  background-color: yellow;
+  cursor: pointer;
+}
+
+div.so2p{
+  margin-left:550px;
+  margin-top: -73px;
+  position: absolute;
+  input{
+    .div-table-input;
+    background: none repeat scroll 0 0 red;
+    border: 1px solid red;
+    color: white;
+    font-size: 17px;
+    max-height: 24px;
+    text-align: center;
+    width: 90px;
+  }  
+}
+div.so2px{
+  margin-left:550px;
+  margin-top: -98px;
+  position: absolute;
+  input{
+    .div-table-input;
+    background: none repeat scroll 0 0 red;
+    border: 1px solid red;
+    color: white;
+    font-size: 17px;
+    max-height: 24px;
+    text-align: center;
+    width: 90px;
+  }
+}
+
+
+div.simu-load-next-page{
+    margin-left: 20px;
+    margin-top: 10px;
+    font-weight: bold; 
+}
+
+.so2c{
+  .so0tp;
+  text-align: center;
+  max-width: @simutab-col-w;
+  min-width: @simutab-col-w;
+}
+
+
+div.simu-head-scroll{
+    position: relative;
+    width: 100%;
+}
+
+.so2rh{
+  .so0-rb;
+  background-color: @RowHeaderBGColor;
+  background: linear-gradient(to top, @HeaderBannerColorStrong, @HeaderBannerColorWeak);
+}
+
+.so2tch{
+  .so0tcb;
+  .so2c;
+  color: #FFFFFF;
+  font-weight: bold;
+  height:@RowHeaderHeight;
+  text-align:center;
+  padding: 1px 3px 1px 3px;
+  vertical-align: middle;
+}
+
+div.so2tch{
+  .so2tch;
+}
+div.so2tcho{
+  .so2tch;
+  cursor: pointer;
+}
+div.so2tchx{
+  .so2tch;
+  max-width: @simutab-coldx-w;
+  min-width: @simutab-coldx-w;
+}
+div.so2tchq{
+  .so2tch;
+  max-width: @simutab-colq-w;
+  min-width: @simutab-colq-w;
+}
+div.so2tchd{
+  .so2tch;
+  max-width: @simutab-cold-w;
+  min-width: @simutab-cold-w;
+}
+div.so2tchz{
+  .so2tch;
+  max-width: @simutab-colz-w;
+  min-width: @simutab-colz-w;
+}
+div.so2tchs{
+  .so2tch;
+  max-width: @simutab-cols-w;
+  min-width: @simutab-cols-w;
+}
+div.so2tchc{
+  .so2tch;
+  max-width: @simutab-colc-w;
+  min-width: @simutab-colc-w;
+}
+div.so2tchp{
+  .so2tch;
+  max-width: @simutab-colp-w;
+  min-width: @simutab-colp-w;
+}
+div.so2tchw{
+  .so2tch;
+  max-width: @simutab-colw-w;
+  min-width: @simutab-colw-w;
+}
+
+.so2tc{
+  .so2c;
+  display:table-cell;
+  font-size:@TableFontSize;
+  height:@RowHeightSimu;
+  overflow: hidden;
+  padding: 1px 3px 1px 3px;
+  position:relative;
+  text-overflow: ellipsis;
+  vertical-align:middle;
+}
+
+div.so2tcx{
+  .so2tc;
+  max-width: @simutab-coldx-w;
+  min-width: @simutab-coldx-w;
+}
+
+.so2tr{
+  .so0-rb;
+  height:@RowHeightSimu;
+}
+
+.so2trs{
+  .so2tr;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+.so2trc{
+  .so2tr;
+  margin-bottom: 10px;
+}
+
+.so2trt{
+  .so2tr;
+  margin-bottom: 13px;
+  margin-top: 1px;
+}
+
+.so2tre{
+  .so2tr;
+  background-color: #f2f2f2;
+}
+
+.div-table-row-mould-even{
+  background-color: #f2f2f2;
+}
+
+div.so2st{
+  background-color: white;
+  outline: 1px solid #cccccc;
+}
+div.so2ste{
+  background-color: white;
+  outline: 1px solid #cccccc;
+  text-decoration:line-through;
+}
+
+div.so2cp{
+  cursor:pointer;
+}
+div.so2cp:hover{
+  outline: 3px solid @SimuCellHoverColor;
+}
+
+/* Thanks to http://stackoverflow.com/questions/3578757/trying-to-vertically-align-div-inside-div 
+position: relative;
+text-align: left;
+*/
+.so2j{
+  outline: 1px solid grey;
+  vertical-align: top;
+}
+div.so2j{
+  .so2j;
+}
+div.so2jt{
+  bottom: 0;
+  color: #948a80;
+  padding-top: 3px;
+  position: absolute;
+  right: 0;
+}
+div.so2jc{
+  background-color: yellow;
+}
+div.so2jci{
+  background-color: red;
+}
+div.so2jbs{
+  color: red;
+}
+div.so2js{
+  .so2j;
+  background-color: lightblue !important;
+}
+div.so2jf{
+  color:@TextWeakColor;
+}
+div.so2ji{
+  .so2j;
+  background-color: red;
+}
+div.so2jb{
+  .so2j;
+  background-color: #ccc;
+}
+
+.so2x{
+  float: left;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+
+
+/* override in java
+  Thanks to http://stackoverflow.com/questions/11833325/css-hack-adding-css-in-the-body-of-a-website 
+*/
+div.so2xx{
+  .so2x;
+  max-width: 63px;
+  min-width: 63px;
+  white-space: nowrap;
+}
+
+div.so2mt{
+  .so2x;
+  color:@TextWeakColor;
+  font-size:11px;
+  margin-left:10px;
+  max-width: @simutab-box-w - 10;
+  min-width: @simutab-box-w - 10;
+}
+
+/* thanks to http://stackoverflow.com/questions/2147303/how-can-i-send-an-inner-div-to-the-bottom-of-its-parent-div */
+div.so2xs{
+  .so2x;
+  border-right: 1px solid #948a80;
+  border-top: 1px solid #948a80;
+  bottom: 0;
+  color: #948a80;
+  margin-left: -3px;
+  padding-left: 2px;
+  padding-right: 2px;
+  position: absolute;
+}
+
+div.so2lc{
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+/* thanks to https://css-tricks.com/stripes-css/ */
+div.so2op{
+  background: repeating-linear-gradient(-55deg, #ff6961, #ff6961 10px, white 10px, white 20px);
+}
+
+/* thanks to http://stackoverflow.com/questions/114543/horizontally-center-a-div-in-a-div */
+div.so2xc{
+    bottom: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.so2q{
+  float: right;
+  min-width: 15px;
+  text-align: right;
+}
+div.so2q{
+  .so2q;
+}
+div.so2qp{
+  .so2q;
+  min-width:30px;
+  background:#ffcb6a; /* defined in SimuBaseHtml */
+}
+div.so2qs{
+  .so2q;
+  background:#ffcb6a;
+}
+.so2qc{
+  .so2q;
+  font-weight: bold;
+}
+
+div.so2sz{
+  max-width: 35px;
+  min-width: 35px;
+  margin: 0 auto;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.so2jr{
+  .so0-rb;
+  font-size:3px;
+  max-height:1px;
+}
+.so2jo{
+  .so2tc;
+  .so2j;
+  max-width: @simutab-ove-w;
+  min-width: @simutab-ove-w;
+}
+div.so2jso{
+  .so2jo;
+  background-color: lightblue;
+}
+div.so2jio{
+  .so2jo;
+  background-color: red;
+}
+div.so2jbo{
+  .so2jo;
+  background-color: #ccc;
+}
+div.so2jo{
+  .so2jo;
+  font-weight:bold;
+  outline:none;
+  text-align:center;
+}
+div.so2jno{
+  .so2jo;
+  background-color: #91cfcf; /* rgb 145,207,207 defined in SimuBaseHtml*/
+  cursor:pointer;
+  font-weight:bold;
+  text-align:center;
+}
+div.so2jpo{
+  .so2jo;
+  background-color: #befcfc; /* rgb 190,252,252 defined in SimuBaseHtml*/
+  cursor:pointer;
+  font-weight:bold;
+  text-align:center;
+}
+
+.so2tcd{
+  .so2c;
+  display:table-cell;
+  font-size:@TableFontSize;
+  height:@RowHeightSimu;
+  max-width: @simutab-cold-w;
+  min-width: @simutab-cold-w;
+  overflow: hidden;
+  padding: 1px 3px 1px 3px;
+  text-overflow: ellipsis;
+  vertical-align:middle;
+}
+
+.so2tcz{
+  .so2tcd;
+  max-width: @simutab-colz-w;
+  min-width: @simutab-colz-w;
+}
+
+.so2tcq{
+  .so2tcd;
+  max-width: @simutab-colq-w;
+  min-width: @simutab-colq-w;
+}
+
+.so2tcw{
+  .so2tcd;
+  max-width: @simutab-colw-w;
+  min-width: @simutab-colw-w;
+}
+div.so2tcwx{
+  background-color:red;
+  color:white;
+  font-weight:bold;
+  padding: 2px;
+}
+
+.so2tcs{
+  .so2c;
+  display:table-cell;
+  font-size:@TableFontSize;
+  height:@RowHeightSimu;
+  max-width: @simutab-cols-w;
+  min-width: @simutab-cols-w;
+  overflow: hidden;
+  padding: 1px 3px 1px 3px;
+  text-overflow: ellipsis;
+  vertical-align:middle;
+}
+
+.so2tcc{
+  .so2tcd;
+  max-width: @simutab-colc-w;
+  min-width: @simutab-colc-w;
+  overflow:inherit;
+  text-overflow:inherit;
+}
+
+div.so2tsp{
+  .so2tcd;
+  font-weight: bold;
+  height: 20px;
+  max-width:200px;
+  min-width:200px;
+  padding-left: 10px;
+  text-align: left;
+}
+
+.so2tcp{
+  .so2c;
+  display:table-cell;
+  font-size:@TableFontSize;
+  height:@RowHeightSimu;
+  max-width: @simutab-colp-w;
+  min-width: @simutab-colp-w;
+  overflow: hidden;
+  padding: 1px 3px 1px 3px;
+  text-overflow: ellipsis;
+  vertical-align:middle;
+}
+
+
+div.so2s1{
+  background-color: #7fb5e8;
+  outline: 1px solid grey;
+  height:@RowHeightSimu;
+}
+
+.so2cm{
+  background-color: yellow;
+  outline: 1px solid #cccccc;
+}
+div.so2cm{
+  .so2cm;
+}
+div.so2ci{
+  background-color: red;
+  color: white;
+  outline: 1px solid #cccccc;
+}
+div.so2cbm{
+  color: red;
+  outline: 1px solid #cccccc;
+}
+div.so2cbpo{
+  color: red;
+  font-weight:bold;
+}
+div.so2cf{
+  color: @TextWeakColor;
+  outline: 1px solid #cccccc;
+}
+
+
+div.so2ib{
+  background-color: #f2f2f2;
+  border: 1px solid #b4b4b4;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+div.so2sbl{
+  .so0sbl;
+  margin-top:60px;
+}
+div.so2cb{
+  border: 1px solid #e7e7e7;
+  margin-bottom: 20px;
+  min-height: 200px;
+  max-width:100px;
+  min-width:100px;
+  padding-bottom: 20px;
+}
+div.so2cbj{
+  .so2cm;
+  font-size: 12px;
+  font-weight: normal;
+  margin: 5px;
+  max-width: 90px;
+  text-align:center;
+}
+div.so2cbjd{
+  background-color: white !important;
+}
+div.so2cbji{
+  background-color: red !important;
+  color: white !important;
+}
+
+div.so2f{
+  color: red;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight:bold;
+  height: 24px;
+  text-align: center;
+  vertical-align: bottom;
+}
+div.so2f:hover{
+  background-color:#eee;
+}
+div.so2fb{
+  height: 24px;
+}
+div.so2jmx{
+  margin-left:-3px; 
+  max-height:1px;
+  min-width: 30px;
+}
+
+/*******************************************************
+ * Sole Colors Table  
+ *******************************************************/
+@sctab-inj-w:   180px;
+
+/* override in java */
+.so2inj{
+  max-width: @sctab-inj-w !important;
+  min-width: @sctab-inj-w !important;
+  text-align:left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+div.so2inj{
+  .so2inj;
+}
+div.so2injh{
+  .so2inj;
+  text-align:center;
+}
+div.so2sc{
+  .so2j;
+}
+div.so2scx{
+  text-align:left;
+}
+span.so2scxc{
+  color:red;
+}
+
+
+
+
+/*******************************************************
+ * Context Menu
+ *******************************************************/
+.so2fx{
+  position:fixed;
+  z-index: 10009;
+}
+#so2cx {
+  .so0i;
+  max-width: 250px;
+  min-width: 250px;
+  text-align: left;
+}
+div > ul > li > a.so2cp{
+  .so0i;
+  font-weight: 400;
+  margin-bottom: 0px;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+div > ul > li > a.so2cp:hover{
+  background-color:@SidebarBGHover;
+}
+
+
+/*******************************************************
+ * Mould Move and Fix Dialogs  
+ *******************************************************/
+
+/* not working? see http://stackoverflow.com/questions/15704296/angular-ui-bootstrap-dialog-width */
+.simu-act-menu .modal-dialog{
+  width: 600px;
+}
+
+div.so22a{
+  .so0i;
+  font-size:18px;
+  margin-left : 10px;
+  text-align: left;
+}
+div.so22a:hover{
+  background-color:@SidebarBGHover;
+}
+
+div.so22i{
+  color:#959595;
+  font-size:23px;
+  margin-left : 45px;
+  margin-top: -19px;
+  text-align: center;
+}
+
+div.so22l{
+  .so0i;
+  color:@TextWeakColor;
+  cursor: default;
+  font-size:13px;
+  margin-top:-25px;
+  text-align:right;
+}
+
+div.so22d{
+  color:@TextWeakColor;
+  cursor: default;
+  margin-top:-34px;
+}
+input.so22d{
+  color:@TextWeakColor;
+  font-size: 14px;
+  width: 90px;
+}
+
+div.so22n{
+  margin-left:150px;
+}
+td.so22n{
+  font-size:23px;
+  font-weight:bold;
+}
+
+
+/*******************************************************
+ * Start Moulds
+ *******************************************************/
+
+div.so12p{
+  margin-top: 50px;
+}
+
+
+@startmould-mch-w:   100px;
+@startmould-sta-w:   70px;
+@startmould-sta-wx:  90px;
+
+div.so12m{
+  .so0tp;
+  max-width: @startmould-mch-w;
+  min-width: @startmould-mch-w;
+  text-align: left;
+}
+
+div.so12b{
+  .so0tp;
+  max-width: @startmould-mch-w;
+  min-width: @startmould-mch-w;
+  outline: medium none;
+  text-align: left;
+}
+
+div.so12a{
+  .so0tp;
+  text-align: center;
+  max-width: @startmould-sta-w;
+  min-width: @startmould-sta-w;
+}
+div.so12ax{
+  .so0tp;
+  text-align: center;
+  max-width: @startmould-sta-wx;
+  min-width: @startmould-sta-wx;
+}
+
+div.so12e{
+  .so0tp;
+  text-align: left;
+  max-width: @startmould-sta-w;
+  min-width: @startmould-sta-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @startmould-sta-w - @table-w-input-sub;
+  }
+}
+
+div.so12ex{
+  .so0tp;
+  text-align: left;
+  max-width: @startmould-sta-wx;
+  min-width: @startmould-sta-wx;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @startmould-sta-wx - @table-w-input-sub;
+  }
+}
+
+div.so12d{
+  .so0tp;
+  text-align: center;
+  max-width: @startmould-sta-w;
+  min-width: @startmould-sta-w;
+  input{
+    .div-table-input;
+    text-align: center;
+    width: @startmould-sta-w - @table-w-input-sub;
+  }
+}
+div.so12dx{
+  .so0tp;
+  text-align: center;
+  max-width: @startmould-sta-wx;
+  min-width: @startmould-sta-wx;
+  input{
+    .div-table-input;
+    text-align: center;
+    width: @startmould-sta-wx - @table-w-input-sub;
+  }
+}
+
+
+div.so12i{
+  .so0tp;
+  text-align: center;
+  max-width: @startmould-sta-w;
+  min-width: @startmould-sta-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @startmould-sta-w - @table-w-input-sub;
+  }
+}
+div.so12ix{
+  .so0tp;
+  text-align: center;
+  max-width: @startmould-sta-wx;
+  min-width: @startmould-sta-wx;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @startmould-sta-wx - @table-w-input-sub;
+  }
+}
+
+
+
+/*******************************************************
+ * Simulation Configuration
+ *******************************************************/
+div.so11t{
+	display:table;
+}
+
+
+
+@simuconf-lab-w:  300px;
+@simuconf-rul-w:  493px;
+@simuconf-act-w:  40px;
+@simuconf-ref-w:  60px;
+@simuconf-par-w:  60px;
+@simuconf-cod-w:  80px;
+@simuconf-cd-w:   80px;
+@simuconf-x1-w:   60px;
+@simuconf-mt-w:   100px;
+ 
+div.so11m{
+	display: table-cell;
+}
+div.so11mx{
+	display: table;
+}
+
+div.so11tc{
+  display: table-cell;
+  padding-top: 12px;
+  vertical-align: top;
+}
+div.simuconf-view{
+  display: table-cell;
+  padding-left: 120px;
+  padding-top: 12px;
+}
+ 
+div.so11tl{
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+div.so11ts{
+  color: @TextWeakColor;
+  font-style: italic;
+  font-weight: bold;
+  margin-bottom: 3px;
+  margin-top: 21px;
+  text-align: center;
+}
+
+
+div.so11sel{
+  background-color: #eaeaea;
+}
+
+ 
+.so11rhc{
+  .so0-rb;
+  background-color: @RowHeaderBGColor;
+  background: linear-gradient(to top, @HeaderBannerColorStrong, @HeaderBannerColorWeak);
+}
+
+.div-simuconf{
+  cursor: initial;
+}
+
+.so11p1{
+  color:black;
+  background-color: #ffed2c;
+}
+.so11p2{
+  color:black;
+  background-color: #c2ff97;
+}
+.so11p3{
+  color:black;
+  background-color: #a1ffdd;
+}
+.so11p4{
+  color:black;
+  background-color: #bbb7ff;
+}
+.so11p5{
+  color:black;
+  background-color: #ffb9da;
+}
+.so11p6{
+  color:black;
+  background-color: #ffe48c;
+}
+.so11p7{
+  color:black;
+  background-color: #ffa55c;
+}
+
+.so11rf{
+  .div-simuconf;
+  max-width: @simuconf-ref-w;
+  min-width: @simuconf-ref-w;
+}
+.so11ru{
+  .div-simuconf;
+  text-align: left;
+  max-width: @simuconf-rul-w;
+  min-width: @simuconf-rul-w;
+}
+.so11pr{
+  .div-simuconf;
+  text-align: left;
+  max-width: @simuconf-par-w;
+  min-width: @simuconf-par-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @simuconf-par-w - @table-w-input-sub;
+  }
+}
+.so11ac{
+  .div-simuconf;
+  text-align: center;
+  max-width: @simuconf-act-w;
+  min-width: @simuconf-act-w;
+}
+
+div.so11lb{
+  .div-simuconf;
+  margin-right: 3px;
+  outline:none;
+  text-align: right;
+  max-width: @simuconf-lab-w;
+  min-width: @simuconf-lab-w;
+}
+div.so11cb{
+  margin-top: 4px;
+  vertical-align:middle;
+}
+
+div.so11re{
+  color:@TextWeakColor;
+  font-style:italic;
+  margin-bottom:1px;
+  margin-left:30px;
+  margin-top:4px;
+}
+.so11cd{
+  .div-simuconf;
+  max-width: @simuconf-cod-w;
+  min-width: @simuconf-cod-w;
+}
+.so11ds{
+  .div-simuconf;
+  text-align: left;
+  max-width: @simuconf-cd-w;
+  min-width: @simuconf-cd-w;
+}
+.so11mt{
+  .div-simuconf;
+  max-width: @simuconf-mt-w;
+  min-width: @simuconf-mt-w;
+}
+.so11x1{
+  .div-simuconf;
+  text-align: center;
+  max-width: @simuconf-x1-w;
+  min-width: @simuconf-x1-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: 40px;
+  }
+}
+
+
+/*******************************************************
+ * Simulation Detail Table
+ *******************************************************/
+
+.so21e{
+  background-color: #f2f2f2;
+}
+
+@simudtab-seq-w:       70px;
+@simudtab-req-w:       70px;
+@simudtab-sty-w:       80px;
+@simudtab-var-w:       70px;
+@simudtab-col-w:       80px;
+@simudtab-siz-w:       70px;
+@simudtab-sid-w:       80px;
+@simudtab-del-w:       70px;
+@simudtab-nbe-w:       70px;
+@simudtab-qty-w:       70px;
+@simudtab-sel-w:       70px;
+@simudtab-uid-w:       100px;
+@simudtab-idx-w:       80px;
+@simudtab-mgr-w:       100px;
+@simudtab-mcc-w:       130px;
+@simudtab-att-w:       80px;
+@simudtab-sp1-w:       30px;
+
+div.so21rt{
+  .so0i;
+  font-size:20px;
+  margin-bottom:30px;
+}
+
+.so21rh{
+  margin-top:5px;
+  margin-bottom:10px;
+}
+
+.simudtab-seq{
+  text-align: center;
+  max-width: @simudtab-seq-w;
+  min-width: @simudtab-seq-w;
+  input{
+    .div-table-input;
+    background: none;
+    border: 1px solid #ccc;
+    text-align: center;
+    margin-top: 2px;
+    width: @simudtab-seq-w - @table-w-input-sub;
+  }
+}
+
+div.simudtab-sp1{
+  background:@DefaultBGColor;
+  border: medium none;
+  max-width: @simudtab-sp1-w;
+  min-width: @simudtab-sp1-w;
+  outline: medium none;
+}
+.simudtab-mgr{
+  text-align: center;
+  max-width: @simudtab-mgr-w;
+  min-width: @simudtab-mgr-w;
+}
+.simudtab-mcc{
+  text-align: center;
+  max-width: @simudtab-mcc-w;
+  min-width: @simudtab-mcc-w;
+}
+.simudtab-att{
+  text-align: center;
+  max-width: @simudtab-att-w;
+  min-width: @simudtab-att-w;
+}
+
+.simudtab-req{
+  text-align: center;
+  max-width: @simudtab-req-w;
+  min-width: @simudtab-req-w;
+}
+.simudtab-sty{
+  text-align: left;
+  max-width: @simudtab-sty-w;
+  min-width: @simudtab-sty-w;
+}
+.simudtab-var{
+  text-align: left;
+  max-width: @simudtab-var-w;
+  min-width: @simudtab-var-w;
+}
+.simudtab-col{
+  text-align: left;
+  max-width: @simudtab-col-w;
+  min-width: @simudtab-col-w;
+}
+.simudtab-siz{
+  text-align: center;
+  max-width: @simudtab-siz-w;
+  min-width: @simudtab-siz-w;
+}
+.simudtab-del{
+  text-align: center;
+  max-width: @simudtab-del-w;
+  min-width: @simudtab-del-w;
+}
+.simudtab-sid{
+  text-align: left;
+  max-width: @simudtab-sid-w;
+  min-width: @simudtab-sid-w;
+}
+.simudtab-nbe{
+  max-width: @simudtab-nbe-w;
+  min-width: @simudtab-nbe-w;
+  text-align: center;
+}
+.simudtab-qty{
+  text-align: center;
+  max-width: @simudtab-qty-w;
+  min-width: @simudtab-qty-w;
+  input{
+    .div-table-input;
+    background: none;
+    border: 1px solid #ccc;
+    text-align: center;
+    margin-top: 2px;
+    width: @simudtab-qty-w - @table-w-input-sub;
+  }
+}
+.simudtab-sel{
+  text-align: center;
+  max-width: @simudtab-sel-w;
+  min-width: @simudtab-sel-w;
+}
+.simudtab-uidh{
+  text-align: center;
+  max-width: @simudtab-uid-w;
+  min-width: @simudtab-uid-w;
+}
+.simudtab-uid{
+  color:@TextWeakColor;
+  text-align: center;
+  max-width: @simudtab-uid-w;
+  min-width: @simudtab-uid-w;
+}
+.simudtab-idx{
+  text-align: left;
+  max-width: @simudtab-idx-w;
+  min-width: @simudtab-idx-w;
+}
+
+div.so21c{
+  .so0tcb;
+  outline:none;
+}
+
+div.so21z{
+  .so0tcb;
+  display: inherit;
+  outline:none;
+}
+
+div.so21t{
+  font-size:14px;
+  font-weight:bold;
+}
+
+div.so21ta{
+  .so0tcb;
+  outline:none;
+  font-size: 14px;
+  padding-left: 20px;
+}
+
+/*******************************************************
+ * Simulation Style Move Dialog
+ *******************************************************/
+@so23-mac-w:       60px;
+@so23-sta-w:       60px;
+@so23-dat-w:       100px;
+@so23-opt-w:       120px;
+
+div.so23c{
+  .so0tcb;
+  font-size:13px;
+  outline:none;
+}
+
+
+div.so23b{
+  text-align: left;
+  max-width: @so23-mac-w + @so23-sta-w + @so23-dat-w;
+  min-width: @so23-mac-w + @so23-sta-w + @so23-dat-w;
+}
+div.so23m{
+  text-align: center;
+  max-width: @so23-mac-w;
+  min-width: @so23-mac-w;
+}
+div.so23s{
+  text-align: center;
+  max-width: @so23-sta-w;
+  min-width: @so23-sta-w;
+}
+div.so23d{
+  text-align: center;
+  max-width: @so23-dat-w;
+  min-width: @so23-dat-w;
+}
+div.so23o{
+  text-align: center;
+  max-width: @so23-opt-w;
+  min-width: @so23-opt-w;
+}
+div.so23r{
+    border-bottom: 1px solid lightgray;
+    clear: both;
+    display: table;
+    height: 50px;
+    width: auto;
+}
+
+
+/*******************************************************
+ * Simulation Style Mould Group Priorities
+ *******************************************************/
+@so24-pri-w:       70px;
+@so24-mgp-w:       110px;
+@so24-tot-w:       80px;
+@so24-mac-w:       100px;
+@so24-tox-w:       70px;
+@so24-sta-w:       70px;
+@so24-las-w:       120px;
+@so24-stm-w:       70px;
+@so24-spc-w:       20px;
+
+div.so24ph{
+  .so2tch;
+  max-width: @so24-pri-w;
+  min-width: @so24-pri-w;
+}
+div.so24mh{
+  .so2tch;
+  max-width: @so24-mgp-w;
+  min-width: @so24-mgp-w;
+}
+div.so24th{
+  .so2tch;
+  max-width: @so24-tot-w;
+  min-width: @so24-tot-w;
+}
+.soBY{
+  background:yellow;
+  color:black;
+}
+div.so24mxh{
+  .so2tch;
+  .soBY;
+  max-width: @so24-mac-w;
+  min-width: @so24-mac-w;
+}
+div.so24txh{
+  .so2tch;
+  .soBY;
+  max-width: @so24-tox-w;
+  min-width: @so24-tox-w;
+}
+div.so24xh{
+  .so2tch;
+  max-width: @so24-sta-w;
+  min-width: @so24-sta-w;
+}
+div.so24sxh{
+  .so2tch;
+  .soBY;
+  max-width: @so24-sta-w;
+  min-width: @so24-sta-w;
+}
+
+div.so24sh{
+  .so2tch;
+  max-width: @so24-stm-w;
+  min-width: @so24-stm-w;
+}
+div.so24zh{
+  .so2tch;
+  background:@DefaultBGColor;
+  border: medium none;
+  max-width: @so24-spc-w;
+  min-width: @so24-spc-w;
+  outline: medium none;
+}
+div.so24otxh{
+  .so2tch;
+  outline:none;
+  max-width:none;
+  min-width:none;
+}
+
+div.so24z{
+  .so2tcd;
+  text-align: center;
+  max-width: @so24-spc-w;
+  min-width: @so24-spc-w;
+}
+div.so24p{
+  .so2tcd;
+  text-align: center;
+  max-width: @so24-pri-w;
+  min-width: @so24-pri-w;
+}
+div.so24m{
+  .so2tcd;
+  text-align: left;
+  text-decoration: underline;
+  max-width: @so24-mgp-w;
+  min-width: @so24-mgp-w;
+}
+div.so24m0{
+  .so2tcd;
+  color:@ErrorMessageColor;
+  text-align: left;
+  max-width: @so24-mgp-w;
+  min-width: @so24-mgp-w;
+}
+div.so24s{
+  .so2tcd;
+  max-width: @so24-stm-w;
+  min-width: @so24-stm-w;
+}
+div.so24l{
+  .so2tcd;
+  max-width: @so24-las-w;
+  min-width: @so24-las-w;
+}
+div.so24lx{
+  margin-right:5px;
+  outline:1px solid #cccccc;
+  text-align: center;
+  max-width: @so24-las-w - 5px;
+  min-width: @so24-las-w - 5px;
+  white-space: nowrap;
+}
+
+div.so24t{
+  .so2tcd;
+  padding: 1px 18px;
+  text-align: right;
+  max-width: @so24-tot-w;
+  min-width: @so24-tot-w;
+}
+div.so24tx{
+  .so2tcd;
+  padding: 1px 18px;
+  text-align: right;
+  max-width: @so24-tox-w;
+  min-width: @so24-tox-w;
+}
+div.so24txc{
+  .so2tcd;
+  color:red;
+  padding: 1px 18px;
+  text-align: right;
+  max-width: @so24-tox-w;
+  min-width: @so24-tox-w;
+}
+div.so24mx{
+  .so2tcd;
+  padding: 1px 18px;
+  text-align: center;
+  max-width: @so24-mac-w;
+  min-width: @so24-mac-w;
+}
+div.so24x{
+  .so2tcd;
+  max-width: @so24-sta-w;
+  min-width: @so24-sta-w;
+  text-align: center;
+  input{
+    .div-table-input;
+    background: none;
+    border: 1px solid #ccc;
+    height:17px;
+    padding:0px;
+    text-align: center;
+    margin-top: 2px;
+    width: @so24-sta-w - @table-w-input-sub;
+  }
+}
+div.so24xs{
+  .so2tcd;
+  max-width: @so24-sta-w;
+  min-width: @so24-sta-w;
+  padding:0px;
+  text-align: center;
+  form{
+    height:17px;
+    margin:2px;
+  }
+  input{
+    .div-table-input;
+    background: none;
+    border: 1px solid #ccc;
+    height:17px;
+    padding:0px;
+    text-align: center;
+    margin-top: 2px;
+    min-height: 17px;
+    width: @so24-sta-w - @table-w-input-sub;
+  }
+}
+
+div.so24sbb{
+  margin-top: 50px;
+  outline: 1px solid #cccccc;
+  table{
+    width:100%
+  }
+}
+div.so24-agg{
+  background: white none repeat scroll 0 0;
+  color: @TextWeakColor;
+  margin-left: 5px;
+  margin-top: 5px;
+  outline: medium none;
+  text-align: center;
+  vertical-align: middle;
+}
+
+td.so24sbb1{
+  padding-left:4px;
+  width:90px;
+}
+.so24sbb2h{
+  padding-right:4px;
+  text-align: right;
+  width:90px;
+}
+td.so24sbb2{
+  .so24sbb2h;
+}
+td.so24sbb2h{
+  .so24sbb2h;
+  font-weight: bold;
+  height: 30px;
+  text-decoration: underline;
+}
+td.so24sbb2l{
+  .so24sbb2h;
+  font-weight: bold;
+  height: 30px;
+}
+td.so24sbb2i{
+  .so24sbb2h;
+  color: red;
+  height: 30px;
+}
+
+/*******************************************************
+ * Simulation Style Add Dialog
+ *******************************************************/
+select.so24sa{ 
+  display: block;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+
+/*******************************************************
+ * Simulation Progress Dialog
+ *******************************************************/
+.so24pd{ 
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+}
+.so24pds{ 
+  font-size: 14px;
+  margin-top: 15px;
+  text-align: center;
+}

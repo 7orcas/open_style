@@ -1,0 +1,1293 @@
+
+@import (reference) "../../../app/css/app.less";
+@import (reference) "../../../app/css/table.less";
+@import (reference) "../../../app/css/page.less";
+
+
+/*******************************************************
+ * Master data CSS
+ *******************************************************/
+
+div.minutes{
+  max-width: 80px;
+  min-width: 80px;
+  text-align: right;
+  width: 80px;
+}
+
+/*******************************************************
+ * Machine MData Table  
+ *******************************************************/
+
+@machine-int-w:   80px;
+@machine-cap-w:   90px;
+
+.so43-int{
+  .so0tp;
+  text-align: center;
+  max-width: @machine-int-w;
+  min-width: @machine-int-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @machine-int-w - @table-w-input-sub;
+  }
+}
+.so43-cap{
+  .so0tp;
+  text-align: center;
+  max-width: @machine-cap-w;
+  min-width: @machine-cap-w;
+}
+
+/*******************************************************
+ * Shift MData Table  
+ *******************************************************/
+
+@shift-cod-w:   100px;
+
+.so48-cod{
+  .so0tp;
+  text-align: center;
+  max-width: @shift-cod-w;
+  min-width: @shift-cod-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @shift-cod-w - @table-w-input-sub;
+  }
+}
+
+
+/*******************************************************
+ * Machine Shift/Color MData Table  
+ *******************************************************/
+
+@mshifttab-cod-w:   40px;
+@mshifttab-day-w:   70px;
+@mshifttab-col-w:   120px;
+
+.so43-cod{
+  .so0tp;
+  text-align: center;
+  max-width: @mshifttab-cod-w;
+  min-width: @mshifttab-cod-w;
+}
+
+.so43-day{
+  .so0tp;
+  max-width: @mshifttab-day-w;
+  min-width: @mshifttab-day-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @mshifttab-day-w - @table-w-input-sub;
+  }
+}
+
+.so43-col{
+  .so0tp;
+  text-align: center;
+  max-width: @mshifttab-col-w;
+  min-width: @mshifttab-col-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @mshifttab-col-w - @table-w-input-sub;
+  }
+}
+div.so43-sia{
+  text-decoration: line-through;
+}
+div.so43-ct{
+  margin-top:20px;
+}
+
+div.so43-ac{
+  .so0i;
+  margin-top: 10px;
+  text-align: left;
+}
+
+div.so43-xt{
+  margin-top: 40px;
+  margin-bottom: -48px;
+  margin-left: -24px;
+  background: linear-gradient(to top, #767676, #898989);
+}
+
+/*******************************************************
+ * Mould and Last Map MData Table  
+ *******************************************************/
+@RowHeightMould:            20px;
+@CalCellBGColor:          #FFFF99;
+@CalCellBGColorEven:      #f1f18b;
+
+@mouldtab-col-w:   60px;
+@mouldtab-colx-w:  80px; /* big mould codes */
+@mouldtab-des-w:   100px;
+@mouldtab-grp-w:   40px;
+
+
+.so40c{
+  .so0tp;
+  text-align: center;
+  max-width: @mouldtab-col-w;
+  min-width: @mouldtab-col-w;
+}
+.so40cx{
+  .so0tp;
+  text-align: center;
+  max-width: @mouldtab-colx-w;
+  min-width: @mouldtab-colx-w;
+}
+
+
+div.mould-load-next-page{
+    margin-left: 20px;
+    margin-top: 10px;
+    font-weight: bold; 
+}
+
+div.so40hs{
+    position: relative;
+    width: 100%;
+}
+
+.so40h{
+  .div-table-row-base;
+  background-color: @RowHeaderBGColor;
+  background: linear-gradient(to top, @HeaderBannerColorStrong, @HeaderBannerColorWeak);
+  cursor:default;
+}
+
+div.so40hm{
+  .so0tcb;
+  .so40c;
+  color: #FFFFFF;
+  cursor: pointer; 
+  font-weight: bold;
+  height:@RowHeaderHeight;
+  text-align:center;
+  padding: 1px 3px 1px 3px;
+  vertical-align: middle;
+}
+
+.so40hmxx{
+  .so0tcb;
+  .so40cx;
+  color: #FFFFFF;
+  cursor: pointer; 
+  font-weight: bold;
+  height:@RowHeaderHeight;
+  text-align:center;
+  padding: 1px 3px 1px 3px;
+  vertical-align: middle;
+}
+
+div.so40hmx{
+  .so40hmxx;
+}
+div.so40hmxm{
+  .so40hmxx;
+  vertical-align: top;
+}
+div.so40hgr{
+  .so40hmxx;
+  max-width: @mouldtab-grp-w;
+  min-width: @mouldtab-grp-w;
+  vertical-align: top;
+}
+div.so40gr{
+  .so40;
+  max-width: @mouldtab-grp-w;
+  min-width: @mouldtab-grp-w;
+}
+div.so40grx{
+  color: @SidebarColor;
+  max-width: @mouldtab-grp-w;
+  min-width: @mouldtab-grp-w;
+  vertical-align: middle;
+}
+
+.so40{
+  .so40c;
+  display:table-cell;
+  font-size:@TableFontSize;
+  height:@RowHeightMould;
+  overflow: hidden;
+  padding: 1px 3px 1px 3px;
+  text-overflow: ellipsis;
+  vertical-align:middle;
+}
+
+.so40m{
+  .so40;
+  vertical-align:top;
+}
+.so40mx{
+  .so40;
+  .so40cx;
+  vertical-align:top;
+}
+
+
+div.so40hz{
+  .so0tcb;
+  .so40;
+  color: #FFFFFF;
+  cursor: pointer; 
+  font-weight: bold;
+  height:@RowHeaderHeight;
+  max-width: @mouldtab-des-w;
+  min-width: @mouldtab-des-w;
+  text-align:center;
+  padding: 1px 3px 1px 3px;
+  vertical-align: middle;
+}
+
+div.so40z{
+  .so40;
+  text-align: left;
+  max-width: @mouldtab-des-w;
+  min-width: @mouldtab-des-w;
+}
+
+a.so40{
+  color:@ErrorMessageColor;
+}
+
+.so40-r{
+  .div-table-row-base;
+  height:@RowHeightMould;
+}
+
+.so40-re{
+  background-color: #f2f2f2;
+}
+
+.so40a{
+  font-size: 15px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+}
+a.so40a:hover{
+  text-decoration:underlined;
+}
+
+/*******************************************************
+ * Mould Code Table  
+ *******************************************************/
+
+@mouldcodetab-grp-w:   80px;
+@mouldcodetab-mcd-w:   95px;
+@mouldcodetab-mds-w:   200px;
+@mouldcodetab-siz-w:   70px;
+@mouldcodetab-cod-w:   90px;
+@mouldcodetab-cdr-w:   200px;
+@mouldcodetab-act-w:   50px;
+@mouldcodetab-pla-w:   40px;
+@mouldcodetab-tra-w:   200px;
+@mouldcodetab-mac-w:   60px;
+@mouldcodetab-sta-w:   60px;
+@mouldcodetab-spc-w:   5px;
+@mouldgrptab-rgb-w:    90px;
+@mouldgrptab-del-w:    50px;
+
+.so41-grp{
+  .so0tp;
+  text-align: center;
+  max-width: @mouldcodetab-grp-w;
+  min-width: @mouldcodetab-grp-w;
+}
+.so41-grph{
+  .so41-grp;
+  background: linear-gradient(to top, #7aba26, #94de2d);
+}
+
+
+.so41-mcd{
+  .so0tp;
+  text-align: left;
+  max-width: @mouldcodetab-mcd-w;
+  min-width: @mouldcodetab-mcd-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @mouldcodetab-mcd-w - @table-w-input-sub;
+  }
+}
+.so41-mcdh{
+  .so41-mcd;
+  background: linear-gradient(to top, #b3a221, #f0d92c);
+}
+.so41-mds{
+  .so0tp;
+  text-align: left;
+  max-width: @mouldcodetab-mds-w;
+  min-width: @mouldcodetab-mds-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @mouldcodetab-mds-w - @table-w-input-sub;
+  }
+}
+.so41-mdsh{
+  .so41-mds;
+  background: linear-gradient(to top, #b3a221, #f0d92c); 
+}
+.so41-siz{
+  .so0tp;
+  text-align: left;
+  max-width: @mouldcodetab-siz-w;
+  min-width: @mouldcodetab-siz-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @mouldcodetab-siz-w - @table-w-input-sub;
+  }
+}
+.so41-sizh{
+  .so41-siz;
+  background: linear-gradient(to top, #b3a221, #f0d92c);  
+}
+
+
+
+.so41-act{
+  .so0tp;
+  text-align: center;
+  max-width: @mouldcodetab-act-w;
+  min-width: @mouldcodetab-act-w;
+}
+.so41-cod{
+  .so0tp;
+  text-align: left;
+  max-width: @mouldcodetab-cod-w;
+  min-width: @mouldcodetab-cod-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @mouldcodetab-cod-w - @table-w-input-sub;
+  }
+}
+.so41-cdr{
+  .so0tp;
+  text-align: left;
+  max-width: @mouldcodetab-cdr-w;
+  min-width: @mouldcodetab-cdr-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @mouldcodetab-cdr-w - @table-w-input-sub;
+  }
+}
+.so41-mac{
+  .so0tp;
+  text-align: center;
+  max-width: @mouldcodetab-mac-w;
+  min-width: @mouldcodetab-mac-w;
+}
+.so41-sta{
+  .so0tp;
+  text-align: left;
+  max-width: @mouldcodetab-sta-w;
+  min-width: @mouldcodetab-sta-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @mouldcodetab-sta-w - @table-w-input-sub;
+  }
+}
+.so41-spc{
+  .so0tp;
+  background: none repeat scroll 0 0 white;
+  max-width: @mouldcodetab-spc-w;
+  min-width: @mouldcodetab-spc-w;
+  outline: medium none !important;
+}
+.so41-pla{
+  .so0tp;
+  text-align: left;
+  max-width: @mouldcodetab-pla-w;
+  min-width: @mouldcodetab-pla-w;
+}
+.so41-tra{
+  .so0tp;
+  text-align: left;
+  max-width: @mouldcodetab-tra-w;
+  min-width: @mouldcodetab-tra-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @mouldcodetab-tra-w - @table-w-input-sub;
+  }
+}
+.so41-rgb{
+  .so0tp;
+  text-align: center;
+  max-width: @mouldgrptab-rgb-w;
+  min-width: @mouldgrptab-rgb-w;
+}
+.so41-del{
+ .so0tp;
+  max-width: @mouldgrptab-del-w;
+  min-width: @mouldgrptab-del-w; 
+}
+
+div.so41-rep{
+  color:#b3b3b3 !important;
+}
+div.so41-delx{
+  outline: 1px solid red;
+  background: #f57c7a;
+}
+
+.so41h1x{
+  color:@TextWeakColor;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 19px;
+  position: absolute;
+}
+.so41h1{
+  .so41h1x;
+  margin-left: 188px;
+}
+.so41h2{
+  .so41h1x;
+  margin-left: 573px;
+}
+
+/*******************************************************
+ * Last Code Table  
+ *******************************************************/
+
+@lastcodetab-grp-w:   40px;
+@lastcodetab-mcd-w:   130px;
+@lastcodetab-mds-w:   150px;
+@lastcodetab-siz-w:   80px;
+@lastcodetab-pla-w:   40px;
+@lastcodetab-qty-w:   60px;
+@lastcodetab-mgp-w:   250px;
+
+.so42-grp{
+  .so0tp;
+  text-align: center;
+  max-width: @lastcodetab-grp-w;
+  min-width: @lastcodetab-grp-w;
+}
+.so42-mcd{
+  .so0tp;
+  text-align: left;
+  max-width: @lastcodetab-mcd-w;
+  min-width: @lastcodetab-mcd-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @lastcodetab-mcd-w - @table-w-input-sub;
+  }
+}
+.so42-mds{
+  .so0tp;
+  text-align: left;
+  max-width: @lastcodetab-mds-w;
+  min-width: @lastcodetab-mds-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @lastcodetab-mds-w - @table-w-input-sub;
+  }
+}
+.so42-siz{
+  .so0tp;
+  text-align: left;
+  max-width: @lastcodetab-siz-w;
+  min-width: @lastcodetab-siz-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @lastcodetab-siz-w - @table-w-input-sub;
+  }
+}
+
+.so42-pla{
+  .so0tp;
+  text-align: left;
+  max-width: @lastcodetab-pla-w;
+  min-width: @lastcodetab-pla-w;
+}
+.so42-qty{
+  .so0tp;
+  text-align: left;
+  max-width: @lastcodetab-qty-w;
+  min-width: @lastcodetab-qty-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @lastcodetab-qty-w - @table-w-input-sub;
+  }
+}
+.so42-mgp{
+  .so0tp;
+  text-align: left;
+  max-width: @lastcodetab-mgp-w;
+  min-width: @lastcodetab-mgp-w;
+}
+
+/*******************************************************
+ * Size Table  
+ *******************************************************/
+
+@s047-cod-w:   80px;
+@s047-sor-w:   60px;
+@s047-stb-w:   60px;
+
+.so47h-cod{
+ .so0-h;
+  cursor: default;
+  max-width: @s047-cod-w;
+  min-width: @s047-cod-w;
+}
+.so47-cod{
+  .so80tcb;
+  text-align: center;
+  max-width: @s047-cod-w;
+  min-width: @s047-cod-w;
+}
+.so47h-sor{
+  .so0-h;
+  cursor: default;
+  max-width: @s047-sor-w;
+  min-width: @s047-sor-w;
+}
+.so47-sor{
+  .so80tcb;
+  text-align: center;
+  max-width: @s047-sor-w;
+  min-width: @s047-sor-w;
+}
+.so47h-stb{
+  .so0-h;
+  cursor: default;
+  max-width: @s047-stb-w;
+  min-width: @s047-stb-w;
+}
+.so47-stb{
+  .so80tcb;
+  text-align: center;
+  max-width: @s047-stb-w;
+  min-width: @s047-stb-w;
+}
+
+
+.so47-unq{
+  color:@SidebarColor;
+  font-size: 14px;
+  font-weight:bold;
+  margin-top:40px;
+  text-align: center;
+}
+
+/*******************************************************
+ * Category MData Table  
+ *******************************************************/
+
+@mshifttab-code-w:   60px;
+@mshifttab-desc-w:   150px;
+
+.so44-code{
+ .so0tp;
+  text-align: center;
+  max-width: @mshifttab-code-w;
+  min-width: @mshifttab-code-w;
+}
+.so44-desc{
+  .so0tp;
+  text-align: left;
+  max-width: @mshifttab-desc-w;
+  min-width: @mshifttab-desc-w;
+}
+
+/*******************************************************
+ * Requirement Type MData Table  
+ *******************************************************/
+
+@reqttab-des-w:   250px;
+@reqttab-rgb-w:   90px;
+
+.so45-des{
+  .so0tp;
+  text-align: left;
+  max-width: @reqttab-des-w;
+  min-width: @reqttab-des-w;
+}
+
+
+.so45-rgb{
+  .so0tp;
+  text-align: center;
+  max-width: @reqttab-rgb-w;
+  min-width: @reqttab-rgb-w;
+}
+
+button.reqttab-btn{
+  border: 1px solid #ccc;
+  font-size: 10px;
+  height: 34px;
+  width: @reqttab-rgb-w - 5;
+}
+
+
+
+/*******************************************************
+ * Style MData Table  
+ *******************************************************/
+
+.div-size-add{
+    font-size: 15px;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.style-table{
+  display: table;
+}
+.style-table1{
+  background: none repeat scroll 0 0 #f2f0ee;
+  display: table-cell;
+  opacity: 0.85;
+}
+.style-table2{
+  margin-left: 135px;
+}
+.style-table2-nv{
+  margin-left: 77px;
+}
+#left-col-table{
+  position: absolute;
+}
+
+
+#style-table-toolbar{
+ margin-bottom: 10px; 
+ width: 800px; 
+}
+
+
+@styletab-cod-w:   70px;
+@styletab-var-w:   55px;
+@styletab-des-w:   100px;
+@styletab-grp-w:   60px;
+@styletab-act-w:   60px;
+@styletab-grs-w:   40px;
+@styletab-siz-w:   60px;
+@styletab-sizx-w:  80px; /* over size for Riko */
+@styletab-grd-w:   100px;
+
+.so80h-hb{
+  .so0-h;
+  cursor: default;
+  height: 54px;
+}
+
+.so80h-cod{
+  .so80h-hb;
+  max-width: @styletab-cod-w;
+  min-width: @styletab-cod-w;
+}
+.so80h-var{
+  .so80h-hb;
+  max-width: @styletab-var-w;
+  min-width: @styletab-var-w;
+}
+.so80h-des{
+  .so80h-hb;
+  max-width: @styletab-des-w;
+  min-width: @styletab-des-w;
+}
+.so80h-grp{
+  .so80h-hb;
+  max-width: @styletab-grp-w;
+  min-width: @styletab-grp-w;
+}
+.so80h-grpt{
+  .so80h-hb;
+  max-width: @styletab-grp-w;
+  min-width: @styletab-grp-w;
+  vertical-align: top;
+}
+.so80h-grd{
+  .so80h-hb;
+  max-width: @styletab-grd-w;
+  min-width: @styletab-grd-w;
+}
+.so80h-grs{
+  .so80h-hb;
+  max-width: @styletab-grs-w;
+  min-width: @styletab-grs-w;
+}
+.so80h-act{
+  .so80h-hb;
+  max-width: @styletab-act-w;
+  min-width: @styletab-act-w;
+}
+.so80h-siz{
+  .so80h-hb;
+  max-width: @styletab-siz-w;
+  min-width: @styletab-siz-w;
+  vertical-align: top;
+}
+.so80h-sizx{
+  .so80h-hb;
+  max-width: @styletab-sizx-w;
+  min-width: @styletab-sizx-w;
+  vertical-align:top;
+}
+
+.so80tcb{
+  .so0tcb;
+  text-align: left;
+  height: 29px;
+  white-space: nowrap;
+}
+
+.so80-cod{
+  .so80tcb;
+  max-width: @styletab-cod-w;
+  min-width: @styletab-cod-w;
+}
+.so80-var{
+  .so80tcb;
+  max-width: @styletab-var-w;
+  min-width: @styletab-var-w;
+}
+.so80-des{
+  .so80tcb;
+  max-width: @styletab-des-w;
+  min-width: @styletab-des-w;
+}
+.so80-grp{
+  .so80tcb;
+  text-align: center;
+  max-width: @styletab-grp-w;
+  min-width: @styletab-grp-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @styletab-grp-w - @table-w-input-sub;
+  }
+}
+.so80-grd{
+  .so80tcb;
+  text-align: left;
+  max-width: @styletab-grd-w;
+  min-width: @styletab-grd-w;
+}
+.so80-grs{
+  .so80tcb;
+  text-align: center;
+  max-width: @styletab-grs-w;
+  min-width: @styletab-grs-w;
+}
+.so80-act{
+  .so80tcb;
+  text-align: center;
+  max-width: @styletab-act-w;
+  min-width: @styletab-act-w;
+}
+.so80-siz{
+  .so80tcb;
+  text-align: center;
+  max-width: @styletab-siz-w;
+  min-width: @styletab-siz-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @styletab-siz-w - @table-w-input-sub;
+  }
+}
+.so80-siz-z{
+  .so80-siz;
+  color:@TextWeakColor;
+}
+.so80-sizx{
+  .so80tcb;
+  text-align: center;
+  max-width: @styletab-sizx-w;
+  min-width: @styletab-sizx-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @styletab-sizx-w - @table-w-input-sub;
+  }
+}
+.so80-sizx-z{
+  .so80-sizx;
+  color:@TextWeakColor;
+}
+
+label.so80-iof{
+  color:@SidebarColor;
+  cursor: pointer; 
+  margin-top:25px;
+  text-align:center;
+}
+div.so80-iofi{
+  text-align:center;
+}
+
+/*******************************************************
+ * Style Machine / Attribute Tables  
+ *******************************************************/
+
+@stylemactab-cod-w:   70px;
+@stylemactab-var-w:   50px;
+@stylemactab-des-w:   100px;
+@stylemactab-dea-w:   150px;
+@stylemactab-col-w:   50px;
+@stylemactab-mac-w:   60px;
+@stylemactab-siz-w:   50px;
+@stylemactab-usa-w:   50px;
+
+
+.div-so82-base{
+  .so0tcb;
+  text-align: left;
+  height: 29px;
+  white-space: nowrap;
+}
+
+.so82h-cod{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @stylemactab-cod-w;
+  min-width: @stylemactab-cod-w;
+}
+.so82h-var{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @stylemactab-var-w;
+  min-width: @stylemactab-var-w;
+}
+.so82h-des{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @stylemactab-des-w;
+  min-width: @stylemactab-des-w;
+}
+.so82h-dea{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @stylemactab-dea-w;
+  min-width: @stylemactab-dea-w;
+}
+.so82h-col{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @stylemactab-col-w;
+  min-width: @stylemactab-col-w;
+}
+.so82h-mac{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @stylemactab-mac-w;
+  min-width: @stylemactab-mac-w;
+}
+.so82h-siz{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @stylemactab-siz-w;
+  min-width: @stylemactab-siz-w;
+}
+.so82h-usa{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @stylemactab-usa-w;
+  min-width: @stylemactab-usa-w;
+}
+
+.so82-cod{
+  .div-so82-base;
+  max-width: @stylemactab-cod-w;
+  min-width: @stylemactab-cod-w;
+}
+.so82-var{
+  .div-so82-base;
+  max-width: @stylemactab-var-w;
+  min-width: @stylemactab-var-w;
+}
+.so82-des{
+  .div-so82-base;
+  max-width: @stylemactab-des-w;
+  min-width: @stylemactab-des-w;
+}
+.so82-dea{
+  .div-so82-base;
+  max-width: @stylemactab-dea-w;
+  min-width: @stylemactab-dea-w;
+}
+.so82-col{
+  .div-so82-base;
+  max-width: @stylemactab-col-w;
+  min-width: @stylemactab-col-w;
+}
+.so82-mac{
+  .div-so82-base;
+  text-align: center;
+  max-width: @stylemactab-mac-w;
+  min-width: @stylemactab-mac-w;
+}
+.so82-siz{
+  .div-so82-base;
+  max-width: @stylemactab-siz-w;
+  min-width: @stylemactab-siz-w;
+}
+.so82-usa{
+  .div-so82-base;
+  text-align: center;
+  max-width: @stylemactab-usa-w;
+  min-width: @stylemactab-usa-w;
+}
+
+div.so82-agg{
+  background: white none repeat scroll 0 0;
+  color: @TextWeakColor;
+  margin-left: 5px;
+  margin-top: 5px;
+  min-width: 300px;
+  outline: medium none;
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+/*******************************************************
+ * Style Search  CSS
+ *******************************************************/
+
+td.style-src-label{
+  width: 250px;
+}
+td.style-src-field{
+  width: 600px;
+}
+
+select.so46sa{ 
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  color: #555;
+  display: block;
+  font-size: 14px;
+  height: 34px;
+  line-height: 1.42857143;
+  padding: 6px 12px;
+  min-width: 200px;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+/*******************************************************
+ * Material Type Import  CSS
+ *******************************************************/
+@so5tab-cod-w:   60px;
+@so5tab-erp-w:   60px;
+@so5tab-has-w:   70px;
+@so5tab-imp-w:   90px;
+@so5tab-isd-w:   90px; 
+
+.so5h1x{
+  color:@TextWeakColor;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 19px;
+  position: absolute;
+}
+div.so5h1x1{
+  .so5h1x;
+  margin-left: 651px;
+}
+div.so5h1x2{
+  .so5h1x;
+  margin-left: 934px;
+}
+
+div.so5codh{
+  .div-table-col-head;
+  max-width: @so5tab-cod-w;
+  min-width: @so5tab-cod-w;
+}
+div.so5cod{
+  .so0tcb;
+  text-align:center;
+  max-width: @so5tab-cod-w;
+  min-width: @so5tab-cod-w;
+}
+
+div.so5hash{
+  .div-table-col-head;
+  max-width: @so5tab-has-w;
+  min-width: @so5tab-has-w;
+}
+div.so5has{
+  .so0tcb;
+  text-align:center;
+  max-width: @so5tab-has-w;
+  min-width: @so5tab-has-w;
+}
+
+div.so5erph{
+  .div-table-col-head;
+  max-width: @so5tab-erp-w;
+  min-width: @so5tab-erp-w;
+}
+div.so5erp{
+  .so0tcb;
+  text-align:center;
+  max-width: @so5tab-erp-w;
+  min-width: @so5tab-erp-w;
+}
+
+div.so5isth{
+  .div-table-col-head;
+  max-width: @so5tab-imp-w;
+  min-width: @so5tab-imp-w;
+}
+div.so5ist{
+  .so0tcb;
+  text-align:center;
+  max-width: @so5tab-imp-w;
+  min-width: @so5tab-imp-w;
+}
+div.so5ildh{
+  .div-table-col-head;
+  max-width: @so5tab-isd-w;
+  min-width: @so5tab-isd-w;
+}
+div.so5ild{
+  .so0tcb;
+  text-align:center;
+  max-width: @so5tab-isd-w;
+  min-width: @so5tab-isd-w;
+}
+
+
+
+/*******************************************************
+ * Attribute Type CSS
+ *******************************************************/
+@so46-prt-w:    200px;
+@so46-a60-w:    60px;
+@so46-a90-w:    90px;
+@so46-a120-w:   120px;
+@so46-a180-w:   180px;
+
+
+div.so46prth{
+  .div-table-col-head;
+  max-width: @so46-prt-w;
+  min-width: @so46-prt-w;
+}
+div.so46prt{
+  .so0tcb;
+  text-align:left;
+  max-width: @so46-prt-w;
+  min-width: @so46-prt-w;
+  select{
+    text-align:left;
+    width: @so46-prt-w - @table-w-input-sub;
+  }
+}
+
+div.so46-err{
+  color:@ErrorMessageColor;
+}
+
+.so46-a60h{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @so46-a60-w;
+  min-width: @so46-a60-w;
+}
+
+.so46-a60{
+  .so0tcb;
+  height: 29px;
+  max-width: @so46-a60-w;
+  min-width: @so46-a60-w;
+  padding-left:5px;
+  text-align:center;
+  
+  select{
+    text-align:left;
+    width: @so46-a60-w - @table-w-input-sub;
+  }
+  input{
+    text-align:left;
+    width: @so46-a60-w - @table-w-input-sub;
+  }
+}
+
+
+.so46-a90h{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @so46-a90-w;
+  min-width: @so46-a90-w;
+}
+
+.so46-a90{
+  .so0tcb;
+  height: 29px;
+  max-width: @so46-a90-w;
+  min-width: @so46-a90-w;
+  padding-left:5px;
+  text-align:center;
+  
+  select{
+    text-align:left;
+    width: @so46-a90-w - @table-w-input-sub;
+  }
+  input{
+    text-align:left;
+    width: @so46-a90-w - @table-w-input-sub;
+  }
+}
+
+
+.so46-a120h{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @so46-a120-w;
+  min-width: @so46-a120-w;
+}
+
+.so46-a120{
+  .so0tcb;
+  height: 29px;
+  max-width: @so46-a120-w;
+  min-width: @so46-a120-w;
+  padding-left:5px;
+  text-align:center;
+  
+  select{
+    text-align:left;
+    width: @so46-a120-w - @table-w-input-sub;
+  }
+  input{
+    text-align:center;
+    width: @so46-a120-w - @table-w-input-sub;
+  }
+}
+
+.so46-a180h{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @so46-a180-w;
+  min-width: @so46-a180-w;
+}
+
+
+.so46-a180{
+  .so0tcb;
+  height: 29px;
+  max-width: @so46-a180-w;
+  min-width: @so46-a180-w;
+  padding-left:5px;
+  text-align:center;
+  
+  select{
+    text-align:left;
+    width: @so46-a180-w - @table-w-input-sub;
+  }
+  input{
+    text-align:center;
+    width: @so46-a180-w - @table-w-input-sub;
+  }
+}
+
+
+/*******************************************************
+ * PU Configuration Type MData Table  
+ *******************************************************/
+
+@puconfigt-des-w: 450px;
+
+.so49-des{
+  .so0tp;
+  text-align: left;
+  max-width: @puconfigt-des-w;
+  min-width: @puconfigt-des-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @puconfigt-des-w - @table-w-input-sub;
+  }
+}
+
+/*******************************************************
+ * PU Configuration MData Table  
+ *******************************************************/
+
+@puconfig-col-w: 50px;
+@puconfig-des-w: 350px;
+@puconfig-typ-w: 100px;
+
+div.so50-colh{
+  .so0-h;
+  max-width: @puconfig-col-w;
+  min-width: @puconfig-col-w;
+}
+.so50-col{
+  .so0tp;
+  text-align: center;
+  max-width: @puconfig-col-w;
+  min-width: @puconfig-col-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @puconfig-col-w - @table-w-input-sub;
+  }
+}
+.so50-des{
+  .so0tp;
+  text-align: left;
+  max-width: @puconfig-des-w;
+  min-width: @puconfig-des-w;
+  input{
+    .div-table-input;
+    text-align:left;
+    width: @puconfig-des-w - @table-w-input-sub;
+  }
+}
+div.so50-typh{
+  .so0-h;
+  max-width: @puconfig-typ-w;
+  min-width: @puconfig-typ-w;
+}
+.so50-typ{
+  .so0tp;
+  text-align: center;
+  max-width: @puconfig-typ-w;
+  min-width: @puconfig-typ-w;
+  select{
+    height: 21px;
+    width: @puconfig-typ-w - @table-w-input-sub;
+    text-align:left;
+  }
+}
+.so50h1{
+  .so41h1x;
+  margin-left: 528px;
+}
+.so50h2{
+  .so41h1x;
+  margin-left: 742px;
+}
+.so50h3{
+  .so41h1x;
+  margin-left: 1082px;
+}
+

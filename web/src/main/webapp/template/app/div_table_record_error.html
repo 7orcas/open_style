@@ -1,0 +1,7 @@
+<!-- Table row error message -->
+
+<div class="div-table-error"  ng-if="record.containsErrors()">
+    <div ng-repeat="err in record._errors" >
+        <div class="div-table-col-error">{{err.getFieldname()}}:&nbsp;{{err.getMessage()}}&nbsp;&nbsp;<i class="fa fa-level-down"></i></div>
+    </div>                          
+</div>

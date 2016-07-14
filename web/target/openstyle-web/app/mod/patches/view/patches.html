@@ -1,0 +1,71 @@
+
+<section>
+	
+	<div class="masterdata-page">
+        
+	    <div class="main">&nbsp;
+	
+	       <div class="so02-tableX">
+            
+                <div class="div-table-toolbar">
+                    <div class="left record-count">
+                        {{label('RecordCount') + ':' + getServersCount();}}
+                    </div>
+                </div>
+
+                <div id="scroller-anchor-header"></div> 
+                <div id="scroller-header" style="width:100px;">                            
+                    <div class="div-table-row-head" childmodel="Servers">
+                        <div table-col-head field="Server" class="so02h-ser"></div>
+                        <div table-col-head field="Patch"  class="so02h-id"></div>
+                        <div table-col-head field="Url"    class="so02h-url"></div>
+                    </div>
+                </div>
+                
+                <div ng-repeat="record in servers | orderBy:sort_predicate:sort_reverse">
+                    
+                    <div class="div-table-row" childmodel="Servers">     
+                        <div table-col-row field="Server" class="so02-ser"></div>
+                        <div table-col-row field="Patch"  class="so02-id"></div>
+                        <div table-col-row field="Url"    class="so02-url"></div>
+                    </div>
+                </div>
+            </div>
+	
+	        <div class="patches-table">
+	        
+		        <div class="div-table-toolbar">
+		            <div class="left record-count">
+			            {{label('RecordCount') + ':' + getListCount();}}
+			        </div>
+		        </div>
+
+				<div id="scroller-anchor-header"></div> 
+                <div id="scroller-header" style="width:100px;">		                       
+			        <div class="div-table-row-head">
+						<div table-col-head field="Id"    class="so02h-id"></div>
+						<div table-col-head field="Descr" class="so02h-des"></div>
+						<div table-col-head field="Datestring" class="so02h-dat"></div>	
+					</div>
+			    </div>
+			    
+			    
+			    <div ng-repeat="record in list | orderBy:sort_predicate:sort_reverse">
+			    	
+			        <div class="div-table-row">	    
+			        	<div table-col-row field="Id"    class="so02-id"></div>
+			        	<div table-col-row field="Descr" class="so02-des"></div>
+			        	<div table-col-row field="Datestring" class="so02-dat"></div>
+				    </div>
+
+			    </div>
+		    
+		    </div>
+
+
+	    
+	    </div>
+	    
+    </div>
+
+</section>

@@ -1,0 +1,84 @@
+@import (reference) "../../../../app/css/app.less";
+@import (reference) "../../../../app/css/table.less";
+
+/*******************************************************
+ * Patches CSS
+ *******************************************************/
+@patches-id-w:   70px;
+@patches-des-w:  600px;
+@patches-dat-w:  150px;
+@patches-ser-w:  100px;
+@patches-url-w:  400px;
+
+.div-so02-base{
+  .so0tcb;
+  height: 29px;
+  white-space: nowrap;
+}
+
+.so02h-id{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @patches-id-w;
+  min-width: @patches-id-w;
+}
+.so02h-des{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @patches-des-w;
+  min-width: @patches-des-w;
+}
+.so02h-dat{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @patches-dat-w;
+  min-width: @patches-dat-w;
+}
+.so02h-ser{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @patches-ser-w;
+  min-width: @patches-ser-w;
+}
+.so02h-url{
+  .div-table-col-head;
+  cursor: default;
+  max-width: @patches-url-w;
+  min-width: @patches-url-w;
+}
+
+.so02-id{
+  .div-so02-base;
+  text-align: center;
+  max-width: @patches-id-w;
+  min-width: @patches-id-w;
+}
+.so02-des{
+  .div-so02-base;
+  text-align: left;
+  max-width: @patches-des-w;
+  min-width: @patches-des-w;
+}
+.so02-dat{
+  .div-so02-base;
+  text-align: center;
+  max-width: @patches-dat-w;
+  min-width: @patches-dat-w;
+}
+.so02-ser{
+  .div-so02-base;
+  text-align: left;
+  max-width: @patches-ser-w;
+  min-width: @patches-ser-w;
+}
+.so02-url{
+  .div-so02-base;
+  text-align: left;
+  max-width: @patches-url-w;
+  min-width: @patches-url-w;
+}
+
+div.so02-tableX{
+  position: absolute;
+  margin-left: 900px;
+}

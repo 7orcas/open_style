@@ -1,0 +1,433 @@
+ /*
+  * Report Page css settings
+  */
+
+@import (reference) "../../../app/css/app.less";
+@import (reference) "../../../app/css/page.less";
+@import (reference) "../../../app/css/table.less";
+
+
+/*******************************************************
+ * General Report 
+ *******************************************************/
+div.report{
+  display: table;       
+}
+div.rpt-tb{
+  color:#898989;
+}
+div.rpt-tbrc{
+  color:#898989;
+}
+div.rpt-row{
+  display: table-row;
+}
+div.rpt-rowe{
+  background-color: #F0F0F0;
+  display: table-row;
+}
+
+
+/*******************************************************
+ * Material Report Selection 
+ *******************************************************/
+@matrpt-sel-w:       333px;
+@matrpt-sbx-w:       150px;
+@matrpt-lab-w:       100px;
+@matrpt-fil-w:       180px;
+@matrpt-fil-h:       30px;
+
+div.so7mt-sp{
+  background: none repeat scroll 0 0 @DefaultBGColor;
+  height: 110px;
+}
+
+div.so7mt-tb{
+  .div-table-toolbar;
+  margin-bottom: 15px;
+  margin-top: 0px;
+  z-index: 1;
+    
+  .middle{
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    width: 100%;
+  }
+}
+
+/* thanks to http://stackoverflow.com/questions/5239758/css-truncate-table-cells-but-fit-as-much-as-possible */
+.so7tcbn{
+  .so0tcbn;
+  white-space: nowrap;
+}
+
+div.so7rr{
+  font-size: 12px;
+  min-height: 200px;
+  margin-left: 340px;
+  padding-left: 20px;
+}
+
+div.so7rrb{
+  min-height: 50px;
+  min-width: @matrpt-sel-w;
+  max-width: @matrpt-sel-w;
+  margin-left: 30%;
+}
+div.so7rs{
+  margin-top: 100px;
+  max-width: @matrpt-sel-w;
+  min-height: 50px;
+  min-width: @matrpt-sel-w;
+  position: absolute;
+}
+
+/* border copied from bootstrap */
+div.so7rf{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 11px;
+  margin-top: 16px;
+  min-height: 50px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+div.so7rfl{
+  font-weight: bold;
+  text-align:center;
+}
+
+div.so7rfs{
+  background-color: #e7e7e7;
+  border: 1px solid #767676;
+  min-height: 330px;
+  min-width: @matrpt-sbx-w;
+  max-width: @matrpt-sbx-w;
+  padding: 5px;
+  position: absolute;
+}
+div.so7rcs{
+  background-color: #e7e7e7;
+  border: 1px solid #767676;
+  margin-left: 172px;
+  min-height: 330px;
+  max-width: @matrpt-sbx-w;
+  min-width: @matrpt-sbx-w;
+  padding: 5px;
+  position: relative;
+}
+div.report-run{
+ height: 50px;
+}
+div.so7lab{
+  display: table-cell;
+  color:#898989;
+  max-width: @matrpt-lab-w;
+  min-width: @matrpt-lab-w;
+  padding-right:5px;
+  padding-top: 5px;
+  vertical-align:middle;
+}
+div.so7sel{
+  display: table-cell;
+  max-width: @matrpt-fil-w;
+  min-width: @matrpt-fil-w;
+  padding-top: 5px;
+  vertical-align:middle;
+}
+input.so7sel{
+  height: @matrpt-fil-h;
+  max-width: @matrpt-fil-w;
+  min-width: @matrpt-fil-w;
+}
+div.so7selcb{
+  display: table-cell;
+  float: left;
+  max-width: 20px;
+  min-width: 20px;
+  padding-top: 5px;
+  vertical-align:middle;
+}
+input.so7selcb{
+  height: 20px;
+}
+
+/* border copied from bootstrap */
+select.so7sel{
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  height: @matrpt-fil-h;
+  max-width: @matrpt-fil-w;
+  min-width: @matrpt-fil-w;
+}
+button.so7rb{
+  background-color: @RowHeaderBGColor;
+  background: linear-gradient(to top, @HeaderBannerColorStrong, @HeaderBannerColorWeak);
+  border: 1px solid @RowHeaderBGColor;
+  color: #ffffff;
+  min-width: 114px;
+  font-size: 14px;
+}
+
+div.rpt-show{
+  font-size: 20px;
+  position: absolute;
+  margin-left: -70px;
+}
+
+div.rpt-hide{
+  font-size: 20px;
+  position: absolute;
+  margin-left: -70px;
+}
+
+div.so1df{
+  background-color:white;
+  cursor: pointer; 
+  font-size: 14px;
+  margin-bottom: 4px;
+  min-width: 130px;
+  text-align: center;
+  color:#898989;
+  outline:1px solid #e7e7e7;
+  z-index: 1000;
+}
+
+div.so1dt{
+  background-color:white;
+  cursor: pointer; 
+  font-size: 14px;
+  margin-bottom: 4px;
+  min-width: 130px;
+  text-align: center;
+  padding-left:2px;
+  outline:1px solid #b5b5b5;
+  text-align:left;
+  z-index: 1000;
+}
+div.rpt-box{
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align:center;
+}
+
+
+div.rpt-ch{
+  background-color: #CCCCCC;
+  border-right: solid 1pt grey;
+  border-top: solid 1pt grey;
+  display: table-cell;
+  font-weight: bold;
+  min-height: 35px;
+  overflow: hidden;
+  padding: 1px;
+  text-align:center;
+  text-overflow: ellipsis;
+}
+div.rpt-chx{
+  background-color: #CCCCCC;
+  border-left: solid 1pt grey;
+  border-right: solid 1pt grey;
+  border-top: solid 1pt grey;
+  display: table-cell;
+  font-weight: bold;
+  min-height: 35px;
+  overflow: hidden;
+  padding: 1px;
+  text-align:center;
+  text-overflow: ellipsis;
+}
+
+div.rpt-c{
+  border-right: solid 1pt grey;
+  display: table-cell;
+  min-height: 35px;
+  overflow: hidden;
+  padding: 1px;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+div.rpt-cx{
+  border-left: solid 1pt grey;
+  border-right: solid 1pt grey;
+  display: table-cell;
+  min-height: 35px;
+  overflow: hidden;
+  padding: 1px;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+div.rpt-cl{
+  border-right: solid 1pt grey;
+  border-bottom: solid 1pt grey;
+  display: table-cell;
+  min-height: 35px;
+  overflow: hidden;
+  padding: 1px;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+div.rpt-cxl{
+  border-left: solid 1pt grey;
+  border-right: solid 1pt grey;
+  border-bottom: solid 1pt grey;
+  display: table-cell;
+  min-height: 35px;
+  overflow: hidden;
+  padding: 1px;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+
+.rpt-c1{
+  min-width: 60px;
+  max-width: 60px;
+  text-align:center;
+}
+.rpt-c2{
+  min-width: 110px;
+  max-width: 110px;
+  text-align:left;
+}
+.rpt-c3{
+  min-width: 50px;
+  max-width: 50px;
+}
+div.rpt-c4{
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 6px;
+  margin-right: 6px;
+  max-height: 11px;
+  min-height: 11px;
+  outline: solid 1px grey;
+}
+.rpt-c5{
+  min-width: 40px;
+  max-width: 40px;
+  text-align:center;
+}
+.rpt-c6{
+  min-width: 80px;
+  max-width: 80px;
+  text-align:center;
+}
+.rpt-image{
+  min-width: 80px;
+  max-width: 80px;
+  text-align:center;
+}
+.rpt-c7{
+  border-bottom: solid 1pt #cccccc;
+  min-width: 40px;
+  max-width: 40px;
+  text-align:center;
+}
+
+
+
+
+/*******************************************************
+ * Material Report Result 
+ *******************************************************/
+
+@matrpt-mat-w:      120px;
+@matrpt-mac-w:      100px;
+@matrpt-mco-w:       80px;
+@matrpt-msz-w:       50px;
+@matrpt-typ-w:       80px;
+@matrpt-su1-w:       50px;
+@matrpt-su2-w:       100px;
+@matrpt-qty-w:       70px;
+@matrpt-mqy-w:       75px;
+@matrpt-mun-w:       50px;
+@matrpt-sh1-w:       80px;
+@matrpt-sh2-w:       80px;
+@matrpt-id-w:        80px;
+
+.so7-mat{
+  text-align: left;
+  max-width: @matrpt-mat-w;
+  min-width: @matrpt-mat-w;
+}
+.so7-mac{
+  text-align: left;
+  max-width: @matrpt-mac-w;
+  min-width: @matrpt-mac-w;
+}
+.so7-mco{
+  text-align: left;
+  max-width: @matrpt-mco-w;
+  min-width: @matrpt-mco-w;
+}
+.so7-msz{
+  text-align: center;
+  max-width: @matrpt-msz-w;
+  min-width: @matrpt-msz-w;
+}
+.so7-mun{
+  text-align: center;
+  max-width: @matrpt-mun-w;
+  min-width: @matrpt-mun-w;
+}
+.so7-typ{
+  text-align: left;
+  max-width: @matrpt-typ-w;
+  min-width: @matrpt-typ-w;
+}
+.so7-su1{
+  text-align: right;
+  max-width: @matrpt-su1-w;
+  min-width: @matrpt-su1-w;
+}
+.so7-su2{
+  text-align: left;
+  max-width: @matrpt-su2-w;
+  min-width: @matrpt-su2-w;
+}
+.so7-qty{
+  text-align: right;
+  max-width: @matrpt-qty-w;
+  min-width: @matrpt-qty-w;
+}
+.so7-mqy{
+  text-align: right;
+  max-width: @matrpt-mqy-w;
+  min-width: @matrpt-mqy-w;
+}
+div.so7-mqys{
+  color: @ErrorMessageColor;
+  text-align: right;
+  max-width: @matrpt-mqy-w;
+  min-width: @matrpt-mqy-w;
+}
+.so7-sh1{
+  text-align: left;
+  max-width: @matrpt-sh1-w;
+  min-width: @matrpt-sh1-w;
+}
+.so7-sh2{
+  text-align: center;
+  max-width: @matrpt-sh2-w;
+  min-width: @matrpt-sh2-w;
+}
+div.so7-id{
+  background: white none repeat scroll 0 0;
+  color: @TextWeakColor;
+  outline: medium none;
+  text-align: center;
+  max-width: @matrpt-id-w;
+  min-width: @matrpt-id-w;
+}
+
+div.so7ex{
+  margin-top: 25px;
+  text-align: center;
+}

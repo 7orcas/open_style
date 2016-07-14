@@ -1,0 +1,156 @@
+
+@import (reference) "../../../app/css/app.less";
+@import (reference) "../../../app/css/table.less";
+
+
+
+/*******************************************************
+ * Calendar Map Table  
+ * NOTE: widths are specified inline via the html generator
+ *******************************************************/
+
+div.calendar-table{
+   display: table;
+}
+
+div.calendar-table1{
+  background: none repeat scroll 0 0 #f2f0ee;
+  display: table-cell;
+  opacity: 0.85;
+}
+#left-col-table{
+  position: absolute;
+}
+
+
+input.calendar-date{
+    .div-table-input;
+    border-radius: 2px;
+    height:24px;
+    padding:0px;
+    text-align: center;
+    width: 75px;
+}
+
+button.calendar-search-button{
+    border: 1px solid #ccc;
+    float: left;
+    height: 34px;
+    margin-left: 80px;
+    margin-top: -30px;
+    width: 30px;
+}
+
+a.calendar-lookup{
+    font-size: 12px;
+    margin-left: 2px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+input.calendar-radio{
+    margin-left: 15px;
+}
+
+label.calendar-radio{
+    margin-left: 2px;
+    font-weight: normal;
+}
+
+
+
+
+@RowHeightCalendar:       30px;
+@CalCellBGColor:          #FFFF99;
+@CalCellBGColorEven:      #f1f18b;
+
+
+.calendar-tab-spa{
+  .div-table-pos;
+  background: white;
+  height: 18px;
+  text-align: left;
+}
+.calendar-tab-pla{
+  .div-table-pos;
+  text-align: left;
+}
+.calendar-tab-mac{
+  .div-table-pos;
+  text-align: left;
+}
+.calendar-tab-sta{
+  .div-table-pos;
+  text-align: center;
+}
+.calendar-tab-eve{
+  .div-table-pos;
+  text-align: left;
+}
+.calendar-tab-per{
+  .div-table-pos;
+  text-align: center;
+}
+
+
+.table-row-head-calendar{
+  .div-table-row-base;
+  background-color: @RowHeaderBGColor;
+  background: linear-gradient(to top, @HeaderBannerColorStrong, @HeaderBannerColorWeak);
+}
+
+div.table-col-head-calendar{
+  .div-table-col-head-nosort;
+  color: #FFFFFF;
+  font-weight: bold;
+  height:@RowHeaderHeight;
+  text-align:center;
+  padding: 0px;
+  vertical-align: middle;
+}
+
+.table-col-calendar{
+  display:table-cell;
+  font-size:@TableFontSize;
+  height:@RowHeightCalendar;
+  overflow: hidden;
+  padding: 1px 3px 1px 3px;
+  text-overflow: ellipsis;
+  vertical-align:middle;
+  white-space: nowrap;
+}
+
+.table-row-calendar{
+  .div-table-row-base;
+  border-bottom: 1px solid white;
+  border-collapse: unset;
+  height:@RowHeightCalendar;
+  max-height: @RowHeightCalendar;
+  min-height: @RowHeightCalendar;
+}
+
+.table-row-calendar-even{
+  .table-row-calendar;
+  background-color: #f2f2f2;
+}
+
+.cell-event-calendar{
+  background: none repeat scroll 0 0 #ccc;
+  border: 1px solid #878787;
+}
+
+.cell-event-a-calendar{
+  .cell-event-calendar;
+  border-style: solid dashed solid solid;
+  border-width: 1px;  
+}
+.cell-event-b-calendar{
+  .cell-event-calendar;
+  border-style: solid solid solid dashed;
+  border-width: 1px;  
+}
+.cell-event-ba-calendar{
+  .cell-event-calendar;
+  border-style: solid dashed solid dashed;
+  border-width: 1px;  
+}

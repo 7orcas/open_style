@@ -1,0 +1,19 @@
+
+<table class="autowidth table-condensed">
+    <tbody>
+                            
+        <tr>    
+
+            <td class="so01iv">{{$parent.label($parent.cdModel.getFieldParameter('CellWidth', 'label'));}}</td>
+            <td><input type="text" class="so01p" ng-model="type[$parent.cdModel.getFieldParameter('CellWidth', 'dto')]"></td>
+        
+            <td class="so01iv">{{$parent.label($parent.cdModel.getFieldParameter('CellJobLeftWidth', 'label'));}}</td>
+            <td><input type="text" class="so01p" ng-model="type[$parent.cdModel.getFieldParameter('CellJobLeftWidth', 'dto')]"></td>
+		
+		    <td class="so01iv">{{$parent.label($parent.cdModel.getFieldParameter('LastInSimu', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.cdModel.getFieldParameter('LastInSimu', 'dto')]"></td>
+		
+        </tr> 
+        
+    </tbody>
+</table>

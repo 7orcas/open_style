@@ -1,0 +1,135 @@
+@import (reference) "app.less";
+
+/**********************************************************************
+ * Application dialogs configuration
+ **********************************************************************/
+
+.dialog-header-base{
+    background: none repeat scroll 0 0 #8cb5e6;
+    border-bottom: 1px solid @TableBorderColor;
+    border-radius: 6px 6px 0 0;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 15px 5px 10px;
+    text-align: center;
+}
+
+.dialog-message-header{
+    .dialog-header-base;
+}
+
+.dialog-error-header{
+    .dialog-header-base;
+    background-color: #F36C6C;
+}
+
+/* thanks to http://stackoverflow.com/questions/8573890/using-new-line-n-in-string-and-rendering-the-same-in-html */
+.dialog-message-text{
+    font-size: 17px;
+    text-align: center;
+    padding: 15px 5px 10px 5px;
+    white-space: pre-wrap;
+}
+
+.dialog-message-text-detail{
+    font-size: 13px;
+    text-align: center;
+    padding: 15px 5px 10px 5px;
+}
+
+.dialog-footer{
+    
+    .dialog-footer-left{
+        float: left;
+    }
+    
+    .dialog-footer-right{
+        float: right;
+    }
+    
+    .dialog-footer-btn{
+        min-width: 100px;
+        font-size:@FieldLabelFontSize;
+    }
+    
+    #dialog-list-count {
+        text-align:left;
+        color: @TextWeakColor;
+    }
+    
+    #dialog-maxrows{
+        text-align:left;
+        color: @TextWeakColor;
+    }
+    
+    #dialog-record-new{
+        text-align:left;
+    }
+    
+    .dialog-validation-message{
+        color: @ErrorMessageColor;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+    
+}
+
+
+.dialog-t-short{
+	width: 50px;
+}
+.dialog-t-mid{
+    width: 120px;
+}
+.dialog-t-long{
+	width: 200px;
+}
+
+div.dialog-model-top{
+  z-index: 1000;
+}
+
+
+/* THIS DOES NOT WORK IN IE (also Chrome needs more work) */
+
+/*
+ * Thanks to http://www.inserthtml.com/2012/06/custom-form-radio-checkbox/
+ */
+input[type="checkbox"].dialog-checkbox {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    border-radius: 3px;
+    display: inline-block;
+    height: 20px;
+    padding: 9px;
+    position: relative;
+    width: 20px;   
+}
+.input[type="checkbox"].dialog-checkbox:active, .input[type="checkbox"].dialog-checkbox:checked:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+input[type="checkbox"].dialog-checkbox:checked  {
+    background-color: #e9ecee;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+    color: #99a1a7;
+} 
+input[type="checkbox"].dialog-checkbox:checked:after {
+    content: '\2714';
+    font-size: 28px;
+    position: absolute;
+    top: 0px;
+    left: 6px;
+    color: #99a1a7;
+}
+ 
+#errorNoRepeat{
+  cursor: pointer;
+  float: left;
+} 
+ 
+ 

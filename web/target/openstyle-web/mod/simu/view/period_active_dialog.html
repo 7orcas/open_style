@@ -1,0 +1,17 @@
+<div class="dialog-model-top">    
+    <div class="dialog-message-header">
+        {{title();}}
+    </div>
+    
+    <form name="{{form_name}}" novalidate>
+	    
+	    <div class="so25ma"">{{message();}}</div>
+	          
+	    <div class="dialog-footer modal-footer">
+	        <button class="btn dialog-footer-btn" ng-click="cancel()">{{label('Cancel');}}</button>
+	        <button class="btn" id="make_active" ng-click="ok()">{{label('PeriodMA');}}</button>
+	        <div class="dialog-validation-message"><div ng-bind-html-unsafe="validationMessage"></div></div>
+	    </div>
+    </form>  
+</div>
+                				

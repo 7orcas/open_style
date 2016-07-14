@@ -1,0 +1,26 @@
+    
+
+    
+    <div class="dialog-error-header">
+        {{title();}}
+    </div>
+    
+    <form name="{{form_name}}" novalidate>
+    <div class="modal-body">
+        <div class="dialog-message-text"><i class="fa fa-exclamation-triangle" style="color:red;"></i>&nbsp;
+            {{message();}}
+        </div>
+        <div class="dialog-message-text">
+            {{detail();}}
+        </div>
+    </div>
+          
+    <div class="dialog-footer modal-footer">
+        <a ng-show="showNoRepeat()" id="errorNoRepeat" href"" ng-click="errorNoRepeat()">{{label('NoRepeat');}}</a>
+        <button class="btn" ng-click="ok()">{{label('Close');}}</button>
+    </div>
+    </form>  
+        
+
+        
+        

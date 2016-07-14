@@ -1,0 +1,24 @@
+    
+    <div class="dialog-message-header">
+        {{title();}}
+    </div>
+    
+    <form novalidate >
+    <div class="modal-body">
+        
+        <table class="autowidth table-condensed">
+            <tbody>
+                <tr>    
+                     <td class="so22n"><div class="so22n">{{label('FixN');}}</div></td>
+                     <td class="so22n">{{number();}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+          
+    <div class="dialog-footer modal-footer">
+        <button class="btn dialog-footer-btn" ng-click="cancel()">{{label('OK');}}</button>
+        <div class="dialog-validation-message"><div ng-bind-html-unsafe="validationMessage"></div></div>
+    </div>
+    </form>  
+        		

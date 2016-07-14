@@ -1,0 +1,73 @@
+<!-- 
+     no-cache:true
+     callback-class:com.progenso.desma.html.entities.mdata.AttributeTypeListCallback 
+-->
+
+<section>
+    
+    <div class="masterdata-page">
+
+        <div data-actionmenu="recordEdit,recordSave,recordUndo,recordNew"
+             data-permission-key="_admin" 
+             class="sidebar" 
+             data-ng-include 
+             data-src="'template/app/sidebar_actions.html'"></div>
+
+
+        <div class="main">&nbsp;
+    
+              
+            <div class="mattype-table">
+            
+                <div id="scroller-anchor-header"></div> 
+                <div id="scroller-header"  class="header-scroll">
+                    <div class="div-table-toolbar">
+                        <div class="left record-count">
+                            {{label('RecordCount') + ':' + getListCount();}}
+                        </div>
+                    </div>
+
+                    <div class="div-table-row-head">
+                        <div table-col-head field="Sort"></div>
+                        <div table-col-head field="Code"></div> 
+                        <div table-col-head field="ProcessType"    class="so46prth"></div>
+                        <div table-col-head field="Readonly"></div>
+                        <div table-col-head field="IncludeDescription"></div>
+                        
+                        <div table-col-head field="Active"></div>
+                                                                    
+                        <div table-col-head-del></div>
+                    </div>
+                </div>
+                
+                <div ng-repeat="record in list | orderBy:sort_predicate:sort_reverse">
+                    
+                    <div class="div-table-error"  ng-if="record.containsErrors()">
+                        <div ng-repeat="err in record._errors" >
+                            <div data-ng-include src="'template/app/error_message_table.html'"></div>
+                        </div>                          
+                    </div>
+
+                    <!-- thanks to http://www.grobmeier.de/angular-js-ng-select-and-ng-options-21112012.html#.VCFiChb4T2o -->
+                    <div class="div-table-row">
+                        <div table-col-row field="Sort"></div>      
+                        <div table-col-row field="Code"></div>
+                        <div table-col-row field="Type"          is-service="true" class="so46prt" select-options="p.getDescr() as p.getDescr() for p in process"></div>
+                        <div table-col-row field="Readonly"></div>
+                        <div table-col-row field="IncludeDescription"></div>
+                        
+                        <div table-col-row field="Active"></div>
+
+                        <div table-col-row-del></div>
+                        <div table-col-row-warning></div>
+                    </div>
+
+                </div>
+            
+            </div>
+        
+        </div>
+        
+    </div>
+
+</section>

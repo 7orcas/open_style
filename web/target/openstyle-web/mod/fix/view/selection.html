@@ -1,0 +1,124 @@
+<!-- 
+     no-cache:true
+     callback-class:com.progenso.desma.html.entities.fix.FixSelectionCallback 
+-->
+
+
+<section>
+    
+    <div style="width:100%;">
+        
+
+        <div id="scroller-anchor-sidebaraction"></div> 
+        <div id="scroller-sidebaraction">
+
+            <div id="fixshow" class="fix-show" style="display:none;z-index:2010"><a href="" data-ng-click="show()" style="color:grey;"><i class="fa fa-arrow-circle-o-down fa-fw"></i> {{label('RptShow');}}</a></div>
+            <div id="fixhide" class="fix-hide" style="display:none;z-index:2000"><a href="" data-ng-click="hide()" style="color:grey;"><i class="fa fa-arrow-circle-o-up fa-fw"></i> {{label('RptHide');}}</a></div>
+
+            <div class="so8rs" id="fixsels">
+                <div class="so8rrb">
+                    <button type="submit" class="btn so8rb" id="btnRun" ng-click="runReport()">{{label('RptRun')}}</button>
+                </div>        
+
+
+                <div class="so8rf">
+                    <div class="so8rfl">{{label('Filter');}}</div>                
+                    <div class="report">
+
+                       <div class="fix-row">
+                            <div class="so8lab">{{label('FixUP');}}</div>
+                            <div class="so8selcb">
+                                 <input class="so8selcb form-control" 
+                                       type="checkbox" 
+                                       ng-model="fStatus"
+                                       >
+                            </div>
+                        </div>
+
+                        <div class="fix-row">
+                            <div class="so8lab">{{label('Style');}}</div>
+                            <div class="so8sel">
+                                <input class="so8sel lookup-search form-control" 
+                                       type="text" 
+                                       ng-model="fStyle"
+                                       autocomplete="off"
+                                       maxlength="10"
+                                       typeahead="item.l for item in lookupStyle($viewValue)"
+                                       typeahead-loading="loadingLookup" 
+                                       >
+                            </div>
+                        </div>
+
+                        <!-- callback-color:start -->
+                        <div class="fix-row">
+                            <div class="so8lab">{{label('Color');}}</div>
+                            <div class="so8sel">
+                                <input class="so8sel lookup-search form-control" 
+                                       type="text" 
+                                       ng-model="fColor"
+                                       autocomplete="off"
+                                       maxlength="10"
+                                       >
+                            </div>
+                        </div>
+                        <!-- callback-color:end -->
+
+                        <div class="fix-row">
+                            <div class="so8lab">{{label('Mould');}}</div>
+                            <div class="so8sel">
+                                <input class="so8sel lookup-search form-control" 
+                                       type="text" 
+                                       ng-model="fMould"
+                                       autocomplete="off"
+                                       maxlength="10"
+                                       typeahead="item.l for item in lookupMould($viewValue)"
+                                       typeahead-loading="loadingLookup" 
+                                       >
+                            </div>
+                        </div>
+
+                        <div class="fix-row">
+                            <div class="so8lab">{{label('Mould.Gc');}}</div>
+                            <div class="so8sel">
+                                <input class="so8sel lookup-search form-control" 
+                                       type="text" 
+                                       ng-model="fMouldGrp"
+                                       autocomplete="off"
+                                       maxlength="10"
+                                       typeahead="item.l for item in lookupMouldGrp($viewValue)"
+                                       typeahead-loading="loadingLookup" 
+                                       >
+                            </div>
+                        </div>
+
+                        <div class="fix-row">
+                            <div class="so8lab">{{label('SourceC');}}</div>
+                            <div class="so8sel">
+                                <input class="so8sel lookup-search form-control" 
+                                       type="text" 
+                                       ng-model="fSourceId"
+                                       autocomplete="off"
+                                       maxlength="20"
+                                       >
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                
+                <div class="so8ex" data-ng-click="exportSS()"><a class="so0i" href="">{{label('ExportSS');}}</a></div>
+                        
+            </div>
+          
+        </div>
+        
+        <div class="so8rr" id="fixresult">
+            <div data-ng-include src="getViewLink()"></div>
+        </div>   
+        
+    </div>
+
+
+
+</section>

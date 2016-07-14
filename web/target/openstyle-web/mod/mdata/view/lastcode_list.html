@@ -1,0 +1,72 @@
+<!-- 
+     no-cache:true
+     callback-class:com.progenso.desma.html.entities.mdata.LastCodeListCallback 
+	 Used to filter columns and to dynamically add plants.
+-->
+
+<section>
+	
+	<div class="masterdata-page">
+
+        <div data-actionmenu="recordEdit,recordSave,recordUndo,recordNew"
+             data-permission-key="_admin" 
+             class="sidebar" 
+             data-ng-include 
+             data-src="'template/app/sidebar_actions.html'"></div>
+
+
+        <div class="main">&nbsp;
+    
+              
+            <div class="lastcode-table">
+            
+
+                <div class="div-table-toolbar">
+                    <div class="left record-count">
+                        {{label('RecordCount') + ':' + getListCount();}}
+                    </div>
+                </div>
+                               
+                <div id="scroller-anchor-header"></div> 
+                <div id="scroller-header" style="width:100px;">                                
+                    <div class="div-table-row-head">
+                        <div table-col-head class="so42-grp so0-h" field="GroupCode"></div>
+                        <div table-col-head class="so42-mcd so0-h" field="LastCode"></div>
+                        <div table-col-head class="so42-mds so0-h" field="LastCodeDesc"></div>
+                        <div table-col-head class="so42-siz so0-h" field="Sizes"></div>
+                        <div table-col-head class="so42-qty so0-h" field="Quantity"></div>
+                        <div table-col-head class="so42-pla so0-h" field="PlantCode"></div>
+                        
+                        <div table-col-head-del></div>
+                    </div>
+                </div>
+                
+                <div ng-repeat="record in list | orderBy:sort_predicate:sort_reverse">
+                    
+                    <div class="div-table-error"  ng-if="record.containsErrors()">
+                        <div ng-repeat="err in record._errors" >
+                            <div data-ng-include src="'template/app/error_message_table.html'"></div>
+                        </div>                          
+                    </div>
+
+                    <div class="div-table-row">
+                        <div table-col-row class="so42-grp so0-c" field="GroupCode" select-options="p.getCode() as p.getCode() for p in groups"></div>
+                        <div table-col-row class="so42-mcd so0-c" field="LastCode" so-field-edit="fieldEdit" so-field-class="fieldClass"></div>
+                        <div table-col-row class="so42-mds so0-c" field="LastCodeDesc" so-field-edit="fieldEdit" so-field-class="fieldClass"></div>
+                        <div table-col-row class="so42-siz so0-c" field="Sizes" so-field-edit="fieldEdit" so-field-class="fieldClass"></div>
+                        <div table-col-row class="so42-qty so0-c" field="Quantity"></div>
+                        <div table-col-row class="so42-pla so0-c" field="PlantCode" select-options="p.getCode() as p.getCode() for p in plants"></div>
+                        
+						<div table-col-row-del></div>
+                        <div table-col-row-warning></div>
+
+                    </div>
+                    
+                </div>
+            
+            </div>
+        </div>
+	    
+    </div>
+
+</section>

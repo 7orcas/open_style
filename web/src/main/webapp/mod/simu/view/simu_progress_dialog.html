@@ -1,0 +1,20 @@
+    
+    <div class="dialog-message-header">
+        {{title();}}
+    </div>
+    
+    <form name="{{form_name}}" novalidate>
+	    <div class="modal-body">
+	        <div class="so24pd">{{progress();}}</div>
+	    </div>
+	    
+	    <div ng-show="footer()" class="dialog-footer modal-footer" >
+		    <div ng-show="logfile()" style="float: left;">
+	            <a href="" ng-click="_logf()">{{label('LogFile');}}</a>
+	        </div>
+            <button class="btn dialog-footer-btn" ng-click="cancel()">{{label('Cancel');}}</button>
+        </div>
+        
+    </form>  
+        
+                				

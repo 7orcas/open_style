@@ -1,0 +1,133 @@
+	
+
+	
+	<div class="dialog-header">
+        {{title();}}
+    </div>
+    
+    <div class="dialog-fiter-field" id="dialog-fiter-field">
+        <span class="dialog-fiter-field">{{label('Filter')}}</span>
+        <input class="dialog-fiter-field" type="text" ng-model="filterField" maxlength="20">
+        <a class="dialog-fiter-field" href="" ng-show="filterFieldActive()"  ng-click="filterFieldDelete()"><i class="{{iconDelete()}}"></i></a>
+    </div>
+    
+    <form name="{{form_name}}" novalidate>
+    <div class="modal-body">
+	    <div class="dialog-table">
+		    <div class="row-fluid rowspaceafter">
+				<table class="autowidth generic-table-dialog table-hover table-condensed">
+					<thead>
+					    <tr>
+					        <td class="generic-dialog-head {{class_selectable}}" style="text-align: left; width: 14px;" ng-click="selectAll(null)">
+					            <input style="display:none" 
+							               class="{{class_selectable_checkbox_all}}"  
+							               type="checkbox" 
+							               ng-model="cbSelectAll"
+							               ng-click="selectAll($event)">
+					        </td>
+	
+					        <td class="generic-dialog-head {{c.clazz}}" ng-repeat="c in columns" ng-click="sortColumn(c.dto)">
+					            {{label(c.label);}}
+					        </td>
+	
+						    <td style="text-align: left; width: 250px;"></td>
+						</tr>
+					</thead>
+		
+					<tbody>
+						<tr ng-repeat="rec in listCopy | filter:filterId(list_filter)  | orderBy:sortRow:sortReverse()" 
+						    ng-mouseenter="showActions(rec)" 
+						    ng-mouseleave="hideActions(rec)"
+						    id="{{'row_' + rec.getId();}}">
+						    
+						    <td class="generic-dialog-cell {{class_selectable}}" style="text-align: left;" ng-click="select(rec)">
+						        <input style="display:none"
+						               class="{{class_selectable_radio}}"  
+						               type="radio" 
+						               name="selector" 
+						               ng-value="rec.getId()" 
+						               ng-model="selection.id" 
+						               ng-readonly="rec.isDelete()">
+						               
+						        <input style="display:none"
+						               class="{{class_selectable_checkbox}}"  
+						               type="checkbox" 
+						               ng-click="selectX($event)"
+						               ng-model="rec[listCopy.getSelectFieldName()]" 
+						               ng-readonly="rec.isDelete()">
+						    </td>
+						    
+						    <td class="generic-dialog-cell {{c.clazz}}" 
+						        ng-repeat="c in columns"
+						        ng-click="select(rec)">
+	
+	                            <span id="{{'span' + rec.getId() + c.dto;}}">{{getListValue(rec, c)}}</span>
+							    
+							    <input style="display:none"
+							           ng-model="rec[c.dto]" 
+							           maxlength="{{fieldParameter(c.field, 'max');}}"
+							           id="{{'input' + rec.getId() + c.dto;}}"
+							           class="dialog {{c.clazz}}" 
+							           type="text"
+							           ng-blur="updating(rec, c)"
+							           autocomplete="off" 
+							           bs-typeahead="{{'typeahead_' + c.dto}}" 
+					                   required>
+					                   
+					        </td>
+						    
+						    <td class="generic-dialog-action" style="background:none;">
+							    <span>
+					                <span style="display:none"
+					                      id="{{'valid' + rec.getId();}}"
+					                      class="dialog-validation-message" 
+					                      popover-title="{{label('InvalidEntry');}}"
+					                      popover-placement="left" 
+					                      popover-trigger="mouseenter"
+					                      popover="{{getValidationMessage(rec)}}"><span style="color:red"><i class="{{iconWarning()}}"></i></span></span>
+					                <span id="{{'edit' + rec.getId();}}" style="display:none">
+					                    <a href="" ng-click="editText(rec)"><i class="{{iconEdit()}}"></i></a>&nbsp;&nbsp;
+					                </span>
+					                <span id="{{'delete' + rec.getId();}}" style="display:none">
+					                    <a href="" ng-click="deleteText(rec)"><i class="{{iconDelete()}}"></i></a>
+					                </span>
+					                
+					                <span id="{{'move' + rec.getId();}}" style="display:none">
+					                    &nbsp;&nbsp;
+					                    <a href="" ng-click="reorderSort(rec, 'top')"><i class="fa fa-step-backward fa-rotate-90"></i></a>
+					                    <a href="" ng-click="reorderSort(rec, 'up')"><i class="fa fa-chevron-up"></i></a>
+					                    <a href="" ng-click="reorderSort(rec, 'down')"><i class="fa fa-chevron-down"></i></a>
+					                    <a href="" ng-click="reorderSort(rec, 'bottom')"><i class="fa fa-step-backward fa-rotate-270"></i></a>
+					                </span>
+					                
+				                </span>
+						    </td>
+	
+					    </tr>
+					</tbody>
+				</table>
+			</div>
+		</div>  
+    </div>
+		  
+    <div class="dialog-footer modal-footer" style="display:block;">
+        <div class="dialog-footer-left">
+		    <div id="dialog-list-count">{{countOfRows();}}</div>
+            <div id="dialog-record-new" ng-show="isNewable()">
+	            <a class="spec-link" href="" ng-click="addNewRecord()">{{label('AddNewRecord');}}</a>
+	        </div>
+		    <div class="dialog-validation-message"><div ng-bind-html-unsafe="validationMessage"></div></div>
+	    </div>
+	    <div class="dialog-footer-right">
+	        <button class="btn" ng-click="action()" ng-disabled="!isAcceptActionEnable()" id="{{getActionButtonId()}}">{{label('Accept');}}</button>&nbsp;
+		    <button class="btn" ng-click="dismiss()">{{label('Cancel');}}</button>
+	    </div>
+	</div>
+		
+    <div style="display:none">{{removeLoading();}}</div>		
+		
+	</form>  
+		
+
+		
+		

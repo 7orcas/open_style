@@ -1,0 +1,109 @@
+<!-- 
+     no-cache:true
+     callback-class:com.progenso.desma.html.entities.mdata.SizeListCallback 
+-->
+
+<section>
+	
+	<div class="masterdata-page">
+
+        <div data-actionmenu="recordEdit,recordSave,recordUndo,recordNew" 
+             data-permission-key="_service"
+             class="sidebar" 
+             data-ng-include 
+             data-src="'template/app/sidebar_actions.html'">
+             
+             <!-- thanks to http://stackoverflow.com/questions/6293588/how-to-create-an-html-checkbox-with-a-clickable-label -->
+             <div class="so47-unq">
+                 <label>
+	                 <input type="checkbox" 
+	                     data-ng-click="setUnique()"
+	                     id="so47-unq_id" 
+	                     ng-model="unique"> 
+	                 {{label('SizeU');}}
+                 </label>
+            </div>
+             
+        </div>
+        
+	    <div class="main">&nbsp;
+	
+	          
+	        <div class="mouldgroup-table">
+	        
+		        <div class="div-table-toolbar">
+		            <div class="left record-count">
+			            {{label('RecordCount') + ':' + getListCount();}}
+			        </div>
+		        </div>
+
+				<div id="scroller-anchor-header"></div> 
+                <div id="scroller-header" style="width:100px;">		                       
+			        <div class="div-table-row-head">
+						<div table-col-head field="Code"           class="so47h-cod"></div>	
+						<div table-col-head field="Sort"           class="so47h-sor"></div>
+			            <div table-col-head field="Active"         label="SizeU"></div>
+						<div table-col-spacer/>
+						<div table-col-spacer/>
+						
+						<div table-col-head field="GroupMould"     class="so47h-cod"></div>
+						<div table-col-spacer/>
+						
+						<div table-col-head field="GroupStyle"     class="so47h-cod"></div>
+						<div table-col-head field="CombineStyle"   class="so47h-cod"></div>
+                        <div table-col-spacer/>
+                        <div table-col-spacer/>
+
+			            <div table-col-head field="SizeTableCode"  class="so47h-stb"></div>
+						<div table-col-head field="SourceIndex"></div>  <!-- condition:service -->		            		            
+			            		            
+			            <div table-col-head-del></div>
+
+			            <!-- callback column -->
+                        <!-- div class="so0-hns preptab-agg" callback-head="Service"></div-->
+					</div>
+			    </div>
+			    
+			    
+			    <div ng-repeat="record in list | orderBy:sort_predicate:sort_reverse">
+			    	
+			    	<div class="div-table-error"  ng-if="record.containsErrors()">
+						<div ng-repeat="err in record._errors" >
+							<div data-ng-include src="'template/app/error_message_table.html'"></div>
+						</div>							
+					</div>
+
+			        <div class="div-table-row">	    
+			        	<div table-col-row field="Code"          class="so47-cod"></div>
+			        	<div table-col-row field="Sort"          class="so47-sor"></div>
+					    <div table-col-row field="Active"></div>
+			        	<div table-col-spacer/>
+			        	<div table-col-spacer/>
+			        	
+			        	<div table-col-row field="GroupMould"    class="so47-cod"></div>
+			        	<div table-col-spacer/>
+			        	
+			        	<div table-col-row field="GroupStyle"    class="so47-cod"></div>
+			        	<div table-col-row field="CombineStyle"  class="so47-cod"></div>
+			        	<div table-col-spacer/>
+			        	<div table-col-spacer/>
+			        	
+			        	<div table-col-row field="SizeTableCode" class="so47-stb"></div>
+					    <div table-col-row field="SourceIndex"></div>  <!-- condition:service -->
+			        				        	
+			        	<div table-col-row-del></div>
+			        	<div table-col-row-warning></div>
+			        	
+			        	<!-- callback column -->
+                        <!-- div class="preptab-agg" callback-field="Service"></div-->
+				    </div>
+
+			    </div>
+		    
+		    </div>
+	    
+	    </div>
+	    
+    </div>
+
+</section>

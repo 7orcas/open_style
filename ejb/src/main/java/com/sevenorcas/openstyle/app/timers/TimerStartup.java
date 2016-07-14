@@ -22,7 +22,7 @@ import com.sevenorcas.openstyle.app.user.UserParam;
  * @author John Stewart
  */
 
-@Startup
+//WF10 TODO @Startup
 @Singleton
 public class TimerStartup implements ApplicationI{
 	
@@ -32,7 +32,7 @@ public class TimerStartup implements ApplicationI{
 	/**
 	 * Start timers
 	 */
-	@PostConstruct 
+	//WF10 TODO 	@PostConstruct 
     void atStartup() {
 		ApplicationLog.info("TimerStartup called");
 		
@@ -54,7 +54,7 @@ public class TimerStartup implements ApplicationI{
 	 * Cancel timers
 	 * TODO: Test if this works (suspect shut down is too fast)
 	 */
-	@PreDestroy
+  //WF10 TODO @PreDestroy
 	void onShutdown() {
 		ApplicationLog.info("TimerShutdown called");
 		

@@ -1,0 +1,202 @@
+/*
+ * Page css settings
+ */
+
+@import (reference) "app.less";
+
+
+/**********************************************
+ * Default master data page
+ **********************************************/
+div.masterdata-page{
+    display:table;
+    font-size: 12px;
+    margin-left: 20px;
+    background: none repeat scroll 0 0 white;
+    
+    .main{
+        vertical-align: top;
+        width: 100%;
+    }
+        
+}
+
+
+/**********************************************
+ * Action Items (and side-bars)
+ **********************************************/
+
+.so0i{
+  color:@SidebarColor;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight:bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+div.so0i{
+  .so0i;
+  min-height:20px;
+  min-width:100px;
+}
+div.so0ii{
+  .so0i;
+  color:@TextWeakColor;
+  cursor: default;
+}
+
+a.so0i{
+  .so0i;
+}
+a.so0i:hover{
+  text-decoration:none;
+}
+div.so0i:hover{
+  background-color:@SidebarBGHover;
+}
+div.so0is{
+  .so0i;
+  color:red;
+  min-height:20px;
+  min-width:100px;
+}
+div.so0is:hover{
+  background-color:#eee;
+}
+
+.so0sbl{
+  color:@TextWeakColor;
+  height: 35px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+div.so0sbl{
+  .so0sbl;
+}
+
+div.so0sbr{
+  .so0i;
+  font-size: 11px;
+  font-weight:none;
+  margin-bottom:0px;
+}
+div.so0sbr:hover{
+  background-color:#eee;
+}
+
+
+/**********************************************
+ * Siderbar menu
+ **********************************************/
+div.sidebar{
+    display: table-cell;
+    font-size: 14px;    
+    min-width:150px;
+    vertical-align: top;
+
+
+    div.sidebar-label{
+        color:@TextWeakColor;
+        height: 35px;
+        margin-top: 30px;
+    }
+    
+    a.item{
+        .so0i;
+        text-align: left;
+        display: table-row;
+        height: 30px;
+    }
+
+
+    div.lookup{
+        margin-top: 15px;
+    }
+
+    a.lookup-advance{
+        font-size: 12px;
+        margin-left: 2px;
+        position: absolute;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    #sidebaraction-append{
+        margin-bottom: 15px;
+    }
+    
+}
+
+
+/**********************************************
+ * Default page navigation
+ **********************************************/
+.nav-pagenumber{
+    color:@TextWeakColor;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration:underline;
+}
+.nav-pagenumber-sel{
+    .nav-pagenumber;
+    color: @RowHeaderBGColorInner;
+    text-decoration:none;
+}
+.nav-pagenumber-x{
+    .nav-pagenumber;
+    color: @RowHeaderBGColorInner;
+    cursor: default;
+    text-decoration:none;
+}
+
+
+/**********************************************
+ * Lookup Search Input
+ **********************************************/
+
+/* 
+ * @Override
+ * Change width of side bar (overwrite of bootstrap.3.1.1.css) 
+ */
+.dropdown-menu{
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+    display: none;
+    float: left;
+    font-size: 14px;
+    left: 0;
+    list-style: none outside none;
+    margin: 2px 0 0;
+    min-width: 260px;
+    padding: 5px 0;
+    position: absolute;
+    top: 100%;
+    z-index: 1000;
+}
+
+
+input.lookup-search{
+    font-size: 12px;
+    width: 67px;
+}
+.lookup-search-icon{
+    color: #989898;
+    font-size: 22px;
+    margin-left: -5px;
+    z-index: 1100;
+}
+button.lookup-search-button{
+    border: 1px solid #ccc;
+    float: left;
+    height: 34px;
+    margin-left: 69px;
+    margin-top: -34px;
+    width: 30px;
+}

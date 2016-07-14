@@ -1,0 +1,43 @@
+<div class="dialog-model-top">    
+    <div class="dialog-message-header">
+        {{title();}}
+    </div>
+    
+    <form name="{{form_name}}" novalidate>
+	    
+	    <table class="autowidth table-condensed">
+            
+            <tbody>
+                <tr><td>&nbsp;</td></tr>
+                <tr>    
+                     <td><div class="so22i"><i class="fa fa-file-excel-o"></i></div></td>
+                     <td><div class="so22a" data-ng-click="_x()">{{label('ExportSS');}}</div></td>
+                </tr>
+                <tr>    
+                     <td><div class="so22i"><i class="fa fa-th"></i></div></td>
+                     <td><div class="so22a" data-ng-click="_xf()">{{label('ExportCV');}}</div></td>
+                </tr>
+                <tr>    
+                     <td>&nbsp;</td>
+                     <td><div class="so22l"><i class="fa fa-level-up fa-rotate-90"></i>&nbsp;&nbsp;{{label('ExportCVD');}}</div></td>
+                     <td><div class="so22d"><input type="text" class="calendar-date form-control so22d"
+                                                datepicker-popup="{{datepickerFormat}}" 
+                                                show-button-bar="{{datepickerShowButtonBar}}" 
+                                                datepicker-options="{{datepickerDateOptions}}" 
+                                                is-open="openedS" 
+                                                id="end-date"
+                                                init-date=new Date 
+                                                ng-model="upto.d">
+                     </div></td>
+                </tr>
+            </tbody>
+        </table>
+	    
+	          
+	    <div class="dialog-footer modal-footer">
+	        <button class="btn dialog-footer-btn" ng-click="cancel()">{{label('Cancel');}}</button>
+	        <div class="dialog-validation-message"><div ng-bind-html-unsafe="validationMessage"></div></div>
+	    </div>
+    </form>  
+</div>
+                				

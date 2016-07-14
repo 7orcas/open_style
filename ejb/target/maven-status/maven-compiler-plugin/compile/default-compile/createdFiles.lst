@@ -1,5 +1,8 @@
 com\sevenorcas\openstyle\app\company\CompanySql.class
 com\sevenorcas\openstyle\mod\main\MainMeuCallback.class
+com\sevenorcas\openstyle\app\spreadsheet\SpreadSheetService.class
+com\sevenorcas\openstyle\app\spreadsheet\SpreadSheetLabels.class
+com\sevenorcas\openstyle\app\spreadsheet\SpreadSheetServiceImp.class
 com\sevenorcas\openstyle\app\user\UserRoleDto.class
 com\sevenorcas\openstyle\app\user\NoSessionRequired.class
 com\sevenorcas\openstyle\app\login\LoginI.class
@@ -8,6 +11,7 @@ com\sevenorcas\openstyle\app\lang\LangDescrI.class
 com\sevenorcas\openstyle\app\entity\ReturnId.class
 com\sevenorcas\openstyle\app\dto\DefinitionServiceImp.class
 com\sevenorcas\openstyle\app\entity\ConfigI.class
+com\sevenorcas\openstyle\app\spreadsheet\SpreadSheetServiceImp$1.class
 com\sevenorcas\openstyle\app\user\UserAdminServiceImp.class
 com\sevenorcas\openstyle\app\entity\ValidationException$ValidationMessage.class
 com\sevenorcas\openstyle\app\dto\ReturnMessageDto.class
@@ -43,7 +47,9 @@ com\sevenorcas\openstyle\app\lang\LangCodeI.class
 com\sevenorcas\openstyle\app\spreadsheet\SpreadSheetI.class
 com\sevenorcas\openstyle\app\sql\BaseSql.class
 com\sevenorcas\openstyle\app\lang\LangListDto.class
+com\sevenorcas\openstyle\app\lang\LanguageRest.class
 com\sevenorcas\openstyle\app\cache\ServerCache.class
+com\sevenorcas\openstyle\app\spreadsheet\SpreadSheetDef.class
 com\sevenorcas\openstyle\app\repo\EntityRepoI.class
 com\sevenorcas\openstyle\app\entity\ValidationException.class
 com\sevenorcas\openstyle\app\task\TaskRunDto.class
@@ -68,6 +74,7 @@ com\sevenorcas\openstyle\app\dto\ReturnDto$1.class
 com\sevenorcas\openstyle\app\sql\SqlI.class
 com\sevenorcas\openstyle\app\entity\ValidateI.class
 com\sevenorcas\openstyle\app\login\LoginService.class
+com\sevenorcas\openstyle\JAXActivator.class
 com\sevenorcas\openstyle\app\dto\LookupDto.class
 com\sevenorcas\openstyle\app\timers\TimerI.class
 com\sevenorcas\openstyle\app\lang\LanguageDaoImp.class
@@ -97,6 +104,7 @@ com\sevenorcas\openstyle\app\login\Login.class
 com\sevenorcas\openstyle\app\AppException.class
 com\sevenorcas\openstyle\app\login\BaseLoginDto.class
 com\sevenorcas\openstyle\app\ApplicationI.class
+com\sevenorcas\openstyle\app\spreadsheet\SpreadSheetServiceImp$Def.class
 com\sevenorcas\openstyle\app\sql\StatementX.class
 com\sevenorcas\openstyle\app\dto\ReturnDto$EncodeDto.class
 com\sevenorcas\openstyle\app\temptable\TempTableDao.class

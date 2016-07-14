@@ -1,0 +1,18 @@
+
+<table class="autowidth table-condensed">
+    <tbody>
+                            
+        <tr>    
+		    <td class="so01iv">{{$parent.label($parent.foModel.getFieldParameter('Period', 'label'));}}</td>
+		    <td><input type="checkbox" ng-model="type[$parent.foModel.getFieldParameter('Period', 'dto')]"></td>
+		
+		    <td class="so01iv">{{$parent.label($parent.foModel.getFieldParameter('Shifts', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.foModel.getFieldParameter('Shifts', 'dto')]"></td>
+		
+		      <td class="so01iv">{{$parent.label($parent.foModel.getFieldParameter('PdfTemplate', 'label'));}}</td>
+            <td colspan="5"><input type="text" class="so01s" ng-model="type[$parent.foModel.getFieldParameter('PdfTemplate', 'dto')]"></td>
+		
+		</tr> 
+        
+    </tbody>
+</table>

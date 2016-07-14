@@ -1,0 +1,99 @@
+<!-- 
+     callback-class:com.progenso.desma.html.entities.plan.StyleAddDialogCallback 
+     Used to filter columns and to dynamically add machine numbers.
+-->
+
+    
+    <div class="dialog-message-header">
+        {{label('SimuSAdd');}}
+    </div>
+    
+    <form novalidate >
+    <div class="modal-body">
+        
+        <table class="autowidth table-condensed">
+            <thead>
+                <tr>
+                    <td class="style-src-label"/>
+                    <td class="style-src-field"/>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+                <tr>    
+                     <td class="field-label">{{label('Style');}}</td>
+                     <td class="tdata">
+                         <input class="field-edit form-control dialog-t-long" 
+                                type="text" 
+                                maxlength="{{model.getFieldParameter ('Style', 'max');}}"
+                                focus-on="focusMe"
+                                typeahead="item.l for item in lookupStyle($viewValue)"
+                                typeahead-loading="loadingLookup"
+                                ng-model="dto[model.getStyle_F()]">
+                     </td>
+                </tr>
+                
+                <!-- callback-head color_start -->
+                <tr>    
+                     <td class="field-label">{{label('Color');}}</td>
+                     <td class="tdata">
+                         <input class="field-edit form-control dialog-t-long" 
+                                type="text" 
+                                maxlength="{{model.getFieldParameter ('Color', 'max');}}"
+                                ng-model="dto[model.getColor_F()]">
+                     </td>
+                </tr>
+                <!-- callback-head color_end -->
+                
+                <tr>    
+                     <td class="field-label">{{label('Size');}}</td>
+                     <td class="tdata">
+                         <select class="so24sa"  
+                                 ng-show="isSizeSelect()"
+                                 ng-model="$parent.sizeSel"
+                                 ng-options="r.value for r in sizes"></select>
+                          <input class="field-edit form-control dialog-t-short" 
+                                 type="text"
+                                 ng-readonly="true" 
+                                 ng-show="!isSizeSelect()" 
+                                 maxlength="{{model.getFieldParameter ('Size', 'max');}}"
+                                 ng-model="dto[model.getSize_F()]">
+                     </td>
+                </tr>
+
+                <tr>    
+                     <td class="field-label">{{label('Qty');}}</td>
+                     <td class="tdata">
+                         <input class="field-edit form-control dialog-t-short" 
+                                type="text" 
+                                maxlength="{{model.getFieldParameter ('Qty', 'max');}}"
+                                ng-model="dto[model.getQty_F()]">
+                     </td>
+                </tr>
+
+                <tr>    
+                     <td class="field-label">{{label('Sequence');}}</td>
+                     <td class="tdata">
+                         <input class="field-edit form-control dialog-t-short" 
+                                type="text" 
+                                maxlength="{{model.getFieldParameter ('SequenceNr', 'max');}}"
+                                ng-model="dto[model.getSequenceNr_F()]">
+                     </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+          
+      
+    <div class="dialog-footer modal-footer">
+        <button class="btn dialog-footer-btn" ng-click="add()">{{label('SimuSAdd');}}</button>
+        <button class="btn dialog-footer-btn" ng-click="cancel()">{{label('Cancel');}}</button>
+        
+        <div class="dialog-validation-message"><div ng-bind-html-unsafe="validationMessage"></div></div>
+    </div>
+    </form>  
+        		

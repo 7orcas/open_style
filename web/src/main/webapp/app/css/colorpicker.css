@@ -1,0 +1,45 @@
+/**********************************************************************
+ * Color Picker 
+ * Thanks to http://css.dzone.com/articles/creating-your-own-html5
+ **********************************************************************/
+
+.colorpicker {
+    background-color: #222222;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 2px 2px 2px #444444;
+    color: #FFFFFF;
+    cursor: crosshair;
+    font-size: 12px;
+    position: absolute;
+    width: 460px;
+}
+.colorpicker-controls {
+    float: right;
+    margin: 10px;
+}
+.colorpicker-controls > div {
+    border: 1px solid #2F2F2F;
+    margin-bottom: 5px;
+    overflow: hidden;
+    padding: 5px;
+}
+.colorpicker-controls label {
+    float: left;
+}
+.colorpicker-controls > div input {
+    background-color: #121212;
+    border: 1px solid #2F2F2F;
+    color: #DDDDDD;
+    float: right;
+    font-size: 10px;
+    height: 14px;
+    margin-left: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 75px;
+}
+button.colorpicker-blank-btn{
+	background-color:white;
+    color:black;
+    width:100px;
+}

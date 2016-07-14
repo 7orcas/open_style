@@ -1,0 +1,124 @@
+<!-- 
+     no-cache:true
+     callback-class:com.progenso.desma.html.entities.plan.PrepSelectionCallback
+-->
+
+<section>
+
+    <!-- callback-error -->
+
+    <div class="masterdata-page">
+
+        <div class="main">&nbsp;
+            <table>
+                <tr class="so1r">
+                
+                    <!-- callback -->
+                    <!-- div callback-head="IgnoreDates"></div-->
+                    
+                    <td class="so1sb1">
+                        <div class="so1sb1">
+                            <table>
+                                <tr >
+                                    <td colspan="4">
+                                        <!-- callback -->
+                                        <div class="so1st"></div> <!-- div callback-head="ReqTypesLabel"></div-->
+                                    </td>
+                                </tr>
+                                <!-- callback -->
+                                <!-- div callback-head="ReqTypes"></div-->
+                            </table>
+                        </div>
+                    </td>
+                    
+                    <td class="so1sp">&nbsp;</td>
+                    
+                    <!-- callback -->
+                    <!-- div callback-foot="IgnoreDates"></div-->
+
+                    <td class="so1sb1">
+                        <table>
+                            
+                            <tr >
+                                <td colspan="3">
+                                    <div class="so1st"></div> <!-- div callback-head="FieldsLabel"></div-->
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <!-- Thanks to https://github.com/ganarajpr/angular-dragdrop/blob/master/draganddrop.js -->
+                                <td class="so1ca">
+                                    <div class="so1pd" ui-on-Drop="onDrop($event,$data,aggregate1)">
+                                        <div ui-draggable="true" drag="sel" 
+                                            class="so1df"
+                                            on-drop-success="_dshx($event,$index,aggregate1)"
+                                            ng-dblclick="addCategory(sel)"
+                                            ng-repeat="sel in aggregate1 track by $index">
+                                            {{label(sel)}}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="so1cas">&nbsp;</td>
+                                <td class="so1ca" ui-on-Drop="onDrop($event,$data,aggregate2)">
+                                    <div class="so1pd" >
+                                        <div ui-draggable="true" drag="sel" 
+                                            class="so1dt"
+                                            ui-on-Drop="onDropX($event,$data,aggregate2,$index)"
+                                            on-drop-success="_dshx($event,$index,aggregate2)"
+                                            ng-dblclick="removeCategory(sel)"
+                                            ng-repeat="sel in aggregate2 track by $index">
+                                            {{$index+1}}. {{label(sel)}}
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </table>
+                    </td>
+                   
+                    <td class="so1sp">&nbsp;</td>
+                   
+                    <td class="so1sb1">
+                        <table>
+                            <tr >
+                                <td colspan="2">
+                                    <div class="so1st"></div>  <!-- div callback-head="AllocationLabel"></div-->
+                                </td>
+                            </tr>
+                            
+                            <!-- callback:NoMat:Start -->
+                            <tr>
+                                <td style="text-align:center;min-width: 300px;">
+                                    <button type="submit" class="btn so1b2" id="btnRunPrep" ng-click="runPrep()"></button>  <!-- div callback-head="ButtonLabel"></div-->
+                                </td>
+                            </tr>
+                            <!-- callback:NoMat:End -->
+                            
+                            <!-- callback:Mat:Start -->
+                            <tr>
+                                <td style="text-align:center;">
+                                    <button type="submit" class="btn so1b3" id="btnRunPrep" ng-click="runPrep()"></button>  <!-- div callback-head="ButtonLabel"></div-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="so1bx">
+                                    <!-- div callback-head="AllocationRules"></div-->
+                                </td>
+                            </tr>
+                            <!-- callback:Mat:End -->
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+
+    <div id="result_table" style="display:none">
+        <div data-ng-include src="getViewLink()"></div>
+    </div>
+
+   
+
+</section>

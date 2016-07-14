@@ -1,0 +1,100 @@
+
+<table class="autowidth table-condensed">
+    <tbody>
+    
+    	<tr>    
+             <td class="so01ir" colspan="6" style="padding-left:22px;"">{{$parent.label($parent.sdModel.getFieldParameter('SimuMDFType1', 'label'));}}: Refer prod_order Table</td>
+        </tr>
+        <tr>    
+             <td class="so01i">{{$parent.label($parent.sdModel.getFieldParameter('SimuMDFType1', 'label'));}} 1</td>
+             <td class="so01se" colspan="3">
+                  <select class="so01se"  
+                          data-ng-model="type[$parent.sdModel.getFieldParameter('SimuMDFValue1', 'dto')]" 
+                          data-ng-options="p.value for p in $parent.simuMFDs"></select>
+             </td>
+             <td class="so01i">{{$parent.label($parent.sdModel.getFieldParameter('SimuMDFType3', 'label'));}} 3</td>
+             <td class="so01se" colspan="3">
+                  <select class="so01se"  
+                          data-ng-model="type[$parent.sdModel.getFieldParameter('SimuMDFValue3', 'dto')]" 
+                          data-ng-options="p.value for p in $parent.simuMFDs"></select>
+             </td>
+        </tr> 
+             
+        <tr>    
+             <td class="so01i">{{$parent.label($parent.sdModel.getFieldParameter('SimuMDFType2', 'label'));}} 2</td>
+             <td class="so01se" colspan="3">
+                  <select class="so01se"  
+                          data-ng-model="type[$parent.sdModel.getFieldParameter('SimuMDFValue2', 'dto')]" 
+                          data-ng-options="p.value for p in $parent.simuMFDs"></select>
+             </td>
+             <td class="so01i">{{$parent.label($parent.sdModel.getFieldParameter('SimuMDFType4', 'label'));}} 4</td>
+             <td class="so01se" colspan="3">
+                  <select class="so01se"  
+                          data-ng-model="type[$parent.sdModel.getFieldParameter('SimuMDFValue4', 'dto')]" 
+                          data-ng-options="p.value for p in $parent.simuMFDs"></select>
+             </td>
+        </tr>     
+                            
+        <tr>    
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('Period', 'label'));}}</td>
+		    <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('Period', 'dto')]"></td>
+		
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('Shifts', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('Shifts', 'dto')]"></td>
+
+		    <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('SizesAtBottomLeft', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('SizesAtBottomLeft', 'dto')]"></td>
+            
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('SizeInline', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('SizeInline', 'dto')]"></td>
+
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('MouldChangesInBox', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('MouldChangesInBox', 'dto')]"></td>
+        
+        
+        </tr> 
+        
+        <tr>    
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('ShiftTotalsInBox', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('ShiftTotalsInBox', 'dto')]"></td>
+        
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('DayTotalsPerStation', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('DayTotalsPerStation', 'dto')]"></td>
+        
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('ShiftTotals', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('ShiftTotals', 'dto')]"></td>
+        
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('MouldChanges', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('MouldChanges', 'dto')]"></td>
+
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('HighlightFixed', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('HighlightFixed', 'dto')]"></td>
+        </tr> 
+        
+        <tr>    
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('ShowStationPairs', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('ShowStationPairs', 'dto')]"></td>
+        
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('MaterialsInLine', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('MaterialsInLine', 'dto')]"></td>
+            
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('MaterialsSummary', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('MaterialsSummary', 'dto')]"></td>
+            
+            <td class="so01iv">{{$parent.label($parent.sdModel.getFieldParameter('NotB4Period', 'label'));}}</td>
+            <td><input type="checkbox" ng-model="type[$parent.sdModel.getFieldParameter('NotB4Period', 'dto')]"></td>
+        
+        </tr>
+        
+        <tr>    
+            <td class="so01i">{{$parent.label($parent.model.getFieldParameter('ExportSimuFileFormat', 'label'));}}</td>
+	        <td class="so01se"  colspan="3">
+	            <select class="so01se"  
+	                    data-ng-model="$parent.list[$parent.$index][$parent.model.getFieldParameter('ExportSimuFileValue', 'dto')]" 
+	                    data-ng-options="p.value for p in $parent.formatsSimu"></select>
+	        </td>                                         
+       </tr>
+
+        
+    </tbody>
+</table>

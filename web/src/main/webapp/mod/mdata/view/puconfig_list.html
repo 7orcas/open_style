@@ -1,0 +1,77 @@
+<!-- 
+     no-cache:true
+     callback-class:com.progenso.desma.html.entities.mdata.PUConfigListCallback 
+-->
+
+<section>
+    
+    <div class="masterdata-page">
+
+        <div data-actionmenu="recordEdit,recordSave,recordUndo,recordNew"
+             data-permission-key="_admin" 
+             class="sidebar" 
+             data-ng-include 
+             data-src="'template/app/sidebar_actions.html'"></div>
+
+
+        <div class="main">&nbsp;
+    
+              
+            <div class="puconfig-table">
+            
+                <div class="div-table-toolbar">
+                    <div class="left record-count">
+                        {{label('RecordCount') + ':' + getListCount();}}
+                    </div>
+                    <div class="so50h1">{{label('Injt')}} 1</div> <!-- callback="Injector 1" --> 
+                    <div class="so50h2">{{label('Injt')}} 2</div> <!-- callback="Injector 2" -->
+                    <div class="so50h3">{{label('Injt')}} 3</div> <!-- callback="Injector 3" -->
+                </div>
+                               
+                <div id="scroller-anchor-header"></div> 
+                <div id="scroller-header" style="width:100px;">                                
+                    <div class="so0rh">
+                        <div table-col-head field="Code"></div>
+                        <div table-col-head field="Descr" class="so0-h so50-des"></div>
+         
+                        <!-- callback column -->
+                        <!-- div class="???" callback-head="Injectors"></div-->
+                        
+                        <div table-col-head field="Active"></div>
+                                            
+                        <div table-col-head-del></div>
+                    </div>
+                </div>
+                
+                <div ng-repeat="record in list">
+                    
+                    <div class="div-table-error"  ng-if="record.containsErrors()">
+                        <div ng-repeat="err in record._errors" >
+                            <div data-ng-include src="'template/app/error_message_table.html'"></div>
+                        </div>                          
+                    </div>
+
+                    <div class="div-table-row">
+                        <div table-col-row field="Code"></div>        
+                        <div table-col-row field="Descr" class="so0-c so50-des"></div>
+                        
+                        <!-- callback column -->
+                        <!-- div table-col-row class="so0-c ???" callback-field="Injectors"></div -->
+                        
+                        <div table-col-row field="Active"></div>
+                                                
+                        <div table-col-row-del></div>
+                        <div table-col-row-warning></div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        
+        </div>
+        
+    </div>
+
+</section>

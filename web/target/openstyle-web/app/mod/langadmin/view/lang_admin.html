@@ -1,0 +1,71 @@
+<section>    
+    
+    <div class="masterdata-page">
+
+        <div data-actionmenu="recordNew,recordEdit,recordSave,recordUndo,lookup,lookupAdvance" 
+             class="sidebar" 
+             data-ng-include 
+             data-src="'template/app/sidebar_actions.html'">
+             
+             <br><br>
+             <div class="so0i" data-ng-click="exportSS()"> {{label('ExportSS')}}</div>
+               
+         </div>
+
+        <div class="main">&nbsp;
+            <div class="lang-table">
+                
+                <div class="div-table">
+
+                    <div id="scroller-anchor-header"></div>
+                    <div id="scroller-header" class="header-scroll">
+                    
+                        <div class="div-table-toolbar">
+                            <div class="left record-count">
+                                {{label('RecordCount') + ':' + getListCount();}}
+                            </div>
+                            <div class="middle">
+                                <div data-ng-include data-src="'template/app/page_navigation.html'"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="div-table-row-head">
+                            <div data-table-col-head so-no-sort data-field="Key"      class="lang-key div-table-col"></div>
+                            <div data-table-col-head so-no-sort data-field="Langcode" class="lang-cod div-table-col"></div>
+                            <div data-table-col-head so-no-sort data-field="Text"     class="lang-txt div-table-col"></div>
+                            <div data-table-col-head so-no-sort data-field="Sets"     class="lang-set div-table-col"></div>
+                            <div data-table-col-head so-no-sort data-field="Client"   class="lang-cli div-table-col"></div>
+                            <div data-table-col-head so-no-sort label="Copy"          class="lang-cop div-table-col"></div>
+                            <div data-table-col-head-del></div>
+                        </div>
+                    
+                    </div>
+
+                    <div data-ng-repeat="record in list | startFrom:page.getIndex(page.current) | limitTo:page.getRecords(page.current)">
+
+                        <div data-ng-include data-src="'template/app/div_table_record_error.html'"></div>
+                        
+                        <div class="div-table-row">
+                            <div data-table-col-row data-field="Key"      class="lang-key div-table-col"></div>
+                            <div data-table-col-row data-field="Langcode" class="lang-cod div-table-col"></div>
+                            <div data-table-col-row data-field="Text"     class="lang-txt div-table-col"></div>
+                            <div data-table-col-row data-field="Sets"     class="lang-set div-table-col"></div>
+                            <div data-table-col-row data-field="Client"   class="lang-cli div-table-col"></div>
+                            <div class="lang-cop div-table-col">
+                                <a href="" ng-click="copy(record.getId())">{{label('copy');}}</a>
+                            </div>
+
+                            <div data-table-col-row-del></div>
+                            <div data-table-col-row-warning></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        
+    </div>
+
+
+
+</section>

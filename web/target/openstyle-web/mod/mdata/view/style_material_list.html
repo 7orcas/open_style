@@ -1,0 +1,136 @@
+<!-- 
+     no-cache:true
+     callback-class:com.progenso.desma.html.entities.mdata.StyleMaterialListCallback 
+-->
+
+<section>
+    
+    <div class="masterdata-page">
+
+        <!-- sidebar_actions.html template not used as callback checks to remove update js method calls  -->
+        <div class="sidebar">
+             <div id="scroller-anchor-sidebaraction"></div> 
+             <div id="scroller-sidebaraction" style="margin-top:65px; width:100px">
+                <div id="sidebaraction-label"  class="so0sbl">{{label('Actions');}}:</div>
+                 
+                <div class="so0i" data-ng-click="recordEdit()">{{label('EditRecord');}}</div>
+                <div class="so0i" data-ng-click="recordSave()"><a class="so0i" href="">{{label('SaveRecord');}}</a></div>
+                <div class="so0i" data-ng-click="recordUndo()"><a class="so0i" href="">{{label('UndoRecord');}}</a></div>
+                <div class="so0i" data-ng-click="exportSS()"><a class="so0i" href="">{{label('ExportSS');}}</a></div>
+                 
+                <!-- callback="import:start" -->
+                <div class="so0i" ng-click="upload()">
+                    <form id="fileuploadImage" action="{{getFileUploadHref()}}" method="post" enctype="multipart/form-data">
+                        <input type="file" id="upload_file" name="file" style="display:none" upload uploadfile="file" accept="application/vnd.ms-excel"/>
+                        <a href="" >{{label('ImportSS');}}</a><br><br>
+                    </form>
+                </div>
+                <!-- callback="import:end" -->
+                  
+                <div class="lookup">
+                    <input class="lookup-search form-control" type="text" maxlength="10" typeahead="item.l for item in lookup($viewValue)" ng-model="lookupSelect" typeahead-loading="loadingLookup" so-enter="lookupAction()">
+                    <i ng-show="loadingLookup" class="glyphicon glyphicon-refresh"></i>
+                    <button type="submit" class="btn lookup-search-button" data-ng-click="lookupAction()"><i class="lookup-search-icon fa fa-search-plus"></i></button>
+                </div>
+                  
+                <div class="so0sbr" data-ng-click="lookupAdvance()"><a href="">{{label('Lookup.A');}}</a></div>
+                 
+
+                <label class="so80-iof" for="so80_iofcb">{{label('StyleA');}}</label>            
+                <div class="so80-iofi">
+                    <input class="dialog-checkboxXX"  
+                            id = "so80_iofcb"
+                            type="checkbox"
+                            ng-click="toggleImportOnly()"
+                            ng-model="toggleIO"> 
+                </div>
+
+                 
+                <br><br>
+                <div class="so0sbl">{{label('Open');}}:</div>
+                 
+                <!-- callback will test if the changeView action is included -->
+                <div class="so0i"><a href="" data-ng-click="openMoulds()">{{label('Moulds')}}</a></div>
+                <div class="so0i"><a href="" data-ng-click="openLasts()">{{label('Lasts')}}</a></div>
+                 
+                <div class="so0i"><a href="" data-ng-click="openMachines()">{{label('MachineSty')}}</a></div>
+                 
+                <!-- callback will test if materials are included -->
+                <div class="so0i">{{label('MatS')}}</div>
+                 
+                <!-- callback will test if attributes are included -->
+                <div class="so0i"><a href="" data-ng-click="openAttr()">{{label('AttrS')}}</a></div>
+
+            </div>     
+        </div>
+
+
+        <div class="main">&nbsp;
+    
+            <div class="div-table-toolbar" id="style-table-toolbar">
+                <div class="left record-count">
+                    {{label('RecordCount') + ':' + getListCount();}}
+                </div>
+                <div class="middle">
+                    <div data-ng-include data-src="'template/app/page_navigation.html'"></div>
+                </div>
+            </div>
+
+              
+            <div class="style-table">
+            
+                <!-- Locked Columns table -->
+                <div class="style-table" id="left-col-table">
+
+                    <div id="scroller-anchor-header"></div> 
+                    <div id="scroller-header" style="width:100px;z-index:1000;">
+                        <div class="div-table-row-head">
+                            <div table-col-head field="Code"      class="so82h-cod"></div>
+                            <div table-col-head field="Variant"   class="so82h-var"></div>
+                            <div table-col-head field="Descr"     class="so82h-dea"></div>
+                            <div table-col-head field="ColorCode" class="so82h-col"></div>
+                            <div table-col-head field="Size"      class="so82h-siz"></div>
+                            
+                            <!-- callback column -->
+                            <!-- div class="so82h-des" callback-head="Material"></div-->
+                            
+                            <!-- callback column -->
+                            <!-- div class="so0-hns preptab-agg" callback-head="Service"></div-->
+                            
+                        </div>
+                    </div>
+                    
+                    <div ng-repeat="record in list | startFrom:page.pageIndexes[page.current].i | limitTo:page.pageIndexes[page.current].r">
+                        
+                        <div class="div-table-error"  ng-if="record.containsErrors()">
+                            <div ng-repeat="err in record._errors" >
+                                <div data-ng-include src="'template/app/error_message_table.html'"></div>
+                            </div>                          
+                        </div>
+    
+                        <div class="div-table-row">
+                            <div table-col-row field="Code"      class="so82-cod"></div>
+                            <div table-col-row field="Variant"   class="so82-var"></div>
+                            <div table-col-row field="Descr"     class="so82-dea"></div>
+                            <div table-col-row field="ColorCode" class="so82-col"></div>
+                            <div table-col-row field="SizeCode"  class="so82-siz"></div>
+                            
+                                                        
+                            <!-- callback column -->
+                            <!-- div table-col-row class="so82-des" callback-field="Material" index="0" ></div -->
+    
+                            <!-- callback column -->
+                            <!-- div class="so82-agg" callback-field="MaterialId"></div -->
+                            
+                            <div table-col-row-warning></div>
+                        </div>
+                    </div>
+            
+                </div>
+
+            
+            </div><!-- "style-table" -->
+        </div><!-- "main" -->
+    </div><!-- "masterdata-page" -->
+
+</section>

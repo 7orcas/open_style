@@ -1,0 +1,54 @@
+<section>
+    
+    <div class="masterdata-page">
+
+        <div data-actionmenu="recordNew:'AddEvent'" 
+            class="sidebar" 
+            data-ng-include 
+            data-src="'template/app/sidebar_actions.html'">
+            <br>
+
+            <div class="sidebar-label">{{label('ViewFrom');}}:</div>            
+            <div>
+                <input type="text" 
+                    class="calendar-date form-control"
+                    datepicker-popup="{{datepickerFormat}}" 
+                    show-button-bar="{{datepickerShowButtonBar}}" 
+                    datepicker-options="{{datepickerDateOptions}}" 
+                    is-open="openedC"
+                    id="calendar-start-sel" 
+                    init-date=new Date 
+                    ng-model="start"> 
+
+                <!-- button type="submit" class="btn calendar-search-button" data-ng-click="getViewLink()"><i class="lookup-search-icon fa fa-search-plus"></i></button -->
+            </div> 
+
+            <br><br>
+
+            <div class="sidebar-label">{{label('CalView');}}:</div>
+            <input class="calendar-radio" id="select-day" type="radio" name="selector" value="day" data-ng-model="type.selection" data-ng-click="getViewLink(true)">
+            <label class="calendar-radio" for="select-day">{{label('Shift')}}</label><br>
+
+            <input class="calendar-radio" id="select-week" type="radio" name="selector" value="week"  data-ng-model="type.selection" data-ng-click="getViewLink(true)">
+            <label class="calendar-radio" for="select-week">{{label('Day')}}</label><br>
+
+            <input class="calendar-radio" id="select-month" type="radio" name="selector" value="month" data-ng-model="type.selection" data-ng-click="getViewLink(true)">
+            <label class="calendar-radio" for="select-month">{{label('Week')}}</label><br>
+
+			<input class="calendar-radio" id="select-year" type="radio" name="selector" value="year" data-ng-model="type.selection" data-ng-click="getViewLink(true)">
+            <label class="calendar-radio" for="select-year">{{label('Month')}}</label><br>
+            
+        </div>
+
+
+        <div class="main">&nbsp;
+                  
+            <div class="calendar-table">
+                <div data-ng-include src="getViewLink()"></div>
+            </div>
+        
+        </div>
+        
+    </div>
+
+</section>

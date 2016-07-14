@@ -1,0 +1,465 @@
+<!--  
+
+Company administration
+
+ -->
+
+<section>    
+    
+    <div class="masterdata-page">
+
+        <div data-actionmenu="recordEdit,recordSave,recordUndo,recordNew" 
+             class="sidebar" 
+             data-ng-include 
+             data-src="'template/app/sidebar_actions.html'"></div>
+
+
+        <div class="main">&nbsp;
+            <div class="user-table">
+                
+                <div class="div-table-toolbar">
+                    <div class="left record-count">
+                        {{label('RecordCount') + ':' + getListCount();}}
+                    </div>
+                </div>
+
+                <div style="width:100px;">                                
+                    <div class="div-table-row-head">
+                        <div table-col-head field="CompanyNr"></div>
+                        <div table-col-head field="CustomerNr"></div>
+                        <div table-col-head field="Code"></div>
+                        <div table-col-head field="CodeId"></div>
+                        <div table-col-head field="Active"></div>
+                                            
+                        <div table-col-head-del></div>
+                    </div>
+                </div>
+
+
+                    
+                <div ng-repeat="record in list | orderBy:sort_predicate:sort_reverse">
+                    
+                    <div class="div-table-error"  ng-if="record.containsErrors()">
+                        <div ng-repeat="err in record._errors" >
+                            <div data-ng-include src="'template/app/error_message_table.html'"></div>
+                        </div>                          
+                    </div>
+
+                    <div class="div-table-row">
+						<div table-col-row field="CompanyNr"></div>
+						<div table-col-row field="CustomerNr"></div>
+                        <div table-col-row field="Code"></div>
+                        <div table-col-row field="CodeId"></div>
+                        <div table-col-row field="Active"></div>
+
+						<div table-col-row-del></div>
+                        <div table-col-row-warning></div>
+                        
+                        <div class="div-table-icon">
+                            <a href="" ng-click="showDetail(record.getId())"><i class="fa fa-arrow-circle-down" style="font-size: 16px;"></i></a>
+                        </div>
+                       
+                    </div>
+                    
+                    <div ng-if="selected(record.getId())" class="div-table-inner" style="margin-left:25px;">
+                        <div class="so01b">
+                            <div class="so01t">{{record.getCode();}}</div>
+		                    <table class="autowidth table-condensed">
+					            <tbody>
+                                    
+                                    <tr><td class="so01c">&nbsp;</td></tr>	    				            
+	    				            <tr class="so01ib">   
+                                         <td class="so01ib" colspan="8">{{label('Gen');}}</td>
+                                    </tr>
+					                <tr>    
+					                     <td class="so01i">{{label(model.getFieldParameter('MultiPlant', 'label'));}}</td>
+					                     <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('MultiPlant', 'dto')]"></td>
+					                     
+                                         <td class="so01i">{{label(model.getFieldParameter('TestCompany', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('TestCompany', 'dto')]"></td>
+					                    
+                                         <td class="so01i">{{label(model.getFieldParameter('HelpFileRoot', 'label'));}}</td>
+                                         <td class="so01c" colspan="7">
+                                             <input type="text" ng-model="list[$index][model.getFieldParameter('HelpFileRoot', 'dto')]" style="width:230px;">
+                                         </td>
+                                    </tr>
+                                    <tr> 
+
+                                         <td class="so01i">{{label(model.getFieldParameter('TimezoneGMT', 'label'));}}</td>
+                                         <td class="so01se" colspan="3">
+                                              <select class="so01se"  
+                                                      data-ng-model="list[$index][model.getFieldParameter('TimezoneGMTValue', 'dto')]" 
+                                                      data-ng-options="p.value for p in timezones"></select>
+                                         </td>
+                                         
+                                    </tr>
+
+                                    
+                                    <tr><td class="so01c">&nbsp;</td></tr>	                                
+                                    <tr class="so01ib">    
+                                         <td class="so01ib" colspan="8">{{label('Styles');}}</td>
+                                    </tr>
+                                    <tr>    
+	                                     <td class="so01i">{{label(model.getFieldParameter('DisplayAllStyles', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('DisplayAllStyles', 'dto')]"></td>
+
+	                                     <td class="so01i">{{label(model.getFieldParameter('Variant', 'label'));}}</td>
+	                                     <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('Variant', 'dto')]"></td>
+
+                                         <td class="so01i">{{label(model.getFieldParameter('Color', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('Color', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('StyleGroup', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('StyleGroup', 'dto')]"></td>
+                                         
+                                    </tr>
+
+
+                                    <tr><td class="so01c">&nbsp;</td></tr>	                                
+                                    <tr class="so01ib">    
+                                         <td class="so01ib" colspan="8">{{label('AttrS');}}</td>
+                                    </tr>
+                                    <tr> 
+                                         <td class="so01i">{{label(model.getFieldParameter('Attributes', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('Attributes', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('AttrSoleColorDesrThenCode', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('AttrSoleColorDesrThenCode', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('AttributeImportFile', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('AttributeImportFile', 'dto')]"></td>
+                                    </tr>
+
+
+                                    <tr><td class="so01c">&nbsp;</td></tr>                                  
+                                    <tr class="so01ib">    
+                                         <td class="so01ib" colspan="8">{{label('Moulds');}}</td>
+                                    </tr>
+                                    <tr>    
+                                        <td class="so01i">{{label(model.getFieldParameter('MouldAssignType', 'label'));}}</td>
+                                        <td class="so01se"  colspan="3">
+                                              <select class="so01se"  
+                                                      data-ng-model="list[$index][model.getFieldParameter('MouldAssignValue', 'dto')]" 
+                                                      data-ng-options="p.value for p in mouldAssign"></select>
+                                        </td>
+                                    
+                                         <td class="so01i">{{label(model.getFieldParameter('Transform', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('Transform', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('CombineMouldSizes', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('CombineMouldSizes', 'dto')]"></td>
+                                         
+                                    </tr>
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('MouldCodeSub', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('MouldCodeSub', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('AssignMouldCodeOtherSizes', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('AssignMouldCodeOtherSizes', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('MouldGroupDesrThenCode', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('MouldGroupDesrThenCode', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('MouldDesrThenCode', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('MouldDesrThenCode', 'dto')]"></td>
+                                    </tr>
+
+                                    <tr><td class="so01c">&nbsp;</td></tr>                                  
+                                    <tr class="so01ib">    
+                                         <td class="so01ib" colspan="8">{{label('Machines');}}</td>
+                                    </tr>
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('MachineColor', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('MachineColor', 'dto')]"></td>
+
+                                         <td class="so01i">{{label(model.getFieldParameter('MaxMouldGroups', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('MaxMouldGroups', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('MaxColors', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('MaxColors', 'dto')]"></td>
+
+                                         <td class="so01i">{{label(model.getFieldParameter('MaxInjectors', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('MaxInjectors', 'dto')]"></td>
+                                    </tr>
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('PuConfiguration', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('PuConfiguration', 'dto')]"></td>
+
+                                    </tr>
+
+                                    
+
+                                    <tr><td class="so01c">&nbsp;</td></tr>                                  
+                                    <tr class="so01ib">    
+                                         <td class="so01ib" colspan="8">prod_order Table</td>
+                                    </tr>
+                                    <tr>    
+                                        <td class="so01i">{{label(model.getFieldParameter('Idx0Type', 'label'));}}</td>
+                                        <td class="so01se"  colspan="3">
+                                              <select class="so01se"  
+                                                      data-ng-model="list[$index][model.getFieldParameter('Idx0Value', 'dto')]" 
+                                                      data-ng-options="p.value for p in idxs"></select>
+                                        </td>
+                                    </tr>
+                                    <tr>    
+                                        <td class="so01i">{{label(model.getFieldParameter('Idx1Type', 'label'));}}</td>
+                                        <td class="so01se"  colspan="3">
+                                              <select class="so01se"  
+                                                      data-ng-model="list[$index][model.getFieldParameter('Idx1Value', 'dto')]" 
+                                                      data-ng-options="p.value for p in idxs"></select>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr><td class="so01c">&nbsp;</td></tr>                                  
+                                    <tr class="so01ib">    
+                                         <td class="so01ib" colspan="8">{{label('Prep');}}</td>
+                                    </tr>
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('IgnoreDates', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('IgnoreDates', 'dto')]"></td>
+                                                                                  
+                                         <td class="so01i">{{label(model.getFieldParameter('MatCheck', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('MatCheck', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('CompleteIdx1', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('CompleteIdx1', 'dto')]"></td>
+                                    </tr>
+
+                                    
+                                    <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib"> 
+                                         <td class="so01ib" colspan="8">{{label('Simu');}}</td>
+                                    </tr>
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('Engine', 'label'));}}</td>
+                                         <td class="so01se" colspan="3">
+                                              <select class="so01se"  
+                                                      data-ng-model="list[$index][model.getFieldParameter('EngineValue', 'dto')]" 
+                                                      data-ng-options="p.value for p in engines"></select>
+                                         </td>
+                                         
+
+                                         <td class="so01i">{{label(model.getFieldParameter('Lot', 'label'));}}</td>
+                                         <td class="so01c"><input type="text" class="so01p" ng-model="list[$index][model.getFieldParameter('Lot', 'dto')]"></td>
+                                         
+                                    </tr>
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('EnginePeriod', 'label'));}}</td>
+                                         <td class="so01se" colspan="3">
+                                              <select class="so01se"  
+                                                      data-ng-model="list[$index][model.getFieldParameter('EnginePeriodValue', 'dto')]" 
+                                                      data-ng-options="p.value for p in enginePeriods"></select>
+                                         </td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('Last', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('Last', 'dto')]"></td>
+                                         
+                                         
+                                    </tr>
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('SortType', 'label'));}}</td>
+                                         <td class="so01se" colspan="3">
+                                              <select class="so01se"  
+                                                      data-ng-model="list[$index][model.getFieldParameter('SortValue', 'dto')]" 
+                                                      data-ng-options="p.value for p in sorts"></select>
+                                         </td>                                         
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('MouldDescrS', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('MouldDescrS', 'dto')]"></td>
+                                         
+                                    </tr>
+                                    
+                                   
+                                    <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib">    
+                                         <td class="so01ib" colspan="8">{{label('Fix');}}</td>
+                                    </tr>
+                                         
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('FixShip', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('FixShip', 'dto')]"></td>
+
+                                         <td class="so01i">{{label(model.getFieldParameter('FixType', 'label'));}}</td>
+                                         <td class="so01se" colspan="3">
+                                              <select class="so01se"  
+                                                      data-ng-model="list[$index][model.getFieldParameter('FixValue', 'dto')]" 
+                                                      data-ng-options="p.value for p in fixes"></select>
+                                         </td>
+                                    </tr>                                         
+                                        
+                                    <tr><td class="so01c">&nbsp;</td></tr>     
+                                    <tr class="so01ib">    
+                                         <td class="so01ib" colspan="8">{{label('Import');}}</td>
+                                    </tr>
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('ImportType', 'label'));}}</td>
+                                         <td class="so01se" colspan="3">
+                                              <select class="so01se"  
+                                                      data-ng-model="list[$index][model.getFieldParameter('ImportValue', 'dto')]" 
+                                                      data-ng-options="p.value for p in imports"></select>
+                                         </td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('ImportCode', 'label'));}}</td>
+                                         <td class="so01c">
+                                             <input type="text" ng-model="list[$index][model.getFieldParameter('ImportCode', 'dto')]" style="width:80px;">
+                                         </td>
+                                    </tr>
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('DeleteMissingStyles', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('DeleteMissingStyles', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('ImportLogisoftNextDay', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('ImportLogisoftNextDay', 'dto')]"></td>
+
+                                         <td class="so01i">{{label(model.getFieldParameter('ImportVersion', 'label'));}}</td>
+                                         <td class="so01c">
+                                             <input type="text" ng-model="list[$index][model.getFieldParameter('ImportVersion', 'dto')]" style="width:80px;">
+                                         </td>
+                                    </tr>
+                                    <tr>    
+                                         <td class="so01i">{{label(model.getFieldParameter('ImportConflict', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('ImportConflict', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('ImportConflictMaterial', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('ImportConflictMaterial', 'dto')]"></td>
+                                         
+                                         <td class="so01i">{{label(model.getFieldParameter('ImportMessage', 'label'));}}</td>
+                                         <td class="so01c" colspan="3">
+                                             <input type="text" ng-model="list[$index][model.getFieldParameter('ImportMessage', 'dto')]" style="width:130px;">
+                                         </td>
+                                    </tr>	                                	
+	                                <tr> 
+	                                	 <td class="so01i">{{label(model.getFieldParameter('CheckMatInBom', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('CheckMatInBom', 'dto')]"></td>
+                                            
+                                         <td class="so01i">{{label(model.getFieldParameter('BlockInvalidFixes', 'label'));}}</td>
+                                         <td class="so01c"><input type="checkbox" ng-model="list[$index][model.getFieldParameter('BlockInvalidFixes', 'dto')]"></td>
+                                    </tr>	     
+	                                	
+	                                	
+	                                <!-- VIEWS -->
+	                                <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib"> 
+                                        <td class="so01ib" colspan="8">{{label('ConfigSD');}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td colspan="8">
+                                        <html-detail type="htmlSD(record.getId())"></html-detail>
+                                        </td>
+                                    </tr>	
+	                                	
+	                                	
+                                    <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib"> 
+                                        <td class="so01ib" colspan="8">{{label('ConfigCD');}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td colspan="8">
+                                        <html-cycle type="htmlCD(record.getId())"></html-detail>
+                                        </td>
+                                    </tr>	                                	
+	                                	
+                                    <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib"> 
+                                        <td class="so01ib" colspan="8">{{label('ExportSD');}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td colspan="8">
+                                        <export-detail type="exportSD(record.getId())"></export-detail>
+                                        </td>
+                                    </tr>
+
+                                    <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib"> 
+                                        <td class="so01ib" colspan="8">{{label('ExportFD');}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td colspan="8">
+                                        <export-detail-fix type="exportFD(record.getId())"></export-detail-fix>
+                                        </td>
+                                    </tr>	                                	
+	                                	 
+	                                <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib"> 
+                                        <td class="so01ib" colspan="8">{{label('ExportSM');}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td colspan="8">
+                                        <export-mould-change type="exportSM(record.getId())"></export-mould-change>
+                                        </td>
+                                    </tr>	
+	                                	 
+	                                <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib"> 
+                                        <td class="so01ib" colspan="8">{{label('ExportFM');}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td colspan="8">
+                                        <export-mould-change-fix type="exportFM(record.getId())"></export-mould-change-fix>
+                                        </td>
+                                    </tr>	 
+	                                	 
+	                                <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib"> 
+                                        <td class="so01ib" colspan="8">{{label('ExportSO');}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td colspan="8">
+                                        <export-overview type="exportSO(record.getId())"></export-overview>
+                                        </td>
+                                    </tr>
+                                         
+                                    <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib"> 
+                                        <td class="so01ib" colspan="8">{{label('ExportFO');}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td colspan="8">
+                                        <export-overview-fix type="exportFO(record.getId())"></export-overview-fix>
+                                        </td>
+                                    </tr>    	 
+	                                	 
+	                                <tr><td class="so01c">&nbsp;</td></tr>
+                                    <tr class="so01ib"> 
+                                        <td class="so01ib" colspan="8">{{label('ExportFC');}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td colspan="8">
+                                        <export-cycle-fix type="exportFC(record.getId())"></export-cycle-fix>
+                                        </td>
+                                    </tr>   	 
+	                                	 
+	                                	 
+	                                <!-- CONFIG -->
+	                                
+	                                <tr><td class="so01c">&nbsp;</td></tr>     
+                                    <tr class="so01ib">    
+                                         <td class="so01ib" colspan="8">{{label('Config');}}</td>
+                                    </tr>
+                                    <tr class="so01i">    
+                                         <td class="so01cs" colspan="8">{{record.getConfigString();}}</td>
+                                    </tr>	 
+                                    <tr>
+                                         <td class="so01i">{{label(model.getFieldParameter('DefaultPlantId', 'label'));}}</td>    
+                                         <td class="so01c">{{record.getDefaultPlantId();}}</td>
+                                    </tr>
+	                                	 
+	                                	                                
+					            </tbody>
+					        </table>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+            </div>
+        
+        </div>
+        
+    </div>
+
+
+
+</section>

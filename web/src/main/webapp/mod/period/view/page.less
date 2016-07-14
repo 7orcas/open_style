@@ -1,0 +1,416 @@
+ /*
+  * Period Page css settings
+  */
+
+@import (reference) "../../../app/css/app.less";
+@import (reference) "../../../app/css/page.less";
+@import (reference) "../../../app/css/table.less";
+
+
+
+/*******************************************************
+ * Selection 
+ *******************************************************/
+
+
+input.so25-planNr{
+  border: 3px solid #ccc;
+  width: 70px;
+}
+
+
+
+/*******************************************************
+ * Period Table  
+ *******************************************************/
+@so25-mgr-w:       80px;
+@so25-qty-w:       70px;
+@so25-wnr-w:       60px;
+@so25-scl-w:       120px;
+@so25-add-w:       40px;
+@so25-sp1-w:       5px;
+@so25-sp2-w:       15px;
+@so25-shp-w:       45px;
+@so25-inj-w:       40px;
+@so25-clr-w:       70px;
+
+@so25-mgrc-w:      110px;
+@so25-sccc-w:      90px;
+@so25-qtyc-w:      55px;
+@so25-wnrc-w:      50px;
+
+.so25r{
+  .so0r;
+  height:20px;
+}
+.so25rc{
+  .so0r;
+  height:20px;
+  text-align: center;
+  width: 100%;
+}
+
+.so25t{
+  .so0tcb;
+  outline:none;
+  height:20px;
+}
+
+div.so25-mgr{
+  border: 1px solid #ccc;
+  max-width: @so25-mgr-w;
+  min-width: @so25-mgr-w;
+  text-align: left;
+  word-break: break-all;
+}
+div.so25-mgrc{
+  max-width: @so25-mgrc-w;
+  min-width: @so25-mgrc-w;
+  text-align: left;
+}
+
+div.so25-hover{
+  cursor: pointer;
+}
+div.so25-hover:hover{
+  outline: 3px solid #008000;  
+}
+div.so25conf{
+  outline: 1px solid red;
+}
+
+.so25-qty{
+  border: 1px solid #ccc;
+  max-width: @so25-qty-w;
+  min-width: @so25-qty-w;
+  text-align: center;
+}
+.so25-qtyc{
+  text-align:right;
+  max-width: @so25-qtyc-w;
+  min-width: @so25-qtyc-w;
+}
+.so25-sccc{
+  text-align: left;
+  max-width: @so25-sccc-w;
+  min-width: @so25-sccc-w;
+}
+.so25-wnr{
+  border: 1px solid #ccc;
+  max-width: @so25-wnr-w;
+  min-width: @so25-wnr-w;
+  text-align: center;
+}
+.so25-wnrc{
+  max-width: @so25-wnrc-w;
+  min-width: @so25-wnrc-w;
+  text-align: left;
+  white-space: nowrap;
+}
+.so25-inj{
+  border: 1px solid #ccc;
+  max-width: @so25-inj-w;
+  min-width: @so25-inj-w;
+  text-align: center;
+}
+.so25-clr{
+  border: 1px solid #ccc;
+  max-width: @so25-clr-w;
+  min-width: @so25-clr-w;
+  text-align: center;
+}
+
+.so25-shp{
+  border: 1px solid #ccc;
+  max-width: @so25-shp-w;
+  min-width: @so25-shp-w;
+  text-align: center;
+}
+.so25-scl{
+  border: 1px solid #ccc;
+  max-width: @so25-scl-w;
+  min-width: @so25-scl-w;
+  text-align: center;
+}
+.so25-sclc0{
+  text-align: left;
+  width: 100%;
+  white-space: nowrap;
+}
+.so25-sclc1{
+  .so25-sclc0;
+  float: right;
+  margin: 0 auto;
+  text-align: right;
+}
+
+.so25-sclq{
+  border-top: 1px solid #ccc;
+  text-align: center;
+  width:100px;
+}
+.so25-sclp{
+  border-top: 1px solid #ccc;
+  font-size: 10px;
+  text-align: center;
+  width:100px;
+}
+.so25-dnd{
+  border: 1px dashed #ccc;
+  color: #ccc;
+  max-width: @so25-mgr-w;
+  min-width: @so25-mgr-w;
+  text-align: center;
+}
+.so25-sp1{
+  background:@DefaultBGColor;
+  border: none;
+  max-width: @so25-sp1-w;
+  min-width: @so25-sp1-w;
+  text-align: center;
+}
+div.so25-sp1h{
+  .so25-sp1;
+  background:@DefaultBGColor;
+  outline: 1px solid white;
+}
+
+.so25-sp2{
+  background:@DefaultBGColor;
+  border: none;
+  max-width: @so25-sp2-w;
+  min-width: @so25-sp2-w;
+  text-align: center;
+}
+div.so25-sp2h{
+  .so25-sp2;
+  background:@DefaultBGColor;
+  outline: 1px solid white;
+}
+
+.so25-add{
+  border: 1px dashed #ccc;
+  color: #ccc;
+  max-width: @so25-add-w;
+  min-width: @so25-add-w;
+  text-align: center;
+}
+.so25-addx{
+  max-width: @so25-add-w;
+  min-width: @so25-add-w;
+}
+div.so25-addh{
+  .so25-add;
+  background:@DefaultBGColor;
+  border: none;
+  outline: 1px solid white;
+}
+
+
+span.so25t{
+  font-size:14px;
+  margin-left:15px;
+}
+
+div.so25i{
+  .so0i;
+  color:@TextWeakColor;
+  cursor:inherit;
+}
+
+div.so25q{
+  .so0i;
+  color:black;
+  cursor:inherit;
+  font-weight:inherit;
+}
+input.so25q{
+  border: 1px solid #000000;
+  font-size: 17px;
+  height: 30px;
+  text-align: center;
+  width: 90px;
+}
+
+/* Thanks to http://stackoverflow.com/questions/18716863/css-hide-scroll-bar-if-not-needed */
+div.so25cb{
+  border: 1px solid #e7e7e7;
+  margin-bottom: 20px;
+  max-height: 450px;
+  min-height: 200px;
+  max-width:300px;
+  min-width:300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+span.so25us{
+  position: absolute;
+  margin-top: -35px;
+  margin-left: 0px;
+}
+
+span.so25uss{
+  margin-left: 30px;
+}
+
+div.so25scc{
+  margin-top:-5px;
+}
+span.so25scct{
+  margin-left: 17px;
+}
+
+.so25rh{
+  .so0rh;
+  background: linear-gradient(to top, #b3a221, #f0d92c);
+}
+
+div.so25ma{
+  font-size: 18px;
+  margin-top:10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+div.so25ia{
+  background-color: red;
+  border: 1px solid red;
+  color:white;
+  font-size: 18px;
+  font-weight: bold;
+  margin: auto;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 50%;
+}
+
+div.so25confp{
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 577px;
+  margin-top: -44px;
+  outline: 1px solid red;
+  padding: 2px;
+  position: absolute;
+}
+
+td.so25-sr{
+  min-width: 40px;
+  padding-bottom: 12px;
+  text-align: left;
+  vertical-align: middle;
+  width: 40px;
+}
+
+
+/*******************************************************
+ * Period Detail Table
+ *******************************************************/
+
+
+@so26-del-w:       70px;
+@so26-req-w:       70px;
+@so26-idx-w:       80px;
+@so26-sty-w:       80px;
+@so26-var-w:       70px;
+@so26-col-w:       80px;
+@so26-scl-w:       80px;
+@so26-siz-w:       70px;
+@so26-qty-w:       80px;
+@so26-sizqty-w:    @so26-siz-w + @so26-qty-w;
+@so26-sel-w:       70px;
+@so26-idx1-w:      70px;
+@so26-sp1-w:       5px;
+
+@so26-cat-w:       50px;
+
+.so26-req{
+  text-align: center;
+  max-width: @so26-req-w;
+  min-width: @so26-req-w;
+}
+.so26-sty{
+  text-align: left;
+  max-width: @so26-sty-w;
+  min-width: @so26-sty-w;
+}
+.so26-var{
+  text-align: left;
+  max-width: @so26-var-w;
+  min-width: @so26-var-w;
+}
+.so26-col{
+  text-align: left;
+  max-width: @so26-col-w;
+  min-width: @so26-col-w;
+}
+.so26-siz{
+  text-align: center;
+  max-width: @so26-siz-w;
+  min-width: @so26-siz-w;
+}
+.so26-sizqty{
+  text-align: center;
+  max-width: @so26-sizqty-w;
+  min-width: @so26-sizqty-w;
+}
+.so26-scl{
+  text-align: center;
+  max-width: @so26-scl-w;
+  min-width: @so26-scl-w;
+}
+.so26-del{
+  text-align: center;
+  max-width: @so26-del-w;
+  min-width: @so26-del-w;
+}
+.so26-idx{
+  text-align: left;
+  max-width: @so26-idx-w;
+  min-width: @so26-idx-w;
+}
+.so26-qty{
+  text-align: center;
+  max-width: @so26-qty-w;
+  min-width: @so26-qty-w;
+}
+.so26-sel{
+  text-align: center;
+  max-width: @so26-sel-w;
+  min-width: @so26-sel-w;
+}
+.so26-cat{
+  text-align: center;
+  max-width: @so26-cat-w;
+  min-width: @so26-cat-w;
+}
+div.so26-sp1{
+  background:@DefaultBGColor;
+  border: medium none;
+  max-width: @so26-sp1-w;
+  min-width: @so26-sp1-w;
+  outline: medium none;
+}
+.so26-idx1{
+  text-align: center;
+  max-width: @so26-idx1-w;
+  min-width: @so26-idx1-w;
+}
+
+/*******************************************************
+ * List Table  
+ *******************************************************/
+.so26-list-d .modal-dialog{
+  width: 600px;
+}
+
+/* thanks to http://stackoverflow.com/questions/9707397/making-a-div-vertically-scrollable-using-css */
+form.so26-list-d {
+    margin-left: 45px;
+    height: 600px;
+    overflow-y: scroll;
+}
+

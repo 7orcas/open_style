@@ -269,13 +269,14 @@ public class ApplicationParameters implements ApplicationI {
 	 */
 	private static String getEarName() {
 		String name = null;
-		 try {
-			name = (String)new InitialContext().lookup("java:app/AppName");
-		} catch (NamingException e) {
-			if (!testMode){
-				e.printStackTrace();
-			}
-		}
+//WF10 TODO
+//		 try {
+//			name = (String)new InitialContext().lookup("java:app/AppName");
+//		} catch (NamingException e) {
+//			if (!testMode){
+//				e.printStackTrace();
+//			}
+//		}
 		name = name != null && name.length() > 0? name : APP_NAME;
 		return name;
 	}
