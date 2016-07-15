@@ -1,6 +1,6 @@
 package com.sevenorcas.openstyle.app.user;
 
-import com.sevenorcas.openstyle.app.Utilities;
+import com.sevenorcas.openstyle.app.application.Utilities;
 import com.sevenorcas.openstyle.app.lang.Language;
 import com.sevenorcas.openstyle.app.lang.LanguageService;
 

@@ -10,8 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 
 
 

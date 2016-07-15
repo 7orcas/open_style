@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
 import com.sevenorcas.openstyle.app.entity.Field;
 import com.sevenorcas.openstyle.app.lang.LanguageServiceImp;
 
@@ -31,7 +32,7 @@ import com.sevenorcas.openstyle.app.lang.LanguageServiceImp;
  *
  */
 @SuppressWarnings("serial")
-//WF10 TODO @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class FieldDefDto implements Serializable, ApplicationI{
 	
 	/**

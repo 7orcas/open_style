@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
 import com.sevenorcas.openstyle.app.entity.Field;
 
 

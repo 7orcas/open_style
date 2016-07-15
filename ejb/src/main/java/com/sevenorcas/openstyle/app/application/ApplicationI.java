@@ -1,4 +1,4 @@
-package com.sevenorcas.openstyle.app;
+package com.sevenorcas.openstyle.app.application;
 
 
 /**

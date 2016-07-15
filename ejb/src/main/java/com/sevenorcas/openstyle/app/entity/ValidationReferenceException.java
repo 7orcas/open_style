@@ -1,6 +1,6 @@
 package com.sevenorcas.openstyle.app.entity;
 
-import com.sevenorcas.openstyle.app.AppException;
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 
 /**
  * Exception identifier deletion of entity is not possible due to other referencing entities.<p>

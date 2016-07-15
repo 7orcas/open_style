@@ -15,7 +15,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.entity.BaseEntity;
 import com.sevenorcas.openstyle.app.entity.Field;
 

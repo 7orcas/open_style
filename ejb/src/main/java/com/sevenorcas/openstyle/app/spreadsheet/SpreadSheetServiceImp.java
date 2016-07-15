@@ -18,7 +18,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.entity.Export;
 import com.sevenorcas.openstyle.app.entity.Field;
 import com.sevenorcas.openstyle.app.lang.LanguageService;

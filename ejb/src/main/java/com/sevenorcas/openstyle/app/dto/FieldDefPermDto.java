@@ -1,5 +1,6 @@
 package com.sevenorcas.openstyle.app.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sevenorcas.openstyle.app.entity.Field;
 
 /**
@@ -16,7 +17,7 @@ import com.sevenorcas.openstyle.app.entity.Field;
  * @author John Stewart
  */
 @SuppressWarnings("serial")
-//WF10 TODO @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class FieldDefPermDto extends FieldDefDto {
 
 	public FieldDefPermDto(String key, String value) {

@@ -2,8 +2,8 @@ package com.sevenorcas.openstyle.app.mail;
 
 import javax.ejb.Stateless;
 
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.log.ApplicationLog;
 
 /**

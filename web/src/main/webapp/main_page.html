@@ -1,0 +1,500 @@
+<!-- 
+   Main page for application. Contains:
+   - title bar
+   - user options drop down menu
+   - left side main drop down menu
+   - main container
+    callback-class:com.sevenorcas.openstyle.mod.main.MainMeuCallback   
+ -->
+
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/html" ng-app="app">
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        
+        <!-- thanks to http://stackoverflow.com/questions/1341089/using-meta-tags-to-turn-off-caching-in-all-browsers  -->
+        <meta http-equiv="Cache-Control" content="no-store" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="pragma" content="no-cache" />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title ng-bind="appTitle"></title>
+
+
+
+        <link type="image/x-icon" href="img/favicon.ico" rel="shortcut icon">
+        
+        <!-- Bootstrap: front-end framework  
+             http://getbootstrap.com/ 
+             thanks to http://stackoverflow.com/questions/18205738/how-to-use-glyphicons-in-bootstrap-3-0 -->
+        <link href="lib/bootstrap/bootstrap-3.1.1.min.css" rel="stylesheet" type="text/css"/>
+        <link href="lib/bootstrap/bootstrap-glyphicons.3.0.0.css" rel="stylesheet" type="text/css"/>
+
+        
+        <!-- Font Awesome: scalable vector icons
+             http://fortawesome.github.io/Font-Awesome/ -->
+        <link href="lib/3rdparty/font-awesome.min_4.6.3.css" rel="stylesheet"/>
+        
+        <!-- JQuery css library
+             https://jqueryui.com/  -->
+        <link href="lib/jquery/jquery-ui-1.10.2.custom.min.css" rel="stylesheet" type="text/css"/>
+        
+        <!-- SB Admin, 3rd-party Bootstrap Admin Theme
+             http://startbootstrap.com/sb-admin-v2  -->
+        <link href="lib/sb-admin/sb-admin-2.css" rel="stylesheet">
+        
+        <!-- Data Tables http://datatables.net/
+             Requires html tables?  
+        <link href="lib/dataTables/jquery.dataTables.css" rel="stylesheet">
+        -->
+        
+        <!-- Application specific css 
+        <link href="main.css" rel="stylesheet" type="text/css"/>
+        -->
+        
+        <link href="app/css/colorpicker.css" rel="stylesheet" type="text/css"/>
+
+        <!-- DEVELOPMENT
+        -->
+        <link href="app/css/app.less"    rel="stylesheet/less" type="text/css" />
+        <link href="app/css/dialog.less" rel="stylesheet/less" type="text/css" />
+        <link href="app/css/menu.less"   rel="stylesheet/less" type="text/css" />
+        <link href="app/css/page.less"   rel="stylesheet/less" type="text/css" />
+        <link href="app/css/table.less"  rel="stylesheet/less" type="text/css" />
+        
+        <link href="app/mod/langadmin/view/page.less" rel="stylesheet/less" type="text/css" />
+        <link href="app/mod/user/view/page.less"      rel="stylesheet/less" type="text/css" />
+        <link href="app/mod/useradmin/view/page.less" rel="stylesheet/less" type="text/css" />
+        <link href="app/mod/company/view/page.less"   rel="stylesheet/less" type="text/css" />
+        <link href="app/mod/patches/view/page.less"   rel="stylesheet/less" type="text/css" />
+        
+        <link href="template/page.less"  rel="stylesheet/less" type="text/css" />
+        <link href="template/dialog/generic_dialog.less" rel="stylesheet/less" type="text/css" />
+        
+        <link href="mod/calendar/view/page.less" rel="stylesheet/less" type="text/css" />
+        <link href="mod/mdata/view/page.less"    rel="stylesheet/less" type="text/css" />
+        <link href="mod/prep/view/page.less"     rel="stylesheet/less" type="text/css" />
+        <link href="mod/simu/view/page.less"     rel="stylesheet/less" type="text/css" />
+        <link href="mod/period/view/page.less"   rel="stylesheet/less" type="text/css" />
+        <link href="mod/import/view/page.less"   rel="stylesheet/less" type="text/css" />
+        <link href="mod/export/view/page.less"   rel="stylesheet/less" type="text/css" />
+        <link href="mod/rpt/view/page.less"      rel="stylesheet/less" type="text/css" />
+        <link href="mod/fix/view/page.less"      rel="stylesheet/less" type="text/css" />
+        
+        
+        
+    </head>
+
+    <body data-ng-controller="mainCtrl" >
+    
+        <div id="processing" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;background-color:gray;background-color:rgba(70,70,70,0.2);">
+            <img style="position:absolute;top:50%;left:50%;" alt="" src="img/ajax-loader.gif"/>
+        </div>
+    
+        <!-- Main Page Layout --> 
+        <div id="wrapper" style="display:none" class="page_header"> 
+            
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+
+                <div id="menu-sel-show" class="side-menu navbar-default" data-ng-click="showSideMenu()" style="display:none">
+                    &nbsp{{label('Menu');}}&nbsp<i class="fa fa-caret-down"></i>
+                </div>
+
+                <div id="menu-sel-hide" class="side-menu navbar-default" data-ng-click="hideSideMenu(true)">
+                    &nbsp{{label('Menu');}}&nbsp<i class="fa fa-caret-up"></i>
+                </div>
+
+
+                <div class="navbar-header">
+                    <!-- Visible when view is reduced -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- a class="app-title-home navbar-brand" href="" data-ng-click="home()">{{label('Home');}}</a -->
+                </div>
+                <!-- /.navbar-header -->
+
+                <!-- Main Page Title (up top) -->    
+                <div class="app-title"><span id="appTitle"></span></div>
+
+                <!-- User Drop Down Menu -->
+                <ul class="nav navbar-top-links navbar-right">
+                    
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a class="user-menu-service" href="" data-ng-click="changePassword()"><i class="fa fa-key"></i>&nbsp;{{label('PassChange')}}</a></li>
+                            
+                            <!-- service:start -->
+                            <li class="divider"></li>
+                            <li><a class="user-menu-service" href="" data-ng-click="userAdmin()"><i class="fa fa-users"></i>&nbsp;{{label('UserAdmin')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="langAdmin()"><i class="fa fa-language"></i>&nbsp;{{label('LangAdmin')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="langReload()"><i class="fa fa-spinner"></i>&nbsp;{{label('LangAdminR')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="companyAdmin()"><i class="fa fa-cogs"></i>&nbsp;{{label('CompanyAdmin')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="clearFixes()" id="clearFixes_status"><i class="fa fa-exclamation-triangle" style="color:red;""></i>&nbsp;{{label('FixR')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="reapplyLSFix()" id="reapplyLSFix_status"><i class="fa fa-exclamation-triangle" style="color:red;"></i>&nbsp;{{label('FixRLS')}}</a>
+                            <li class="divider"></li>
+                            <li><a class="user-menu-service" href="" data-ng-click="cancelTimers()"><i class="fa fa-times"></i>&nbsp;{{label('TimersC')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="startTimers()"><i class="fa fa-clock-o"></i>&nbsp;{{label('TimersS')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="reloadAppProp()"><i class="fa fa-refresh"></i>&nbsp;{{label('AppPropR')}}</a>
+                            <li class="divider"></li>
+                            <li><a class="user-menu-service" href="" data-ng-click="patches()"><i class="fa fa-database"></i>&nbsp;{{label('Patches')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="dataImport()"><i class="fa fa-arrow-circle-o-right"></i>&nbsp;{{label('ImportD')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="closeSqlConn()"><i class="fa fa-signal fa-flip-horizontal"></i>&nbsp;{{label('CloseC')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="resetDB()" id="resetDB_status"><i class="fa fa-exclamation-triangle" style="color:red;"></i>&nbsp;{{label('ResetDB')}}</a>
+                            <li><a class="user-menu-service" href="" data-ng-click="toggleDebug()"><i class="fa fa-bug"></i>&nbsp;{{label('Debug')}}</a>
+                                <i class="fa fa-check" id="debug_status" style="position:absolute;margin-top:-20px;"></i>
+                                
+                            <!-- service:end -->
+
+                            <li class="divider"></li>
+                            <li><a class="user-menu" href="" data-ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i>{{label('Logout')}}</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+                <!-- /User Drop Down Menu -->
+
+                <!-- userhelp:start -->
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="" data-ng-click="onlineHelp()" style="font-size:22px; padding:8px 0px 0px 0px;">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </li>                
+                </ul>                
+                <!-- userhelp:end -->
+    
+                <!-- Left side main drop down menu -->
+                <div id="sideMenu" class="navbar-default navbar-static-side" role="navigation">
+                    <div class="sidebar-collapse">                
+                        <ul class="nav" id="side-menu">
+                            
+                            <li><a href="" data-ng-click="prep()"><i class="fa fa-list fa-fw"></i> {{label('Prep');}}</a></li>
+                           
+                            <li><a href="" data-ng-click="simu()"><i class="fa fa-repeat fa-fw"></i> {{label('Simu');}}</a></li>
+                            
+                            <!-- group-period:start -->
+                            <li><a href="" data-ng-click="period()"><i class="fa fa-calendar-check-o fa-fw"></i> {{label('Period.W');}}</a></li>
+                            <!-- group-period:end -->
+                            
+                            
+                            <!-- TODO: future development
+                            <li style="border:none;"><a href="" data-ng-click="simu()"><i class="fa fa-repeat fa-fw"></i> {{label('Simu');}}</a> < group-simu:item >                                
+                            < group-simu:start >
+                                <li>
+                                <a href="#" style="position:absolute;margin-left:114px;margin-top:-40px;"><span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="" data-ng-click="simuExLog()">{{label('Moulds');}}</a>
+                                    </li>
+                                </ul>
+                            < group-simu:end >
+                            </li>
+                            -->
+	                        
+
+                            <!-- service:start -->
+                            <!--  TODO
+                            <li><a href="" class="so0ser" data-ng-click="fixes()"><i class="fa fa-align-left fa-fw"></i> {{label('Fixes');}}</a></li>
+                            -->
+                            <!-- service:end -->
+
+                            <li><a href="" data-ng-click="calendar()"><i class="fa fa-calendar fa-fw"></i> {{label('Calendar');}}</a></li>
+                            
+                            <li>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> {{label('MasterData');}}<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="" data-ng-click="moulds()">{{label('Moulds');}}
+                                            <div data-menu-icons data-item="mdataMouldDto"></div>
+                                        </a>
+                                    </li>
+                                    <!-- group-last:start -->
+                                    <li>
+                                        <a href="" data-ng-click="lasts()">{{label('Lasts');}}
+                                            <div data-menu-icons data-item="mdataLastDto"></div>
+                                        </a>
+                                    </li>
+                                    <!-- group-last:end -->
+                                    <li>
+                                        <a href="" data-ng-click="machines()">{{label('Machines');}}
+                                            <div data-menu-icons data-item="mdataMachineDto"></div>
+                                        </a>
+                                    </li>
+                                    
+                                    <!-- group-pu-config:start -->
+                                    <li>
+                                        <a href="" data-ng-click="puConfig()">{{label('PUCon');}}
+                                            <div data-menu-icons data-item="puConfigDto"></div>
+                                        </a>
+                                    </li>
+                                    <!-- group-pu-config:end -->
+                                    
+                                    <li>
+                                        <a href="" data-ng-click="shifts()">{{label('Shifts');}}
+                                            <div data-menu-icons data-item="mdataShiftDto"></div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" data-ng-click="styles()">{{label('Styles');}}
+                                            <div data-menu-icons data-item="mdataEmployeeDto"></div>
+                                        </a>
+                                    </li>
+                                    
+                                    <!-- service:start -->
+		                            <li>
+                                        <a href="" class="so0ser" data-ng-click="sizes()">{{label('Sizes');}}
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="" class="so0ser" data-ng-click="attributes()">{{label('AttrT');}}
+                                            <div data-menu-icons data-item="mdataAttributeTypeDto"></div>
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="" class="so0ser" data-ng-click="materials()">{{label('MatT');}}
+                                            <div data-menu-icons data-item="mdataMaterialTypeDto"></div>
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="" class="so0ser" data-ng-click="puTypes()">{{label('PUTyp');}}
+                                            <div data-menu-icons data-item="puTypeDto"></div>
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="" class="so0ser" data-ng-click="reqtypes()">{{label('ReqTypesM');}}
+                                            <div data-menu-icons data-item="mdataReqTypeDto"></div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="so0ser" data-ng-click="categories()">{{label('Categories');}}
+                                            <div data-menu-icons data-item="mdataCategoryDto"></div>
+                                        </a>
+                                    </li>
+                                    
+                                    <!-- service:end -->
+                                    
+                                    <!-- group-plant:start -->
+                                    <li>
+                                        <a href="" data-ng-click="plants()">{{label('Plants');}}
+                                            <div data-menu-icons data-item="mdataPlantDto"></div>
+                                        </a>
+                                    </li>
+                                    <!-- group-plant:end -->
+                                </ul>
+                            </li>
+
+                            <!-- li><a href="" data-ng-click="report()"><i class="fa fa-bar-chart-o fa-fw"></i> {{label('Reports');}}</a></li -->
+    
+                            <li><a href="" data-ng-click="import()"><i class="fa fa-arrow-circle-o-right fa-fw"></i> {{label('Import');}}</a></li>
+    
+                            <li><a href="" data-ng-click="exportFix()"><i class="fa fa-arrow-circle-o-left fa-fw"></i> {{label('Export');}}</a></li>
+                            
+    
+                        </ul>
+                        <!-- /#side-menu -->
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>  
+                <!-- /Left side main drop down menu -->        
+                
+            </nav>
+
+
+            <!-- service:start -->
+            <div class="who-am-i">{{whoAmI()}}</div>
+            <!-- service:end -->           
+    
+            <!-- Main container -->
+            <div id="page-wrapper">
+                <div class="row">
+                    <!--div id="show-side-menu" class="navbar-default">
+                        <a id="show-side-href" href="" data-ng-click="showSideMenu()"><i class="fa fa-arrow-down fa-fw"></i> {{label('ShowMenu');}}</a>
+                    </div-->
+                    <div class="col-lg-12">
+                            <div class="row" data-ui-view></div>
+                    </div>
+                </div>
+            </div>
+    
+    
+        </div>
+        <!-- /#wrapper -->
+    
+    
+<!-- DEVELOPMENT
+-->    
+<script src="lib/less/less-1.5.0.min.js"></script>
+    
+        
+        <!-- Standard JQuery library -->
+        <script src="lib/jquery/jquery-2.1.0.js"></script>
+
+        <!-- Used by uploader directive -->
+        <script src="lib/jquery/jquery-ui-1.10.0.custom.min.js"></script>
+        <script src="lib/jquery/jquery.fileupload.js"></script>  
+
+        <!-- JQuery library for datepicker -->
+        <!-- script src="lib/jquery/jquery-ui-1.10.0.custom.min.js"></script -->
+        
+        <!-- Standard Angular library -->
+        <script src="lib/angular/angular-1.2.16.js"></script>
+        
+        <!-- Insert HTML into page (title) -->
+        <!-- script src="lib/angular/angular-sanitize-1.2.16.js"></script -->
+        
+        <!-- Cookies used in session timeout tests
+             Thanks to https://github.com/ivpusic/angular-cookie 
+        -->
+        <script src="lib/angular/angular-cookie_201014.js"></script>
+        
+        <!-- 3rd-party module to manage routing (more powerful than standard Angular angular-route library 
+             https://github.com/angular-ui/ui-router/wiki -->
+        <script src="lib/angular/angular-ui-router-0.2.10.js"></script>
+        
+        <!-- factory which creates a resource object to interact with RESTful server-side data sources 
+             http://docs.angularjs.org/api/ngResource/service/$resource -->
+        <script src="lib/angular/angular-resource-1.2.16.js"></script>
+        
+        <!-- Bootstrap components written in AngularJS: 
+             http://angular-ui.github.io/bootstrap/ 
+             Do not mimimize. It is customerized for date picker -->
+        <script src="lib/angular/ui-bootstrap-tpls-0.10.0.CHANGED.js"></script>
+        
+        <!-- Bootstrap components  
+             http://getbootstrap.com/ -->
+        <script src="lib/bootstrap/bootstrap-3.1.1.js"></script>    
+        
+        <!-- Drag 'n drop  
+             http://www.directiv.es/Angular-DragDrop
+             http://ganarajpr.github.io/angular-dragdrop/ -->
+        <script src="lib/angular/draganddrop-131110.js"></script>
+        
+        <!-- SB Admin, 3rd-party Bootstrap Admin Theme
+             http://startbootstrap.com/sb-admin-v2  -->
+        <script src="lib/sb-admin/sb-admin-2.js"></script>
+        <script src="lib/sb-admin/jquery.metisMenu.js"></script>
+        
+        <!-- Right Click Context menu
+             https://github.com/ianwalter/ng-context-menu/  -->
+        <script src="lib/angular/ng-context-menu.CHANGED.js"></script>
+        
+    
+        <!-- Utility javascript library (various sources) -->
+        <script src="lib/3rdparty/javascript_utils.js"></script>
+        
+        <!-- 3rd-party module ecrypt passwords using MD5 hash 
+         http://www.myersdaily.org/joseph/javascript/md5-text.html -->
+        <script src="lib/3rdparty/md5.js"></script>
+       
+         <!-- 3rd-party module to remove watches once the text is rendered
+         https://github.com/Pasvaz/bindonce
+         http://angular-tips.com/blog/2013/08/removing-the-unneeded-watches/ -->
+        <script src="lib/3rdparty/bindonce_0.3.1.js"></script>
+        
+        <!-- Data Tables http://datatables.net/  
+        <script src="lib/dataTables/jquery.dataTables.js"></script>
+        -->
+        
+        
+        <!-- Application Utility scripts -->
+        <script src="app/common/javascript_utils.js"></script>
+        <script src="app/common/color_picker.js"></script>
+        
+        
+        <!-- Application Specific scripts -->
+        <script src="app.js"></script>
+        <script src="state.js"></script>
+        <script src="controller.js"></script>
+
+        <script src="app/login/service.js"></script>
+    
+        <script src="app/common/global.js"></script>   
+        <script src="app/common/cache.js"></script>
+        <script src="app/common/model.js"></script>
+        <script src="app/common/controller.js"></script>
+        <script src="app/common/remote.js"></script>
+        <script src="app/common/service.js"></script>
+        <script src="app/common/userobject.js"></script>
+        <script src="app/common/dialog.js"></script>
+        <script src="app/common/directive.js"></script>
+        <script src="app/common/directive_menu.js"></script>
+        <script src="app/common/directive_table.js"></script>
+    
+        <script src="app/lang/model.js"></script>
+        <script src="app/lang/service.js"></script>
+    
+        <script src="app/mod/user/controller.js"></script>
+        <script src="app/mod/user/model.js"></script>
+        <script src="app/mod/user/service.js"></script> 
+    
+        <!-- service:start -->     
+        <script src="app/common/service_menu.js"></script>
+
+        <script src="app/mod/langadmin/controller.js"></script>
+        <script src="app/mod/langadmin/model.js"></script>
+        <script src="app/mod/langadmin/service.js"></script>
+        <script src="app/mod/useradmin/controller.js"></script>
+        <script src="app/mod/useradmin/model.js"></script>
+        <script src="app/mod/useradmin/service.js"></script>
+        <script src="app/mod/company/controller.js"></script>
+        <script src="app/mod/company/model.js"></script>
+        <script src="app/mod/company/service.js"></script>
+        <script src="app/mod/company/directive.js"></script>
+        <script src="app/mod/patches/controller.js"></script>
+        <script src="app/mod/patches/model.js"></script>
+        <script src="app/mod/patches/service.js"></script> 
+        <!-- service:end -->
+         
+        <script src="mod/mdata/controller.js"></script>
+        <script src="mod/mdata/model.js"></script>
+        <script src="mod/mdata/service.js"></script>
+    
+        <script src="mod/calendar/controller.js"></script>
+        <script src="mod/calendar/model.js"></script>
+        <script src="mod/calendar/service.js"></script>
+    
+        <script src="mod/import/controller.js"></script>
+        <script src="mod/import/model.js"></script>
+        <script src="mod/import/service.js"></script>
+
+        <script src="mod/rpt/controller.js"></script>
+        <script src="mod/rpt/model.js"></script>
+        <script src="mod/rpt/service.js"></script>
+
+        <script src="mod/prep/controller.js"></script>
+        <script src="mod/prep/model.js"></script>
+        <script src="mod/prep/service.js"></script>
+
+        <script src="mod/simu/controller.js"></script>
+        <script src="mod/simu/model.js"></script>
+        <script src="mod/simu/service.js"></script>
+        
+        <script src="mod/period/controller.js"></script>
+        <script src="mod/period/model.js"></script>
+        <script src="mod/period/service.js"></script>
+        
+        <script src="mod/export/controller.js"></script>
+        <script src="mod/export/model.js"></script>
+        <script src="mod/export/service.js"></script>
+
+        <script src="mod/fix/controller.js"></script>
+        <script src="mod/fix/model.js"></script>
+        <script src="mod/fix/service.js"></script>
+
+    </body>
+</html></html>

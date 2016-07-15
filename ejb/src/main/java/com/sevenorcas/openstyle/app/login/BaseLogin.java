@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.entity.BaseEntity;
 import com.sevenorcas.openstyle.app.lang.LangKey;
 import com.sevenorcas.openstyle.app.user.User;
@@ -197,15 +197,12 @@ abstract public class BaseLogin extends BaseEntity implements LoginI, Serializab
 	 * Initialize login object
 	 */
 	private void initialise(){
-		if (getSite() == null){
-			setSite(appParam.getSite());
-		}
 		if (getLanguageCode() == null){
 			setLanguageCode(LangKey.getDefaultLanguageCode());
 		}
 		rootContext = "/" + ApplicationI.APP_NAME;
 				
-	    //Defined in WebApplication.java
+	    //Defined in JAXActivator.java
 		remoteUrlPrefix = "rest/";
 	}
 	

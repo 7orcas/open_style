@@ -7,8 +7,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.Utilities;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
+import com.sevenorcas.openstyle.app.application.Utilities;
 import com.sevenorcas.openstyle.app.dto.DefinitionService;
 import com.sevenorcas.openstyle.app.dto.FieldDefDto;
 import com.sevenorcas.openstyle.app.dto.LookupDto;

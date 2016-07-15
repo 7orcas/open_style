@@ -1,6 +1,7 @@
 package com.sevenorcas.openstyle.app.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -11,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * [License]
  * @author John Stewart
  */
-//WF10 TODO @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ReturnMessageDto {
 
 	@JsonProperty(value="m")  public String message;

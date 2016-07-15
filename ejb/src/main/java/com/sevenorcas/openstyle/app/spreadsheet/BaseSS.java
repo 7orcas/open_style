@@ -10,7 +10,7 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 
-import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
 import com.sevenorcas.openstyle.app.company.Company;
 import com.sevenorcas.openstyle.app.lang.Language;
 import com.sevenorcas.openstyle.app.user.UserParam;

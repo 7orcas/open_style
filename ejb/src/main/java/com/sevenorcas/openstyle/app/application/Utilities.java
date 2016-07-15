@@ -1,4 +1,4 @@
-package com.sevenorcas.openstyle.app;
+package com.sevenorcas.openstyle.app.application;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,6 +33,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.cache.ServerCache;
 import com.sevenorcas.openstyle.app.company.Company;
 import com.sevenorcas.openstyle.app.dto.BaseDto;

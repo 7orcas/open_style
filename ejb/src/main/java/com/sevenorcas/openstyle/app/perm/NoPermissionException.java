@@ -1,6 +1,6 @@
 package com.sevenorcas.openstyle.app.perm;
 
-import com.sevenorcas.openstyle.app.AppException;
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 
 /**
  * Exception identifier if user does not have permission to action a method.<p>

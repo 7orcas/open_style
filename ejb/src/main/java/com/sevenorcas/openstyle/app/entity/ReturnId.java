@@ -1,6 +1,6 @@
 package com.sevenorcas.openstyle.app.entity;
 
-import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
 
 
 /**

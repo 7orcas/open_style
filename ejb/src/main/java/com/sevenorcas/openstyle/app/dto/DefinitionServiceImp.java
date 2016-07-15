@@ -12,8 +12,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.Utilities;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
+import com.sevenorcas.openstyle.app.application.Utilities;
 import com.sevenorcas.openstyle.app.company.Company;
 import com.sevenorcas.openstyle.app.company.CompanyService;
 import com.sevenorcas.openstyle.app.entity.EntityI;

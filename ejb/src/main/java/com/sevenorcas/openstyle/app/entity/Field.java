@@ -7,7 +7,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
 
 
 /**

@@ -10,10 +10,10 @@ import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.sevenorcas.openstyle.app.AppException;
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.ApplicationParameters;
-import com.sevenorcas.openstyle.app.Utilities;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.Utilities;
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.lang.LangKey;
 import com.sevenorcas.openstyle.app.lang.LanguageService;
 import com.sevenorcas.openstyle.app.log.AuditLog;

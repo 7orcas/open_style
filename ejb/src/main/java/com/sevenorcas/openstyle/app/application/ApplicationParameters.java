@@ -1,13 +1,10 @@
-package com.sevenorcas.openstyle.app;
+package com.sevenorcas.openstyle.app.application;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 import org.jboss.logging.Logger;
 
@@ -27,6 +24,9 @@ import com.sevenorcas.openstyle.app.user.UserParam;
  */
 public class ApplicationParameters implements ApplicationI {
 
+	private Properties properties;
+	static private ApplicationParameters self;
+	
 	/**
 	 * Absolute path to the JBoss home directory. 
 	 * Read from <code>System.getProperty("jboss.home.dir")</code> 
@@ -39,13 +39,9 @@ public class ApplicationParameters implements ApplicationI {
 	//True = the application properties file is valid 
 	private boolean valid = false;
 
-	//True = <b>thhis</b> application properties file is being run in test mode 
+	//True = <b>this</b> application properties file is being run in test mode 
 	public static boolean testMode = false;
 	
-	/**
-	 * Site is used to uniquely identify a range of company numbers
-	 */
-	private String site;
 	
 	/**
 	 * Redirect page once user has successfully logged
@@ -55,7 +51,7 @@ public class ApplicationParameters implements ApplicationI {
 	/**
 	 * Unique company number that a userid can log into. The application facilitates multiple companies.  
 	 */
-	private Integer companyNumber;
+	private Integer defaultCompanyNr;
 	
 	//Paths
 	private String homePath;
@@ -64,7 +60,6 @@ public class ApplicationParameters implements ApplicationI {
 	private String pdfTemplatesPath;
 	private String importFilePath;
 	private String helpFileRoot;
-	private String simuProgressFilePath;
 	private String serviceLockFilePath;
 		
 	
@@ -83,7 +78,7 @@ public class ApplicationParameters implements ApplicationI {
 	//Debug mode allows testing and development options. 
 	//For production environments this MUST be false!
 	private boolean debug;
-	private String debugPdfTemplate;
+	private String  debugPdfTemplate;
 	private boolean debugTimers;
 	private boolean debugReset;
 	
@@ -113,7 +108,6 @@ public class ApplicationParameters implements ApplicationI {
 	private String errorMailCc;
 	private String errorMailBcc;
 	
-	
 	//Captcha config
 	private boolean enableCaptcha = false; 
 	private String captchaPrivateKey;
@@ -125,18 +119,13 @@ public class ApplicationParameters implements ApplicationI {
 	//Number of seconds between testing for client timeouts. Values <= 0 result in no test. 
     private int sessionTimeoutTest = 0;
 	
-	
-	private Properties properties;
-	static private ApplicationParameters self;
 
 	//Timer task configurations
 	private ArrayList<String> timers = null;
 
-	
 	//Cache of pages
 	private boolean cachePages;
 	private boolean cachePages_delete;
-	
 	
 	//Date formats
 	private String dateFormatDefault;
@@ -144,8 +133,6 @@ public class ApplicationParameters implements ApplicationI {
 	private String dateFormatDto;
 	private int dateFormatMonthDefault;
 	
-    ///////////////////////////// Application specific attributes ///////////////////////////////////////////////////
-	//Note the Hashtable keys's are this applications company number
 	
 	
 	
@@ -154,8 +141,9 @@ public class ApplicationParameters implements ApplicationI {
 	 * Reload <b>this</b> file
 	 * @return
 	 */
-	public void reload(){
+	public ApplicationParameters reload(){
 		self = new ApplicationParameters();
+		return this;
 	}
 	
 	
@@ -183,58 +171,57 @@ public class ApplicationParameters implements ApplicationI {
     		String n = deployPath + getEarName() + ".properties";
     		properties.load(new FileInputStream(n));
  
-    		postgresDatasource = load("PostgresDatasource");
-    		
-    		
-    		debug            = load("Debug", false);
-    		debugTimers      = load("Debug.timers", false);
-    		debugPdfTemplate = load("Debug.pdf.template", null);
-    		debugReset       = load("Debug.reset", false);
-    		
-    		site          = load("Site");
-    		mainPage      = load("MainPage");
-    		companyNumber = load("Company", 0);
-    		
-    		languageCodes = load("LanguageCodes", "en");
+    		postgresDatasource     = load("PostgresDatasource");
     		    		
-    		cachePages        = load("CachePages", false);
-    		cachePages_delete = load("CachePages.delete_on_startup", false);
+    		debug                  = load("Debug", false);
+    		debugTimers            = load("Debug.timers", false);
+    		debugPdfTemplate       = load("Debug.pdf.template", null);
+    		debugReset             = load("Debug.reset", false);
     		
-    		enableAdminUsers       = load("EnableAdminUsers", true);
-    		enableServiceAccount   = load("EnableServiceAccount", true);
-    		serviceAccountPassword = load("ServiceAccountPassword", null);
+    		mainPage               = load("App.mainPage");
+    		defaultCompanyNr       = load("App.company.default", 0);
+    		languageCodes          = load("App.languageCodes", "en");
+    		heartbeat              = load("App.heartbeat", 0);
+    		sessionTimeoutTest     = load("App.sessionTimeoutTest", 0);
+    		cachePages             = load("App.cachePages", false);
+    		cachePages_delete      = load("App.cachePages.delete_on_startup", false);
     		
-    		mailFrom     = load("MailFrom");
-    		mailHost     = load("MailHost");
-    		mailUser     = load("MailUser");
-    		mailPassword = load("MailPassword");
-    		mailPort     = load("MailPort", 0);
+    		enableAdminUsers       = load("App.adminUsers.enable", true);
+    		enableServiceAccount   = load("App.serviceAccount", true);
+    		serviceAccountPassword = load("App.serviceAccount.password", null);
+    		
+    		enableCaptcha          = load("Captcha.enable", false);
+    		captchaPrivateKey      = load("Captcha.privateKey");
+    		captchaPublicKey       = load("Captcha.publicKey");
 
-    		heartbeat             = load("Heartbeat", 0);
-    		sessionTimeoutTest    = load("SessionTimeoutTest", 0);
+    		tempFilePath           = path(load("Path.tempFiles"));
+    		pdfTemplatesPath       = path(load("Path.pdfTemplates"));
+    		importFilePath         = path(load("Path.importFiles"));
+    		serviceLockFilePath    = path(load("Path.serviceLockFile"));
+    		helpFileRoot           = load("Url.helpFileRoot"); 
     		
-    		mailFalseLoginAttempt = load("MailFalseLoginAttempt", false);
-    		loginMailTo           = load("LoginMailTo");
-    		loginMailCc           = load("LoginMailCc");
-    		loginMailBcc          = load("LoginMailBcc");
+    		dateFormatDto          = date("Date.format.dto", "dd-MM-yyyy");
+    		dateFormatDefault      = date("Date.format.default", "dd.MM.yy");
+    		dateFormatMonthDefault = load("Date.format.month.default", 2);
+    		dateFormatShort        = date("Date.format.short", "dd-MMM");
     		
-    		mailApplicationError  = load("MailApplicationError", false);
-    		errorMailSubject      = load("ErrorMailSubject");
-    		errorMailTo           = load("ErrorMailTo");
-    		errorMailCc           = load("ErrorMailCc");
-    		errorMailBcc          = load("ErrorMailBcc");
+    		mailHost               = load("Mail.config.host");
+    		mailPort               = load("Mail.config.port", 0);
+    		mailUser               = load("Mail.config.user");
+    		mailPassword           = load("Mail.config.password");
+    		mailFrom               = load("Mail.config.from");
     		
-    		enableCaptcha     = load("EnableCaptcha", false);
-    		captchaPrivateKey = load("CaptchaPrivateKey");
-    		captchaPublicKey  = load("CaptchaPublicKey");
- 
-    		tempFilePath          = path(load("TempFilePath"));
-    		pdfTemplatesPath      = path(load("PdfTemplatesPath"));
-    		importFilePath        = path(load("ImportFilePath"));
-    		simuProgressFilePath  = path(load("SimuProgressFilePath"));
-    		serviceLockFilePath   = path(load("ServiceLockFilePath"));
-    		helpFileRoot          = load("HelpFileRoot"); 
+    		mailFalseLoginAttempt  = load("Mail.falselogin.enable", false);
+    		loginMailTo            = load("Mail.falselogin.to");
+    		loginMailCc            = load("Mail.falselogin.cc");
+    		loginMailBcc           = load("Mail.falselogin.bcc");
     		
+    		mailApplicationError   = load("Mail.error.enable", false);
+    		errorMailSubject       = load("Mail.error.subject");
+    		errorMailTo            = load("Mail.error.to");
+    		errorMailCc            = load("Mail.error.cc");
+    		errorMailBcc           = load("Mail.error.bcc");
+    		    		
     		String timersstring = load("Timers", null);
     		if (timersstring != null){
     			timers = new ArrayList<String>();
@@ -243,15 +230,6 @@ public class ApplicationParameters implements ApplicationI {
     				timers.add(t);
     			}
     		}
-    		
-    		dateFormatDto             = date("Date.format.dto", "dd-MM-yyyy");
-    		dateFormatDefault         = date("Date.format.default", "dd.MM.yy");
-    		dateFormatMonthDefault    = load("Date.format.month.default", 2);
-    		dateFormatShort           = date("Date.format.short", "dd-MMM");
-    		
-            ///////////////////////////// Application specific configuration ///////////////////////////////////////////////////
-    		
-    		
     		
     		valid = true;
     		
@@ -337,17 +315,6 @@ public class ApplicationParameters implements ApplicationI {
 		}
 	}
 	
-	private long load(String prop, long defaultValue){
-		try{
-			return Long.parseLong(properties.getProperty(prop));
-		}
-		catch (Exception e){
-			if (properties.getProperty(prop) != null){
-				LOG.error("Invalid Property: " + prop);
-			}	
-			return defaultValue;
-		}
-	}
 	
 	private String load(String prop){
 		return load(prop, "");
@@ -382,20 +349,23 @@ public class ApplicationParameters implements ApplicationI {
 	public boolean isDebug() {
 		return debug;
 	}
-	public void setDebug(boolean value) {
+	public ApplicationParameters setDebug(boolean value) {
 		debug = value;
+		return this;
 	}
     public boolean isDebugTimers() {
         return debugTimers;
     }
-    public void setDebugTimers(boolean debugTimers) {
+    public ApplicationParameters setDebugTimers(boolean debugTimers) {
         this.debugTimers = debugTimers;
+        return this;
     }
     public String getDebugPdfTemplate() {
         return debugPdfTemplate;
     }
-    public void setDebugPdfTemplate(String debugPdfTemplate) {
+    public ApplicationParameters setDebugPdfTemplate(String debugPdfTemplate) {
         this.debugPdfTemplate = debugPdfTemplate;
+        return this;
     }
     public boolean isDebugReset() {
         return debugReset;
@@ -403,27 +373,25 @@ public class ApplicationParameters implements ApplicationI {
     
     
 
-    public String getSite() {
-		return site;
-	}
-	public void setSite(String site) {
-		this.site = site;
-	}
+    
 
 	public String getMainPage() {
 		return mainPage;
 	}
-	public void setMainPage(String mainPage) {
+	public ApplicationParameters setMainPage(String mainPage) {
 		this.mainPage = mainPage;
+		return this;
 	}
 
 
 	public Integer getDefaultCompanyNumber() {
-		return companyNumber;
+		return defaultCompanyNr;
 	}
-	public void setDefaultCompanyNumber(Integer companyNumber) {
-		this.companyNumber = companyNumber;
+	public ApplicationParameters setDefaultCompanyNumber(Integer defaultCompanyNr){
+		this.defaultCompanyNr = defaultCompanyNr;
+		return this;
 	}
+	
 	
 	
 	public String getHomePath() {
@@ -446,8 +414,9 @@ public class ApplicationParameters implements ApplicationI {
 	public String getTempFilePath(UserParam params) {
 		return tempFilePath + (params != null? params.getCompany() + File.separator : "");
 	}
-	public void setTempFilePath(String tempFilePath) {
+	public ApplicationParameters setTempFilePath(String tempFilePath) {
         this.tempFilePath = tempFilePath;
+        return this;
     }
     public boolean isTempFilePath() {
 		return test(tempFilePath);
@@ -464,17 +433,7 @@ public class ApplicationParameters implements ApplicationI {
         return test(pdfTemplatesPath);
     }
     
-    /**
-     * Simulation batch progress file path
-     * @return file path
-     */
-    public String getSimuProgressFilePath() {
-        return simuProgressFilePath;
-    }
-    public void setSimuProgressFilePath(String simuProgressFilePath) {
-        this.simuProgressFilePath = simuProgressFilePath;
-    }
-
+    
     /**
      * Service lock file path
      * @return file path
@@ -482,8 +441,9 @@ public class ApplicationParameters implements ApplicationI {
     public String getServiceLockFilePath() {
         return serviceLockFilePath;
     }
-    public void setServiceLockFilePath(String serviceLockFilePath) {
+    public ApplicationParameters setServiceLockFilePath(String serviceLockFilePath) {
         this.serviceLockFilePath = serviceLockFilePath;
+        return this;
     }
 
 
@@ -519,8 +479,9 @@ public class ApplicationParameters implements ApplicationI {
 	public String getPostgresDatasource() {
 		return postgresDatasource;
 	}
-	public void setPostgresDatasource(String postgresDatasource) {
+	public ApplicationParameters setPostgresDatasource(String postgresDatasource) {
 		this.postgresDatasource = postgresDatasource;
+		return this;
 	}
 
 
@@ -606,8 +567,9 @@ public class ApplicationParameters implements ApplicationI {
 	public ArrayList<String> getTimers() {
 		return timers;
 	}
-	public void setTimers(ArrayList<String> timers) {
+	public ApplicationParameters setTimers(ArrayList<String> timers) {
 		this.timers = timers;
+		return this;
 	}
 
 
@@ -615,8 +577,9 @@ public class ApplicationParameters implements ApplicationI {
 	public boolean isEnableCaptcha() {
 		return enableCaptcha;
 	}
-	public void setEnableCaptcha(boolean enableCaptcha) {
+	public ApplicationParameters setEnableCaptcha(boolean enableCaptcha) {
 		this.enableCaptcha = enableCaptcha;
+		return this;
 	}
 
 	public String getCaptchaPrivateKey() {
@@ -632,8 +595,9 @@ public class ApplicationParameters implements ApplicationI {
 	public String getLanguageCodes() {
 		return languageCodes;
 	}
-	public void setLanguageCodes(String languageCodes) {
+	public ApplicationParameters setLanguageCodes(String languageCodes) {
 		this.languageCodes = languageCodes;
+		return this;
 	}
 	/**
 	 * Return the first language code
@@ -652,38 +616,44 @@ public class ApplicationParameters implements ApplicationI {
 	public boolean isCachePages() {
 		return cachePages;
 	}
-	public void setCachePages(boolean cachePages) {
+	public ApplicationParameters setCachePages(boolean cachePages) {
 		this.cachePages = cachePages;
+		return this;
 	}
 	public boolean isCachePages_delete() {
 		return cachePages_delete;
 	}
-	public void setCachePages_delete(boolean cachePages_delete) {
+	public ApplicationParameters setCachePages_delete(boolean cachePages_delete) {
 		this.cachePages_delete = cachePages_delete;
+		return this;
 	}
 	public String getDateFormatDto() {
 		return dateFormatDto;
 	}
-	public void setDateFormatDto(String dateFormatDto) {
+	public ApplicationParameters setDateFormatDto(String dateFormatDto) {
 		this.dateFormatDto = dateFormatDto;
+		return this;
 	}
 	public String getDateFormatDefault() {
 		return dateFormatDefault;
 	}
-	public void setDateFormatDefault(String dateFormatDefault) {
+	public ApplicationParameters setDateFormatDefault(String dateFormatDefault) {
 		this.dateFormatDefault = dateFormatDefault;
+		return this;
 	}
 	public int getDateFormatMonthDefault() {
         return dateFormatMonthDefault;
     }
-    public void setDateFormatMonthDefault(int dateFormatMonthDefault) {
+    public ApplicationParameters setDateFormatMonthDefault(int dateFormatMonthDefault) {
         this.dateFormatMonthDefault = dateFormatMonthDefault;
+        return this;
     }
     public String getDateFormatShort() {
 		return dateFormatShort;
 	}
-	public void setDateFormatShort(String dateFormatShort) {
+	public ApplicationParameters setDateFormatShort(String dateFormatShort) {
 		this.dateFormatShort = dateFormatShort;
+		return this;
 	}
 	
 	

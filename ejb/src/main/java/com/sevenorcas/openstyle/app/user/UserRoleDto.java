@@ -3,7 +3,7 @@ package com.sevenorcas.openstyle.app.user;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sevenorcas.openstyle.app.AppException;
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.dto.BaseDto;
 import com.sevenorcas.openstyle.app.dto.Dto;
 

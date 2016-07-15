@@ -10,8 +10,8 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.servlet.http.HttpServletRequest;
 
-import com.sevenorcas.openstyle.app.AppException;
-import com.sevenorcas.openstyle.app.Utilities;
+import com.sevenorcas.openstyle.app.application.Utilities;
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.login.LoginI;
 import com.sevenorcas.openstyle.app.login.LoginService;
 import com.sevenorcas.openstyle.app.perm.Permission;

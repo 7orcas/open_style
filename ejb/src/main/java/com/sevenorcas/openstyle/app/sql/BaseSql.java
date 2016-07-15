@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.cache.ServerCache;
 import com.sevenorcas.openstyle.app.entity.EntityI;
 import com.sevenorcas.openstyle.app.entity.Field;
@@ -30,7 +31,7 @@ import com.sevenorcas.openstyle.app.user.BaseUserParam;
  * @author John Stewart
  */
 @SuppressWarnings("serial")
-//WF10 TODO @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseSql implements Serializable, SqlI, ApplicationI, ValidateI {
 
     static final public String DESCR_SEPARATOR   = ":";

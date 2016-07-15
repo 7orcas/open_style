@@ -7,10 +7,7 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import com.sevenorcas.openstyle.app.AppException;
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.ApplicationParameters;
-import com.sevenorcas.openstyle.app.Utilities;
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.company.CompanyService;
 import com.sevenorcas.openstyle.app.perm.Permission;
 import com.sevenorcas.openstyle.app.sql.StatementX;

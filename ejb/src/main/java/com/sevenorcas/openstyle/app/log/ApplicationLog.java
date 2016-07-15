@@ -2,7 +2,7 @@ package com.sevenorcas.openstyle.app.log;
 
 import org.jboss.logging.Logger;
 
-import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 
 /**
  * Application Logger<p>

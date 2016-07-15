@@ -8,8 +8,9 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
 
 
 
@@ -25,7 +26,9 @@ import com.sevenorcas.openstyle.app.ApplicationI;
  *       DTO field must be specifically annotated with <code>DtoEncode</code>.</ul>
  * <p>
  *   
- * <b>This</b> class users <code>ApplicationI</code> return status values to indicate success, warning or errors to the client.
+ * <b>This</b> class users <code>ApplicationI</code> return status values to indicate success, warning or errors to the client.<p>
+ *   
+ * Thanks to http://stackoverflow.com/questions/16089651/jackson-serialization-ignore-empty-values-or-null
  *   
  * @see ApplicationI
  * @see ReturnDtoWriter
@@ -33,7 +36,7 @@ import com.sevenorcas.openstyle.app.ApplicationI;
  * [License]
  * @author John Stewart
  */
-//WF10 TODO @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @SuppressWarnings("serial")
 public class ReturnDto implements Serializable, ApplicationI {
 

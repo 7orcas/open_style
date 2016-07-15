@@ -18,10 +18,10 @@ import javax.persistence.PersistenceContext;
 import javax.sound.midi.Patch;
 import javax.sql.DataSource;
 
-import com.sevenorcas.openstyle.app.AppException;
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.ApplicationParameters;
-import com.sevenorcas.openstyle.app.Utilities;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.Utilities;
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.cache.ServerCache;
 import com.sevenorcas.openstyle.app.company.Company;
 import com.sevenorcas.openstyle.app.entity.BaseEntity;
@@ -67,11 +67,11 @@ public abstract class BaseDao implements ApplicationI {
 	
 	/**
 	 * Persistence context corresponds to the persistence-unit in 
-	 * desma-ejb/src/main/application/META-INF/persistence.xml
+	 * ejb/src/main/resources/META-INF/persistence.xml
 	 * 
 	 * For multiple contexts see http://www.hostettler.net/blog/2012/11/20/multi-tenancy/ (this in not yet implemented)
 	 */
-	@PersistenceContext(unitName = "desmaDS")
+	@PersistenceContext(unitName = "openstyleDS")
 	protected static EntityManager em;
 	
 	

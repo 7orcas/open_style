@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
 import com.sevenorcas.openstyle.app.entity.BaseEntity;
 import com.sevenorcas.openstyle.app.entity.Field;
 import com.sevenorcas.openstyle.app.user.UserParam;

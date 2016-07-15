@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import javax.ejb.ApplicationException;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sevenorcas.openstyle.app.AppException;
-import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.lang.Language;
 
 

@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sevenorcas.openstyle.app.AppException;
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.dto.BaseDto;
 import com.sevenorcas.openstyle.app.dto.Dto;
 import com.sevenorcas.openstyle.app.entity.Field;

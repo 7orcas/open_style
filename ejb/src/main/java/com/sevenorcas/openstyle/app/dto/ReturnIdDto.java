@@ -1,8 +1,9 @@
 package com.sevenorcas.openstyle.app.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sevenorcas.openstyle.app.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
 import com.sevenorcas.openstyle.app.entity.Field;
 
 
@@ -17,7 +18,7 @@ import com.sevenorcas.openstyle.app.entity.Field;
  * [License] 
  * @author John Stewart
  */
-//WF10 TODO @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ReturnIdDto implements ApplicationI{
 	
 	

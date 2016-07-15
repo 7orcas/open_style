@@ -4,9 +4,9 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
         version="2.0">
 
-	<persistence-unit name="desmaDS" transaction-type="JTA">
+	<persistence-unit name="openstyleDS" transaction-type="JTA">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>java:jboss/datasources/desmaDS</jta-data-source>
+        <jta-data-source>java:jboss/datasources/openstyleDS</jta-data-source>
         
         <properties>
 			<!-- TODO: check value for production system --> 

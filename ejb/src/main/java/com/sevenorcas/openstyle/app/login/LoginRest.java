@@ -7,12 +7,13 @@ import java.util.TimeZone;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Produces;
+import javax.interceptor.Interceptors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 
@@ -20,8 +21,8 @@ import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.GZIP;
 import org.jboss.resteasy.annotations.interception.HeaderDecoratorPrecedence;
 
-import com.sevenorcas.openstyle.app.ApplicationI;
-import com.sevenorcas.openstyle.app.ApplicationParameters;
+import com.sevenorcas.openstyle.app.application.ApplicationI;
+import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.application.ApplicationService;
 import com.sevenorcas.openstyle.app.company.Company;
 import com.sevenorcas.openstyle.app.company.CompanyService;
@@ -44,11 +45,11 @@ import com.sevenorcas.openstyle.app.user.UserParam;
  */
 @Stateless
 @Path("/login")
-//WF10 TODO @Produces({"application/json"})
+@Produces({"application/json"})
 @GZIP
 @Consumes({"application/json"})
 @HeaderDecoratorPrecedence
-//WF10 TODO @Interceptors(RestAroundInvoke.class)
+@Interceptors(RestAroundInvoke.class)
 public class LoginRest {
 
     /** Application singleton */ 

@@ -14,7 +14,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import com.sevenorcas.openstyle.app.AppException;
+import com.sevenorcas.openstyle.app.application.exception.AppException;
 
 
 /**
