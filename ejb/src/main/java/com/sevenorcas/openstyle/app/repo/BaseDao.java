@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.naming.InitialContext;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
@@ -65,14 +66,14 @@ public abstract class BaseDao implements ApplicationI {
 	public static String T_TASK_RUN                  = tableName(TaskRun.class);
 	
 	
-	/**
-	 * Persistence context corresponds to the persistence-unit in 
-	 * ejb/src/main/resources/META-INF/persistence.xml
-	 * 
-	 * For multiple contexts see http://www.hostettler.net/blog/2012/11/20/multi-tenancy/ (this in not yet implemented)
-	 */
-	@PersistenceContext(unitName = "openstyleDS")
-	protected static EntityManager em;
+//	/**
+//	 * Persistence context corresponds to the persistence-unit in 
+//	 * ejb/src/main/resources/META-INF/persistence.xml
+//	 * 
+//	 * For multiple contexts see http://www.hostettler.net/blog/2012/11/20/multi-tenancy/ (this in not yet implemented)
+//	 */
+//	@PersistenceContext (unitName = "openstyleDS")
+//	protected static EntityManager em;
 	
 	
 	/**
@@ -104,10 +105,10 @@ public abstract class BaseDao implements ApplicationI {
 	 * @param Entity T extends BaseEntity
 	 * @return
 	 */
-	public <T extends BaseEntity> T  save (UserParam params, T entity) throws Exception{
+	public <T extends BaseEntity> T  save (UserParam params, T entity, EntityManager em) throws Exception{
 		
     	if (entity.isDelete()){
-    		remove (params, entity);
+    		remove (params, entity, em);
     		return null;
     	}
     	
@@ -119,7 +120,7 @@ public abstract class BaseDao implements ApplicationI {
     		entity.setId(null);
     	}
     	
-    	deleteChild (params, entity);
+    	deleteChild (params, entity, em);
 		
 		setStandardFields(params, entity);
 
@@ -150,7 +151,7 @@ public abstract class BaseDao implements ApplicationI {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	private void deleteChild (UserParam params, Object entity) throws Exception{
+	private void deleteChild (UserParam params, Object entity, EntityManager em) throws Exception{
 		
     	List<java.lang.reflect.Field> fields = cache.getFieldList(entity.getClass(), true);
     	java.lang.reflect.Field parent = null;
@@ -184,7 +185,7 @@ public abstract class BaseDao implements ApplicationI {
 						}
 						
 						if (deleteChild){
-							deleteChild (params, ent);
+							deleteChild (params, ent, em);
 						}
 						
 						if (ent instanceof BaseEntity){
@@ -205,7 +206,7 @@ public abstract class BaseDao implements ApplicationI {
 					for (BaseEntity child: deletes){
 						parent.set(child, null);
 						list.remove(child);
-			    		remove(params, child);
+			    		remove(params, child, em);
 			    	}
 					
 				}
@@ -243,7 +244,7 @@ public abstract class BaseDao implements ApplicationI {
 	 * @throws NoPermissionException if service user is required (but user don't have status)
 	 * @return
 	 */
-	public void  remove (UserParam params, Object entity)throws Exception{
+	public void  remove (UserParam params, Object entity, EntityManager em)throws Exception{
 		validateServiceUser(params, entity);
 		validateReferences(params, entity);
 		em.remove(em.contains(entity) ? entity : em.merge(entity));
@@ -308,7 +309,7 @@ public abstract class BaseDao implements ApplicationI {
 	 * @param Long id
 	 * @return
 	 */
-	public <T extends BaseEntity>T  findById (Class <T> clazz, Long id)  throws Exception{
+	public <T extends BaseEntity>T  findById (Class <T> clazz, Long id, EntityManager em)  throws Exception{
 	    T t = em.find(clazz, id);
 	    if (t != null && t instanceof ConfigI){
 	        ConfigI c = (ConfigI)t;

@@ -52,7 +52,7 @@ public class LanguageRest {
 	@EJB private LanguageService    langService;
 	@EJB private SpreadSheetService spreadSheetService;
 
-	@PersistenceContext(name="desma")
+	@PersistenceContext (unitName = "openstyleDS")
 	private EntityManager em;
 	
 	/**

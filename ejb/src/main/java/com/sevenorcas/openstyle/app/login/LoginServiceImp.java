@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -56,6 +58,10 @@ public class LoginServiceImp implements LoginService, LoginI, ApplicationI {
 	@EJB private MailService      mailService;
 	@EJB private LanguageService  languageService;
 	@EJB private UserAdminService userAdminService;
+	
+@PersistenceContext(unitName="openstyleDS")
+private EntityManager em;
+
 	
 	public LoginServiceImp() {
 	}
@@ -426,10 +432,14 @@ public class LoginServiceImp implements LoginService, LoginI, ApplicationI {
 	
 	/**
 	 * Update Login try's / lock
+	 * TODO
+	 * MOVE TO Dao
+	 * 
 	 */
+	@Deprecated
 	private Login loginUpdate(final UserParam params, Login rec) throws Exception{
 		//loginProgressDao.loginUpdate(params, rec);
-		return loginDao.save(params, rec);
+		return loginDao.save(params, rec, em);
 	}
 	
 

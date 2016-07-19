@@ -3,6 +3,8 @@ package com.sevenorcas.openstyle.app.login;
 import java.util.Hashtable;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.sevenorcas.openstyle.app.repo.BaseDao;
 import com.sevenorcas.openstyle.app.sql.ResultSetX;
@@ -25,6 +27,8 @@ public class LoginDaoImp extends BaseDao implements LoginDao{
 	 */
 	public LoginDaoImp(){}
 	
+	@PersistenceContext(unitName="openstyleDS")
+	private EntityManager em;
 	
 	
 	/**

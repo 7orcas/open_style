@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.sevenorcas.openstyle.app.repo.BaseDao;
 import com.sevenorcas.openstyle.app.sql.ResultSetX;
@@ -19,7 +21,14 @@ import com.sevenorcas.openstyle.app.user.UserParam;
 @Stateless
 public class CompanyDaoImp extends BaseDao implements CompanyDao{
 
-    
+	/**
+	 * Persistence context corresponds to the persistence-unit in 
+	 * ejb/src/main/resources/META-INF/persistence.xml
+	 * 
+	 * For multiple contexts see http://www.hostettler.net/blog/2012/11/20/multi-tenancy/ (this in not yet implemented)
+	 */
+	@PersistenceContext(unitName="openstyleDS")
+	private EntityManager em;
    
 	/**
 	 * Default Constructor
@@ -104,7 +113,7 @@ public class CompanyDaoImp extends BaseDao implements CompanyDao{
     	Integer delete = company.isDelete()? company.getCompanyNr() : null;
     	
     	company.setConfig(company.encode());
-    	Company rec = super.save(params, company);
+    	Company rec = super.save(params, company, em);
     	if (rec != null){
     	    initialise(params, rec);
     	    
@@ -203,11 +212,11 @@ public class CompanyDaoImp extends BaseDao implements CompanyDao{
 	 * @param flag true = use entity manager
 	 * @return
 	 */
-	public Company findById (UserParam params, Long id, boolean em) throws Exception{
+	public Company findById (UserParam params, Long id, boolean emf) throws Exception{
 		Company rec = cache.getCompany(id);
 		if (rec == null){
-		    if (em){
-		        rec = super.findById(Company.class, id);
+		    if (emf){
+		        rec = super.findById(Company.class, id, em);
 		    }
 		    else{
 		        rec = loadCompany(params, id);

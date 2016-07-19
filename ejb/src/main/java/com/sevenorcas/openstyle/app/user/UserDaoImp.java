@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.sevenorcas.openstyle.app.login.LoginI;
 import com.sevenorcas.openstyle.app.repo.BaseDao;
@@ -24,6 +26,9 @@ public class UserDaoImp extends BaseDao implements UserDao{
 	 * Default Constructor
 	 */
 	public UserDaoImp(){}
+	
+	@PersistenceContext(unitName="openstyleDS")
+	private EntityManager em;
 	
 	
 	/**
@@ -221,7 +226,7 @@ public class UserDaoImp extends BaseDao implements UserDao{
      * @return
      */
     public User save (UserParam params, User entity) throws Exception{
-    	return super.save(params, entity);
+    	return super.save(params, entity, em);
     }
 	
     
@@ -231,7 +236,7 @@ public class UserDaoImp extends BaseDao implements UserDao{
 	 * @return
 	 */
 	public User findById (Long id) throws Exception{
-		return super.findById(User.class, id);
+		return super.findById(User.class, id, em);
 	}
 	
 	

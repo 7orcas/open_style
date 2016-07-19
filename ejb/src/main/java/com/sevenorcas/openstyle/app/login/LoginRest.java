@@ -8,6 +8,8 @@ import java.util.TimeZone;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -64,6 +66,9 @@ public class LoginRest {
 	@EJB private ApplicationService appService;
 	
 	
+@PersistenceContext (unitName = "openstyleDS")
+private EntityManager em;
+	
 	/**
 	 * Call weblogin.
 	 * 
@@ -90,7 +95,8 @@ public class LoginRest {
 			@QueryParam("res")  String response) {
 		
 		Language l = null;
-
+if (em == null)
+System.out.println("x askjefh");		
 		
 		//Test the application has a valid properties file
 		if (!appParam.isValid()){

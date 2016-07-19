@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.sevenorcas.openstyle.app.entity.ReturnId;
 import com.sevenorcas.openstyle.app.repo.BaseDao;
@@ -24,6 +26,9 @@ import com.sevenorcas.openstyle.app.user.UserParam;
 public class LanguageDaoImp extends BaseDao implements LanguageDao{
 
 	@EJB private TempTableDao tempTableDao;
+	
+	@PersistenceContext(unitName="openstyleDS")
+	private EntityManager em;
 	
 	/**
 	 * Default Constructor
@@ -236,7 +241,7 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
      * @return
      */
     public LangKey save (UserParam params, LangKey entity) throws Exception{
-    	return super.save(params, entity);
+    	return super.save(params, entity, em);
     }
 	
     
@@ -246,7 +251,7 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
 	 * @return
 	 */
 	public LangKey findLangKeyById (Long id) throws Exception{
-		return super.findById(LangKey.class, id);
+		return super.findById(LangKey.class, id, em);
 	}
 	
 	/**
