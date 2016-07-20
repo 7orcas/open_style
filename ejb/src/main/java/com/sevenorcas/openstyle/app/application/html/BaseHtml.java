@@ -10,8 +10,8 @@ import org.jsoup.nodes.Element;
 import com.sevenorcas.openstyle.app.application.ApplicationI;
 import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.application.exception.AppException;
-import com.sevenorcas.openstyle.app.dto.FieldDefDto;
-import com.sevenorcas.openstyle.app.lang.Language;
+import com.sevenorcas.openstyle.app.mod.lang.Language;
+import com.sevenorcas.openstyle.app.service.dto.FieldDefDto;
 
 
 /**

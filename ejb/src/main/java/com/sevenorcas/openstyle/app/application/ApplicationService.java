@@ -2,7 +2,7 @@ package com.sevenorcas.openstyle.app.application;
 
 import javax.ejb.Local;
 
-import com.sevenorcas.openstyle.app.user.UserParam;
+import com.sevenorcas.openstyle.app.mod.user.UserParam;
 
 
 /**

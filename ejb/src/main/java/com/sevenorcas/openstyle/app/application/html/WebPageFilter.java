@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import com.sevenorcas.openstyle.app.application.ApplicationI;
-import com.sevenorcas.openstyle.app.lang.LangKey;
+import com.sevenorcas.openstyle.app.mod.lang.LangKey;
 
 /**
  * Filter login requests to add language code.<p>

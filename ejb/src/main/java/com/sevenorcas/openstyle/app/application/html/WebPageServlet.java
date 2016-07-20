@@ -30,13 +30,13 @@ import org.jsoup.select.Elements;
 
 import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.application.Utilities;
-import com.sevenorcas.openstyle.app.company.Company;
-import com.sevenorcas.openstyle.app.company.CompanyService;
-import com.sevenorcas.openstyle.app.lang.Language;
-import com.sevenorcas.openstyle.app.lang.LanguageService;
-import com.sevenorcas.openstyle.app.log.ApplicationLog;
-import com.sevenorcas.openstyle.app.login.BaseLogin;
-import com.sevenorcas.openstyle.app.user.UserParam;
+import com.sevenorcas.openstyle.app.mod.company.Company;
+import com.sevenorcas.openstyle.app.mod.company.CompanyService;
+import com.sevenorcas.openstyle.app.mod.lang.Language;
+import com.sevenorcas.openstyle.app.mod.lang.LanguageService;
+import com.sevenorcas.openstyle.app.mod.login.BaseLogin;
+import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.app.service.log.ApplicationLog;
 
 /**
  * Interceptor to process html and javascript files for the following:<ul>

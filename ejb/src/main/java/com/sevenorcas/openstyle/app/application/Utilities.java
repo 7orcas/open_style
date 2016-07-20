@@ -34,20 +34,20 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.sevenorcas.openstyle.app.application.exception.AppException;
-import com.sevenorcas.openstyle.app.cache.ServerCache;
-import com.sevenorcas.openstyle.app.company.Company;
-import com.sevenorcas.openstyle.app.dto.BaseDto;
-import com.sevenorcas.openstyle.app.dto.Dto;
-import com.sevenorcas.openstyle.app.entity.BaseEntity;
-import com.sevenorcas.openstyle.app.entity.CodeI;
-import com.sevenorcas.openstyle.app.entity.EntityAttributes;
-import com.sevenorcas.openstyle.app.entity.IdI;
-import com.sevenorcas.openstyle.app.lang.LangCodeI;
-import com.sevenorcas.openstyle.app.lang.LangDescrI;
-import com.sevenorcas.openstyle.app.lang.Language;
-import com.sevenorcas.openstyle.app.log.ApplicationLog;
-import com.sevenorcas.openstyle.app.perm.NoPermissionException;
-import com.sevenorcas.openstyle.app.user.UserParam;
+import com.sevenorcas.openstyle.app.mod.company.Company;
+import com.sevenorcas.openstyle.app.mod.lang.LangCodeI;
+import com.sevenorcas.openstyle.app.mod.lang.LangDescrI;
+import com.sevenorcas.openstyle.app.mod.lang.Language;
+import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.app.service.cache.ServerCache;
+import com.sevenorcas.openstyle.app.service.dto.BaseDto;
+import com.sevenorcas.openstyle.app.service.dto.Dto;
+import com.sevenorcas.openstyle.app.service.entity.BaseEntity;
+import com.sevenorcas.openstyle.app.service.entity.CodeI;
+import com.sevenorcas.openstyle.app.service.entity.EntityAttributes;
+import com.sevenorcas.openstyle.app.service.entity.IdI;
+import com.sevenorcas.openstyle.app.service.log.ApplicationLog;
+import com.sevenorcas.openstyle.app.service.perm.NoPermissionException;
 
 
 /**

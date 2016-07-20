@@ -2,9 +2,9 @@ package com.sevenorcas.openstyle.mod.main;
 
 import com.sevenorcas.openstyle.app.application.Utilities;
 import com.sevenorcas.openstyle.app.application.html.BaseCallback;
-import com.sevenorcas.openstyle.app.company.Company;
-import com.sevenorcas.openstyle.app.company.CompanyService;
-import com.sevenorcas.openstyle.app.user.UserParam;
+import com.sevenorcas.openstyle.app.mod.company.Company;
+import com.sevenorcas.openstyle.app.mod.company.CompanyService;
+import com.sevenorcas.openstyle.app.mod.user.UserParam;
 
 /**
  * Main html page call back<p> 

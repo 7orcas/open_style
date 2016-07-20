@@ -2,7 +2,7 @@ package com.sevenorcas.openstyle.app.application.exception;
 
 import java.io.Serializable;
 
-import com.sevenorcas.openstyle.app.log.ApplicationLog;
+import com.sevenorcas.openstyle.app.service.log.ApplicationLog;
 
 
 

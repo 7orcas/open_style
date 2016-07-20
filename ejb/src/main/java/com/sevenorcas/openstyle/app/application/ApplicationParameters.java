@@ -8,7 +8,7 @@ import java.util.Properties;
 
 import org.jboss.logging.Logger;
 
-import com.sevenorcas.openstyle.app.user.UserParam;
+import com.sevenorcas.openstyle.app.mod.user.UserParam;
 
 
 /**

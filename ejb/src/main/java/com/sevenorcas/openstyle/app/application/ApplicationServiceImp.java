@@ -8,13 +8,13 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import com.sevenorcas.openstyle.app.application.exception.AppException;
-import com.sevenorcas.openstyle.app.company.CompanyService;
-import com.sevenorcas.openstyle.app.perm.Permission;
-import com.sevenorcas.openstyle.app.sql.StatementX;
-import com.sevenorcas.openstyle.app.temptable.TempTableService;
-import com.sevenorcas.openstyle.app.timers.TimerService;
-import com.sevenorcas.openstyle.app.user.UserAdminService;
-import com.sevenorcas.openstyle.app.user.UserParam;
+import com.sevenorcas.openstyle.app.mod.company.CompanyService;
+import com.sevenorcas.openstyle.app.mod.user.UserAdminService;
+import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.app.service.perm.Permission;
+import com.sevenorcas.openstyle.app.service.sql.StatementX;
+import com.sevenorcas.openstyle.app.service.temptable.TempTableService;
+import com.sevenorcas.openstyle.app.service.timers.TimerService;
 
 /**
  * Application service<p>

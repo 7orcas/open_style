@@ -3,7 +3,7 @@ package com.sevenorcas.openstyle.app.application.exception;
 import org.jsoup.nodes.Element;
 
 import com.sevenorcas.openstyle.app.application.html.BaseHtml;
-import com.sevenorcas.openstyle.app.lang.Language;
+import com.sevenorcas.openstyle.app.mod.lang.Language;
 
 /**
  * Unknown Exception HTML page (for return error's from a call to a view).<p>

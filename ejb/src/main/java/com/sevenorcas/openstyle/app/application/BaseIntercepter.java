@@ -3,8 +3,8 @@ package com.sevenorcas.openstyle.app.application;
 import javax.interceptor.InvocationContext;
 
 import com.sevenorcas.openstyle.app.application.exception.AppException;
-import com.sevenorcas.openstyle.app.log.ApplicationLog;
-import com.sevenorcas.openstyle.app.user.UserParam;
+import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.app.service.log.ApplicationLog;
 
 
 
