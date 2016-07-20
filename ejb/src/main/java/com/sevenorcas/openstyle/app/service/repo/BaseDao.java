@@ -27,7 +27,7 @@ import com.sevenorcas.openstyle.app.mod.company.Company;
 import com.sevenorcas.openstyle.app.mod.user.User;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
 import com.sevenorcas.openstyle.app.mod.user.UserRole;
-import com.sevenorcas.openstyle.app.service.cache.ServerCache;
+import com.sevenorcas.openstyle.app.service.cache.CacheServiceImp;
 import com.sevenorcas.openstyle.app.service.entity.BaseEntity;
 import com.sevenorcas.openstyle.app.service.entity.ConfigI;
 import com.sevenorcas.openstyle.app.service.entity.EntityRef;
@@ -55,7 +55,7 @@ import com.sevenorcas.openstyle.app.service.task.TaskRun;
 public abstract class BaseDao implements ApplicationI {
 
 	protected ApplicationParameters appParam = ApplicationParameters.getInstance();
-	protected ServerCache cache = ServerCache.getInstance();
+	protected CacheServiceImp cache = CacheServiceImp.getInstance();
 
 	//Table name definitions
 	public static String T_COMPANY                   = tableName(Company.class);

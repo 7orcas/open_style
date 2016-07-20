@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sevenorcas.openstyle.app.application.ApplicationI;
 import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.mod.user.BaseUserParam;
-import com.sevenorcas.openstyle.app.service.cache.ServerCache;
+import com.sevenorcas.openstyle.app.service.cache.CacheServiceImp;
 import com.sevenorcas.openstyle.app.service.entity.EntityI;
 import com.sevenorcas.openstyle.app.service.entity.Field;
 import com.sevenorcas.openstyle.app.service.entity.ValidateI;
@@ -38,7 +38,7 @@ public class BaseSql implements Serializable, SqlI, ApplicationI, ValidateI {
     
     
 	/** Application singleton  */ protected ApplicationParameters appParam = ApplicationParameters.getInstance();
-	/** Server object cache    */ protected ServerCache cache = ServerCache.getInstance();
+	/** Server object cache    */ protected CacheServiceImp cache = CacheServiceImp.getInstance();
 	
 	
 	/**

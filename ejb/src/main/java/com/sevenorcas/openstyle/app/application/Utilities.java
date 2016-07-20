@@ -39,7 +39,7 @@ import com.sevenorcas.openstyle.app.mod.lang.LangCodeI;
 import com.sevenorcas.openstyle.app.mod.lang.LangDescrI;
 import com.sevenorcas.openstyle.app.mod.lang.Language;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
-import com.sevenorcas.openstyle.app.service.cache.ServerCache;
+import com.sevenorcas.openstyle.app.service.cache.CacheServiceImp;
 import com.sevenorcas.openstyle.app.service.dto.BaseDto;
 import com.sevenorcas.openstyle.app.service.dto.Dto;
 import com.sevenorcas.openstyle.app.service.entity.BaseEntity;
@@ -59,7 +59,7 @@ import com.sevenorcas.openstyle.app.service.perm.NoPermissionException;
 public class Utilities implements ApplicationI{
 
 	/** Application Parameters               */ static private ApplicationParameters appParam     = ApplicationParameters.getInstance();
-	/** Server object cache                  */ static private ServerCache cache                  = ServerCache.getInstance();
+	/** Server object cache                  */ static private CacheServiceImp cache                  = CacheServiceImp.getInstance();
 	/** BigDecimal value of 100              */ static private BigDecimal D100                    = new BigDecimal(100);
 	/** Default date format                  */ static private SimpleDateFormat dateFormatDefault = new SimpleDateFormat(appParam.getDateFormatDefault());
 	/** Default month part of date format    */ static private int dateFormatMonthDefault         = appParam.getDateFormatMonthDefault();

@@ -14,7 +14,7 @@ import javax.ejb.TransactionAttributeType;
 
 import com.sevenorcas.openstyle.app.mod.user.BaseUserParam;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
-import com.sevenorcas.openstyle.app.service.cache.ServerCache;
+import com.sevenorcas.openstyle.app.service.cache.CacheServiceImp;
 import com.sevenorcas.openstyle.app.service.dto.ReturnIdDto;
 import com.sevenorcas.openstyle.app.service.entity.ReturnId;
 import com.sevenorcas.openstyle.app.service.perm.Permission;
@@ -66,7 +66,7 @@ public class LanguageServiceImp implements LanguageService {
 	 * Cache table of language key-value pairs.<br>
 	 * The key is language code. 
 	 */
-	private ServerCache cache = ServerCache.getInstance();
+	private CacheServiceImp cache = CacheServiceImp.getInstance();
 	
 	
 	public LanguageServiceImp() {

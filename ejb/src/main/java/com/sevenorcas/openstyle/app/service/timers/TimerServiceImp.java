@@ -17,7 +17,7 @@ import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.application.Utilities;
 import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
-import com.sevenorcas.openstyle.app.service.cache.ServerCache;
+import com.sevenorcas.openstyle.app.service.cache.CacheServiceImp;
 import com.sevenorcas.openstyle.app.service.log.ApplicationLog;
 import com.sevenorcas.openstyle.app.service.perm.Permission;
 
@@ -41,7 +41,7 @@ public class TimerServiceImp implements TimerService, TimedObject, TimerI, Appli
 	final static private int INDEX_REPEAT_CODE    = 4;
 	final static private int INDEX_STARTUP_TIME   = 5;
 	
-	private ServerCache cache = ServerCache.getInstance();
+	private CacheServiceImp cache = CacheServiceImp.getInstance();
 	
 	@Resource
 	private SessionContext context;
