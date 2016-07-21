@@ -20,8 +20,88 @@ import com.sevenorcas.openstyle.app.service.dto.FieldDefDto;
  * [License] 
  * @author John Stewart
  */
-public class BaseHtml implements ApplicationI {
+public class UtilityHtml implements ApplicationI {
 
+	private Element page;
+	
+	public UtilityHtml (){
+	}
+	
+	
+	/**
+	 * Create an empty <code>head</code> element
+	 * @return <code>head</code> element
+	 */
+	public Element createHead(){
+		Document doc = Jsoup.parse("<head></head>");
+		page = doc.select("head").first();
+		return page;
+	}
+	
+	
+	/**
+	 * Create an empty <code>section</code> element
+	 * @return <code>section</code> element
+	 */
+	public Element createSection(){
+		Document doc = Jsoup.parse("<head><body></body></head>");
+		page = doc.select("body").first().appendElement("section");
+		return page;
+	}
+	
+	
+   /**
+     * Clean and compress the <code>jsoup.nodes.Document</code> for output to the client
+     * @return Html coded string
+     */
+    public String html(){
+        
+        if (cssDefs != null && cssDefs.size() > 0){
+            StringBuffer sb = new StringBuffer();
+            for (String s : cssDefs){
+                sb.append(s + " ");
+            }
+            page.appendElement("style")
+                .attr("type", "text/css")
+                .text(sb.toString());
+        }
+        
+        String s = page.html();
+
+//		doc.outputSettings().prettyPrint(false);
+//    	doc.outputSettings().indentAmount(0);
+//    	String s = doc.body().html();
+
+        s = s.replace("class=\" ", "class=\""); //Some reason jsoup adds a space?
+        return s;
+    }
+
+    
+	
+	
+	///////////////////////////////////  Sub Sections /////////////////////////////////////////////
+	
+	/**
+	 * Create a <code>tag</code> element using the current page element
+	 * @param tag element name
+	 * @return <code>head</code> element
+	 */
+	public Element createTag(String tag){
+		return createTag(tag, null);
+	}
+	
+	/**
+	 * Create <code>meta</code> element
+	 * @param Page element (if NULL then current page element is used)
+	 * @return <code>head</code> element
+	 */
+	public Element createTag(String tag, Element el){
+		el = el != null? el : page;
+		return el.appendElement(tag);
+	}
+	
+	
+	
     protected List<String> cssDefs;
     
     static final public String CLASS_TABLE_COL_HEAD     = "div-table-col-head";
@@ -30,64 +110,35 @@ public class BaseHtml implements ApplicationI {
 	static final public String NBSP                 = "\u00a0";
 	static protected ApplicationParameters appParam = ApplicationParameters.getInstance(); 
 	
-	static public String returnNoRecordsFound (boolean removeLoading, Language l){
-		Element body = createSection();
-		if (removeLoading){
-            removeLoading(body);
-        }
-		Element page = body.appendElement("div");
-		page.appendElement("div")
-		    .attr("style", "font-size:16px;margin-top:30px;margin-left:20px;text-align:left;")
-		    .text(l.getLabel("NoRecordsFound"));
-		
-        return output(body.html());
-	}
-	
-	static public String returnReportNotRun (boolean removeLoading, Language l){
-        Element body = createSection();
-        if (removeLoading){
-            removeLoading(body);
-        }
-        Element page = body.appendElement("div");
-        page.appendElement("div")
-            .attr("style", "font-size:16px;margin-top:30px;margin-left:20px;text-align:left;")
-            .text(l.getLabel("RptNRun"));
-        return output(body.html());
-    }
-	
-	
-	/**
-	 * Create an empty <code>jsoup.nodes.Document</code> and return the <code>body</code> element;
-	 * @return jsoup.nodes.Element
-	 */
-	static public Element createDocument(){
-		Document doc = Jsoup.parse("<head><body></body></head>");
-		return doc.select("body").first();
-	}
-	
-	/**
-	 * Create an empty <code>jsoup.nodes.Document</code> and return the <code>section</code> element;
-	 * @return jsoup.nodes.Element
-	 */
-	static public Element createSection(){
-		Element e = createDocument();
-		e.appendElement("section");
-		return e;
-	}
+//	static public String returnNoRecordsFound (boolean removeLoading, Language l){
+//		Element body = createSection();
+//		if (removeLoading){
+//            removeLoading(body);
+//        }
+//		Element page = body.appendElement("div");
+//		page.appendElement("div")
+//		    .attr("style", "font-size:16px;margin-top:30px;margin-left:20px;text-align:left;")
+//		    .text(l.getLabel("NoRecordsFound"));
+//		
+//        return output(body.html());
+//	}
+//	
+//	static public String returnReportNotRun (boolean removeLoading, Language l){
+//        Element body = createSection();
+//        if (removeLoading){
+//            removeLoading(body);
+//        }
+//        Element page = body.appendElement("div");
+//        page.appendElement("div")
+//            .attr("style", "font-size:16px;margin-top:30px;margin-left:20px;text-align:left;")
+//            .text(l.getLabel("RptNRun"));
+//        return output(body.html());
+//    }
 	
 	
-	/**
-	 * Clean and compress the <code>jsoup.nodes.Document</code> for output to the client
-	 * @param jsoup.nodes.Document
-	 * @return
-	 */
-	static public String output(String s){
-//		doc.outputSettings().prettyPrint(false);
-//    	doc.outputSettings().indentAmount(0);
-//    	String s = doc.body().html();
-    	s = s.replace("class=\" ", "class=\""); //Some reason jsoup adds a space?
-		return s;
-	}
+	
+	
+	
 	
 	
 	
@@ -327,26 +378,7 @@ public class BaseHtml implements ApplicationI {
         
     }
 
-    /**
-     * Clean and compress the <code>jsoup.nodes.Document</code> for output to the client
-     * @param jsoup.nodes.Document
-     * @return
-     */
-    public String outputX(Element body){
-        
-        if (cssDefs != null && cssDefs.size() > 0){
-            StringBuffer sb = new StringBuffer();
-            for (String s : cssDefs){
-                sb.append(s + " ");
-            }
-            body.appendElement("style")
-                .attr("type", "text/css")
-                .text(sb.toString());
-        }
-        
-        return output(body.html());
-    }
-
+ 
     /**
      * Create scroller element (to lock the header at top of page).
      * 

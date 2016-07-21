@@ -2,35 +2,40 @@ package com.sevenorcas.openstyle.mod.main;
 
 import com.sevenorcas.openstyle.app.application.Utilities;
 import com.sevenorcas.openstyle.app.application.html.BaseCallback;
+import com.sevenorcas.openstyle.app.application.html.UtilityHtml;
 import com.sevenorcas.openstyle.app.mod.company.Company;
 import com.sevenorcas.openstyle.app.mod.company.CompanyService;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
 
 /**
  * Main html page call back<p> 
+ *  
+ * Thanks to:<ol>
+ *     <li>http://stackoverflow.com/questions/1341089/using-meta-tags-to-turn-off-caching-in-all-browsers</li>   
+ * </ol><p>
  *    
  * [License]
  * @author John Stewart
  */
 public class MainMeuCallback extends BaseCallback {
 
-    final static private String SIMU_START      = "group-simu:start"; 
-    final static private String SIMU_END        = "group-simu:end";
-    final static private String SIMU_ITEM       = "group-simu:item";
-    final static private String PERIOD_START    = "group-period:start"; 
-    final static private String PERIOD_END      = "group-period:end";
-	final static private String LAST_START      = "group-last:start"; 
-	final static private String LAST_END        = "group-last:end";
-	final static private String PLANT_START     = "group-plant:start"; 
-    final static private String PLANT_END       = "group-plant:end";
-    final static private String PU_CONFIG_START = "group-pu-config:start"; 
-    final static private String PU_CONFIG_END   = "group-pu-config:end";
-    
-    
+   
 	static private CompanyService  companyService;
 	
+	static private String [] META_TAG = {
+			"content-type",  "text/html; charset=utf-8",
+			"Cache-Control", "no-store",
+			"expires",       "0",
+			"pragma",        "no-cache",
+			"viewport",      "width=device-width, initial-scale=1.0",
+	};
+	
+    
+
+	
+	
 	private Company company;
-	private boolean filterLine = false;
+	private UtilityHtml util;
 	
 	/**
 	 * Default constructor
@@ -38,6 +43,8 @@ public class MainMeuCallback extends BaseCallback {
 	public MainMeuCallback (UserParam params) throws Exception{
 		companyService  = Utilities.lookupService(companyService, "CompanyServiceImp");
 		company = companyService.findByNr(params, params.getCompany());
+		
+		util = new UtilityHtml();
 	}
 	
 	
@@ -49,38 +56,29 @@ public class MainMeuCallback extends BaseCallback {
 	 */
 	public String process(String line){
 		
-	    /* TODO: future development
-	    if (!company.isExportSimuFileFormat()){
-	        line = process(line, SIMU_START, true);
-	        line = process(line, SIMU_END, false);
-	        
-	        if (line.indexOf(SIMU_ITEM) != -1){
-	            line = line.replace("style=\"border:none;\"", "");
-	        }
+	    if (line.indexOf("<!-- Html:generate -->") != -1){
+	    	return generate();
 	    }
-	    */
-	    
-	    
-	    if (filterLine){
-			return "";
-		}
 		
 		return line;
 	}
 	
 	/**
-     * Filter the passed in html line according to the company configurations
-     * @param String line
-     * @param String group to look for
-     * @param true = start filtering, false = stop filtering
-     * @return configured line
+     * Generate the main page html code.
+     * @return html code
      */
-    private String process(String line, String group, boolean filterOn){
-        if (line.indexOf(group) != -1){
-            filterLine = filterOn;
-            return "";
-        }
-        return line;
+    private String generate(){
+        
+    	util.createHead();
+    	
+    	for (int i=0;i<META_TAG.length;i+=2){
+    		util.createTag("meta").attr("http-equiv", META_TAG[i]).attr("content", META_TAG[i+1]);
+    	}
+    	util.createTag("title").attr("ng-bind", "appTitle");
+    	
+    	
+    	
+        return util.html();
     }
 	
 }

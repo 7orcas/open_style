@@ -22,12 +22,11 @@ public interface ApplicationI {
 	final static public String DATE_FORMAT_JSON          = "dd.MM.yyyy";
 	
 	final static public String APP_NAME                  = "openstyle";
-//D	final static public String WEB_MODULE_CONTEXT_ROOT   = "/" + APP_NAME + "/"; //defined in ear/pom.xml
 	final static public String SERVICE_INDEX_PAGE_EXT    = "/service";
 	
-	final static public String NAME_CONTEXT_LOOKUP       = "java:app/" + APP_NAME  + "-ejb-1.0-SNAPSHOT/";
+	final static public String NAME_CONTEXT_LOOKUP       = "java:app/" + APP_NAME  + "-ejb/";
 	
-	final static public String DOMAIN_NAME               = "com.progenso.desma";
+	final static public String DOMAIN_NAME               = "com.sevenorcas.openstyle";
 	final static public String ENTITY_BASE_PACKAGE       = DOMAIN_NAME + ".entities.";
 	final static public String APP_ENTITY_BASE_PACKAGE   = DOMAIN_NAME + ".app.entities.";
 	
