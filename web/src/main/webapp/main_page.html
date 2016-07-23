@@ -1,91 +1,11 @@
 <!-- 
-   Main page for application. Contains:
-   - title bar
-   - user options drop down menu
-   - left side main drop down menu
-   - main container
-    callback-class:com.sevenorcas.openstyle.mod.main.MainMeuCallback   
+   Main page for application. 
+   callback-class:com.sevenorcas.openstyle.mod.main.html.MainPageCallback   
  -->
 
 <!DOCTYPE html>
-<html lang="de" xmlns="http://www.w3.org/1999/html" ng-app="app">
+<html lang="en" xmlns="http://www.w3.org/1999/html" data-ng-app="app">
 
 	<!-- Html:generate -->
-
-    <head>
-        
-        <title ng-bind="appTitle"></title>
-
-
-
-        <link type="image/x-icon" href="img/favicon.ico" rel="shortcut icon">
-        
-        <!-- Bootstrap: front-end framework  
-             http://getbootstrap.com/ 
-             thanks to http://stackoverflow.com/questions/18205738/how-to-use-glyphicons-in-bootstrap-3-0 -->
-        <link href="lib/bootstrap/bootstrap-3.1.1.min.css" rel="stylesheet" type="text/css"/>
-        <link href="lib/bootstrap/bootstrap-glyphicons.3.0.0.css" rel="stylesheet" type="text/css"/>
-
-        
-        <!-- Font Awesome: scalable vector icons
-             http://fortawesome.github.io/Font-Awesome/ -->
-        <link href="lib/3rdparty/font-awesome.min_4.6.3.css" rel="stylesheet"/>
-        
-        <!-- JQuery css library
-             https://jqueryui.com/  -->
-        <link href="lib/jquery/jquery-ui-1.10.2.custom.min.css" rel="stylesheet" type="text/css"/>
-        
-        <!-- SB Admin, 3rd-party Bootstrap Admin Theme
-             http://startbootstrap.com/sb-admin-v2  -->
-        <link href="lib/sb-admin/sb-admin-2.css" rel="stylesheet">
-        
-        <!-- Data Tables http://datatables.net/
-             Requires html tables?  
-        <link href="lib/dataTables/jquery.dataTables.css" rel="stylesheet">
-        -->
-        
-        <!-- Application specific css 
-        <link href="main.css" rel="stylesheet" type="text/css"/>
-        -->
-        
-        <link href="app/css/colorpicker.css" rel="stylesheet" type="text/css"/>
-
-        <!-- DEVELOPMENT
-        -->
-        <link href="app/css/app.less"    rel="stylesheet/less" type="text/css" />
-        <link href="app/css/dialog.less" rel="stylesheet/less" type="text/css" />
-        <link href="app/css/menu.less"   rel="stylesheet/less" type="text/css" />
-        <link href="app/css/page.less"   rel="stylesheet/less" type="text/css" />
-        <link href="app/css/table.less"  rel="stylesheet/less" type="text/css" />
-        
-        <link href="app/mod/langadmin/view/page.less" rel="stylesheet/less" type="text/css" />
-        <link href="app/mod/user/view/page.less"      rel="stylesheet/less" type="text/css" />
-        <link href="app/mod/useradmin/view/page.less" rel="stylesheet/less" type="text/css" />
-        <link href="app/mod/company/view/page.less"   rel="stylesheet/less" type="text/css" />
-        <link href="app/mod/patches/view/page.less"   rel="stylesheet/less" type="text/css" />
-        
-        <link href="template/page.less"  rel="stylesheet/less" type="text/css" />
-        <link href="template/dialog/generic_dialog.less" rel="stylesheet/less" type="text/css" />
-        
-        <link href="mod/calendar/view/page.less" rel="stylesheet/less" type="text/css" />
-        <link href="mod/mdata/view/page.less"    rel="stylesheet/less" type="text/css" />
-        <link href="mod/prep/view/page.less"     rel="stylesheet/less" type="text/css" />
-        <link href="mod/simu/view/page.less"     rel="stylesheet/less" type="text/css" />
-        <link href="mod/period/view/page.less"   rel="stylesheet/less" type="text/css" />
-        <link href="mod/import/view/page.less"   rel="stylesheet/less" type="text/css" />
-        <link href="mod/export/view/page.less"   rel="stylesheet/less" type="text/css" />
-        <link href="mod/rpt/view/page.less"      rel="stylesheet/less" type="text/css" />
-        <link href="mod/fix/view/page.less"      rel="stylesheet/less" type="text/css" />
-        
-        
-        
-    </head>
-
-    <body data-ng-controller="mainCtrl" >
-
-
-		<div>
-	        <div data-ng-include src="getViewLink()"></div>
-	    </div>
 		
-</html></html>
+</html>

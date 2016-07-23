@@ -11,6 +11,7 @@ import com.sevenorcas.openstyle.app.application.ApplicationI;
 import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.mod.lang.Language;
+import com.sevenorcas.openstyle.app.mod.user.UserParam;
 import com.sevenorcas.openstyle.app.service.dto.FieldDefDto;
 
 
@@ -24,11 +25,183 @@ public class BaseHtml implements ApplicationI {
 
     protected List<String> cssDefs;
     
+    static protected ApplicationParameters appParam = ApplicationParameters.getInstance(); 
     static final public String CLASS_TABLE_COL_HEAD     = "div-table-col-head";
     static final public String CLASS_TABLE_COL_ROW      = "table-col-row";
     
 	static final public String NBSP                 = "\u00a0";
-	static protected ApplicationParameters appParam = ApplicationParameters.getInstance(); 
+	
+	protected UserParam params;
+	protected Language  lang;
+	protected Element   page;
+	
+	
+	/**
+	 * Constructor
+	 * TODO DELETE THIS
+	 */
+	public BaseHtml() {
+	}
+	
+	/**
+	 * Constructor
+	 * @param User parameters
+	 * @param language object
+	 */
+	public BaseHtml(UserParam params, Language lang) {
+		this.params = params;
+		this.lang = lang;
+	}
+
+	/**
+	 * Initialize <b>this</b> object
+	 */
+	public void initialise(){
+		Document doc = Jsoup.parse("<head><body></body></head>");
+		page = doc.select("body").first().appendElement("section");
+	}
+	
+	
+	
+	/////////////////////// Methods  //////////////////////////////////////
+
+	
+	/**
+	 * Clean and compress the <code>jsoup.nodes.Document</code> for output to the client
+	 * @return
+	 */
+	public String output(){
+		return output(page.html());
+	}
+	
+	/**
+	 * Clean and compress the <code>jsoup.nodes.Document</code> for output to the client
+	 * @param jsoup.nodes.Document
+	 * @return
+	 */
+	static public String output(String s){
+//		doc.outputSettings().prettyPrint(false);
+//    	doc.outputSettings().indentAmount(0);
+//    	String s = doc.body().html();
+    	s = s.replace("class=\" ", "class=\""); //Some reason jsoup adds a space?
+		return s;
+	}
+	
+
+	
+
+	
+	/**
+	 * Create a <code>tag</code> element using the current page element
+	 * @param tag element name
+	 * @return <code>head</code> element
+	 */
+	public Element tag(String tag){
+		return tag(null, tag);
+	}
+	
+	/**
+	 * Create an html <code>tag</code> element
+	 * @param Page element (if NULL then current page element is used)
+	 * @return <code>head</code> element
+	 */
+	public Element tag(Element el, String tag){
+		el = el != null? el : page;
+		return el.appendElement(tag);
+	}
+	
+	
+	/**
+	 * Create a <code>div</code> element using the current page element
+	 * @return <code>div</code> element
+	 */
+	public Element div(){
+		return div(page);
+	}
+	
+	/**
+	 * Create a <code>div</code> element using the passed in element
+	 * @param Element 
+	 * @return <code>div</code> element
+	 */
+	public Element div(Element el){
+		return el.appendElement("div");
+	}
+	
+	/**
+	 * Create a <code>span</code> element using the passed in element
+	 * @param Element 
+	 * @return <code>span</code> element
+	 */
+	public Element span(Element el){
+		return el.appendElement("span");
+	}
+	
+	/**
+	 * Create a <code>ul</code> element using the passed in element
+	 * @param Element 
+	 * @return <code>ul</code> element
+	 */
+	public Element tagUl(Element el){
+		return el.appendElement("ul");
+	}
+	
+	/**
+	 * Create a <code>li</code> element using the passed in element
+	 * @param Element 
+	 * @return <code>li</code> element
+	 */
+	public Element tagLi(Element el){
+		return el.appendElement("li");
+	}
+	
+	/**
+	 * Create a <code>a</code> element using the passed in element
+	 * @param Element
+	 * @param Href attribute 
+	 * @return <code>a</code> element
+	 */
+	public Element anchor(Element el, String href){
+		return el.appendElement("a").attr("href", href);
+	}
+	
+	/**
+	 * Create a <code>i</code> element using the passed in element
+	 * @param Element
+	 * @param class name
+	 * @return
+	 */
+	public Element tagI(Element el, String clazz){
+		return el.appendElement("i").addClass(clazz);
+	}
+	
+	/**
+	 * Create a <code>button</code> element using the passed in element
+	 * @param Element
+	 * @param Button type 
+	 * @return <code>button</code> element
+	 */
+	public Element button(Element el, String type){
+		return el.appendElement("button").attr("type", type);
+	}
+	
+	
+	/**
+	 * Return a language value
+	 * @param language key
+	 * @return
+	 */
+	public String label(String key){
+		if (lang == null){
+			return key;
+		}
+		return lang.getLabel(key);
+	}
+	
+	
+	
+	
+	/////////////////////// DELETE BELOW  //////////////////////////////////////
 	
 	static public String returnNoRecordsFound (boolean removeLoading, Language l){
 		Element body = createSection();
@@ -75,19 +248,6 @@ public class BaseHtml implements ApplicationI {
 		return e;
 	}
 	
-	
-	/**
-	 * Clean and compress the <code>jsoup.nodes.Document</code> for output to the client
-	 * @param jsoup.nodes.Document
-	 * @return
-	 */
-	static public String output(String s){
-//		doc.outputSettings().prettyPrint(false);
-//    	doc.outputSettings().indentAmount(0);
-//    	String s = doc.body().html();
-    	s = s.replace("class=\" ", "class=\""); //Some reason jsoup adds a space?
-		return s;
-	}
 	
 	
 	
