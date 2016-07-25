@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="PostgreSQL" id="Project_3883d3bd" html="y" template="Default" database="PostgreSQL" >
+	<schema name="cntrl" catalogname="style" schemaname="cntrl" >
+		<table name="_yzh_user" >
+			<comment><![CDATA[Application user accounts.
+IE
+A user must have an active record in this table to be able to login into this application.
+There is a 1:1 relationship between a user and a company record. Therefore a physical user will need multiple records to access multiple companies in this application.]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[Primary login company number for the user]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="lang_code" type="varchar" length="2" decimal="0" jt="12" >
+				<comment><![CDATA[Default ISO 639-1 language codes for the user when logging in.]]></comment>
+			</column>
+			<column name="_jhew" type="varchar" length="30" decimal="0" jt="12" mandatory="y" >
+				<comment><![CDATA[Application user id]]></comment>
+			</column>
+			<column name="_gghae" type="varchar" length="30" jt="12" >
+				<comment><![CDATA[MD5 Password]]></comment>
+			</column>
+			<column name="admin" type="bool" length="1" decimal="0" jt="-7" mandatory="y" >
+				<defo>false</defo>
+				<comment><![CDATA[true = this user has administrator rights]]></comment>
+			</column>
+			<column name="locked" type="bool" length="1" decimal="0" jt="-7" mandatory="y" >
+				<defo>false</defo>
+				<comment><![CDATA[true = this user account is blocked from logging in]]></comment>
+			</column>
+			<column name="trys" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[Number of continuous false attempted logins.
+There is a maximum limit, after which the user will be locked.
+An administrator must then unlock the user account.]]></comment>
+			</column>
+			<column name="last_login" type="timestamptz" length="35" decimal="6" jt="93" />
+			<column name="config" type="varchar" length="100000" jt="12" >
+				<comment><![CDATA[Persistant user account configuration parameters.
+Such parameters are saved by application modules.]]></comment>
+			</column>
+			<column name="last_logout" type="timestamptz" length="35" decimal="6" jt="93" />
+			<index name="_yzh_user_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="yzh_user_uc" unique="UNIQUE" >
+				<column name="_jhew" />
+			</index>
+			<fk name="_yzh_user_comp_nr_fkey" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+		</table>
+		<table name="company" >
+			<comment><![CDATA[The master record for each business entity (i.e. user organisation) using this application.
+This table is referenced by just about every other table in the application.
+]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[Each company must have a unique number.
+This number is used in a lot of unique indexes in various tables.]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="config" type="varchar" length="100000" jt="12" >
+				<comment><![CDATA[Encoded configuration for this company record (i.e. contains specific parameters)]]></comment>
+			</column>
+			<column name="code" type="varchar" length="20" decimal="0" jt="12" >
+				<comment><![CDATA[Application customer name / description (used in application maintenance)]]></comment>
+			</column>
+			<column name="organ_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[Number to identify the actual application customer organistion.
+This number is assigned to new organistions during thier setup (to use the application).]]></comment>
+			</column>
+			<index name="company_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="company_code_key" unique="NORMAL" >
+				<column name="code" />
+			</index>
+			<index name="company_comp_nr_key" unique="UNIQUE" >
+				<comment>Each company must have a unique number.</comment>
+				<column name="comp_nr" />
+			</index>
+		</table>
+		<table name="lang_code" >
+			<comment><![CDATA[Language Values for specific languages]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="lang_key_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[The default company number is 0. 
+
+Companies can override default language values by using their comp_nr and creating a specific record in this table.
+EG
+Company ABC with number 101 can override the default language value for language key = 'Yes', value in 'en' = 'Yes' to value in 'en' = 'OK'.]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="code" type="varchar" length="5" decimal="0" jt="12" >
+				<comment><![CDATA[ISO 639-1 language codes.
+EG
+en = English
+de = Deutsch
+
+see https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes]]></comment>
+			</column>
+			<column name="text" type="varchar" length="500" jt="12" mandatory="y" >
+				<comment><![CDATA[Language value for:
+comp_nr (0 is default)
+code (i.e. language code, e.g. 'en')]]></comment>
+			</column>
+			<column name="organ_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[This number is used to override default language values (for the specific organistion). 
+
+Organistions can override default language values by using their organ_nr and creating a specific record in this table.
+EG
+Company ABC with organ_nr 101 can override the default language value for language key = 'Yes', value in 'en' = 'Yes' to value in 'en' = 'OK'.]]></comment>
+			</column>
+			<index name="langvalue_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="langvalue_uc" unique="UNIQUE" >
+				<column name="lang_key_id" />
+				<column name="code" />
+			</index>
+			<index name="idx_lang_code" unique="NORMAL" >
+				<column name="organ_nr" />
+			</index>
+			<index name="idx_lang_code_0" unique="NORMAL" >
+				<column name="comp_nr" />
+			</index>
+			<fk name="langvalue_langkey_id_fkey" to_schema="cntrl" to_table="lang_key" >
+				<fk_column name="lang_key_id" pk="id" />
+			</fk>
+			<fk name="fk_lang_code_company" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+		</table>
+		<table name="lang_key" >
+			<comment><![CDATA[Language Keys
+Languages are managed via key-value pairs.
+The key is string value that is used in the program code. This is paired at run time with the lanuage value (using the user's language code) to output the specific text.
+EG:
+key = 'yes'
+value in language code 'en' = 'Yes'
+value in language code 'de' = 'Ja']]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[Unused, here because comp_nr is a generic field on all tables]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="code" type="varchar" length="20" decimal="0" jt="12" >
+				<comment><![CDATA[Unique language key code. Used py programmers to indicate a language dependent text value.
+]]></comment>
+			</column>
+			<column name="sets" type="varchar" length="100" jt="12" >
+				<comment><![CDATA[Language keys are grouped into logic 'sets' for easy maintenance. 
+EG
+A set is a logical group such as customer, product, material, etc.
+The 'appl' set is for application wide usage.
+
+A key can be within zero, one or more sets.]]></comment>
+			</column>
+			<column name="client" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+				<comment><![CDATA[Is this key used to be downloaded to the client after a login?
+After a successful login, clients may download a language package to keep locally to enhance performance.]]></comment>
+			</column>
+			<index name="langkey_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="langkey_code_key" unique="UNIQUE" >
+				<column name="code" />
+			</index>
+			<index name="pk_lang_key" unique="UNIQUE" >
+				<column name="comp_nr" />
+			</index>
+			<fk name="fk_lang_key" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+		</table>
+		<table name="patch" >
+			<comment><![CDATA[Patches implemented into client databases. This is standalone table (does not reference or be referenced from any other table).]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+				<comment><![CDATA[Date / Time of implementation]]></comment>
+			</column>
+			<column name="descr" type="varchar" length="500" jt="12" >
+				<comment><![CDATA[Description of changes]]></comment>
+			</column>
+			<index name="patch_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="role" >
+			<comment><![CDATA[Application user roles]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="code" type="varchar" length="30" jt="12" mandatory="y" >
+				<comment><![CDATA[Role name]]></comment>
+			</column>
+			<column name="value" type="varchar" length="30" jt="12" mandatory="y" />
+			<column name="role_descr" type="varchar" length="100" jt="12" >
+				<comment><![CDATA[Description]]></comment>
+			</column>
+			<index name="_yzh_role_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="yzh_role_uc" unique="UNIQUE" >
+				<column name="comp_nr" />
+				<column name="code" />
+				<column name="value" />
+			</index>
+			<fk name="_yzh_role_comp_nr_fkey" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+		</table>
+		<table name="task" >
+			<comment><![CDATA[Control for application tasks. ]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="code" type="varchar" length="30" jt="12" mandatory="y" >
+				<comment><![CDATA[Unique task type code. This code is given by the calling method.]]></comment>
+			</column>
+			<column name="run_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[Incremental task run number]]></comment>
+			</column>
+			<column name="status" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>1</defo>
+				<comment><![CDATA[Value to indicate the status of a task. Values are defined in ApplicationI.]]></comment>
+			</column>
+			<index name="task_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="task_uc" unique="UNIQUE" >
+				<column name="comp_nr" />
+				<column name="code" />
+			</index>
+			<fk name="task_comp_nr_fkey" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+		</table>
+		<table name="task_run" >
+			<comment><![CDATA[Individual tasks that make up a task of the parent table]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="task_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<comment><![CDATA[Parent table id]]></comment>
+			</column>
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="seq_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[Sequence number of individual task]]></comment>
+			</column>
+			<column name="status" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>1</defo>
+				<comment><![CDATA[Value to indicate the status of a task. Values are defined in ApplicationI.]]></comment>
+			</column>
+			<column name="message" type="varchar" length="100" jt="12" >
+				<comment><![CDATA[Language depnedent message of task]]></comment>
+			</column>
+			<column name="programmer" type="varchar" length="500" jt="12" >
+				<comment><![CDATA[Message from program. This is not displayed to normal users.]]></comment>
+			</column>
+			<column name="records" type="integer" length="10" decimal="0" jt="4" >
+				<comment><![CDATA[Number of records processed (if applicable)]]></comment>
+			</column>
+			<index name="task_run_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="task_run_fk" unique="NORMAL" >
+				<column name="task_id" />
+			</index>
+			<fk name="task_run_comp_nr_fkey" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+			<fk name="task_run_task_id_fkey" to_schema="cntrl" to_table="task" >
+				<fk_column name="task_id" pk="id" />
+			</fk>
+		</table>
+		<table name="user_config" >
+			<comment><![CDATA[User configurations include:
+- perferences for individual screens and processes
+- screen display selections
+
+Configurations can either be:
+- persistant
+- session only
+
+Records within this table originate from hard coded instructions within the application.]]></comment>
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[Primary login company number for the user]]></comment>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="_yzh_user_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="module_nr" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[Unique module number as defined in ApplicationI]]></comment>
+			</column>
+			<column name="config_type" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[Configuration type is either
+- persistant
+- session]]></comment>
+			</column>
+			<column name="config" type="varchar" length="100000" jt="12" >
+				<comment><![CDATA[Parameters are saved by application modules.]]></comment>
+			</column>
+			<index name="pk_user_config" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="user_config_i1" unique="UNIQUE" >
+				<comment>One record only per module / type</comment>
+				<column name="module_nr" />
+				<column name="config_type" />
+			</index>
+			<index name="idx_user_config" unique="NORMAL" >
+				<column name="_yzh_user_id" />
+			</index>
+			<fk name="fk_user_config" to_schema="cntrl" to_table="_yzh_user" >
+				<fk_column name="_yzh_user_id" pk="id" />
+			</fk>
+		</table>
+		<table name="user_role" >
+			<comment><![CDATA[Join table of user accounts and application roles]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="_yzh_user_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="role_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="_yzh_user_role_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="yzh_user_role_uc" unique="UNIQUE" >
+				<column name="_yzh_user_id" />
+				<column name="role_id" />
+			</index>
+			<fk name="user_role_role_id_fkey" to_schema="cntrl" to_table="role" >
+				<fk_column name="role_id" pk="id" />
+			</fk>
+			<fk name="_yzh_user_role__yzh_user_id_fkey" to_schema="cntrl" to_table="_yzh_user" >
+				<fk_column name="_yzh_user_id" pk="id" />
+			</fk>
+			<fk name="_yzh_user_role_comp_nr_fkey" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+		</table>
+	</schema>
+	<schema name="public" catalogname="postgres" schemaname="public" >
+		<table name="topic" >
+			<comment><![CDATA[Main topic records
+EG sales orders, purchase orders]]></comment>
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[The default company number is 0. 
+
+Companies can override default language values by using their comp_nr and creating a specific record in this table.
+EG
+Company ABC with number 101 can override the default language value for language key = 'Yes', value in 'en' = 'Yes' to value in 'en' = 'OK'.]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="code" type="varchar" length="20" jt="12" mandatory="y" >
+				<comment><![CDATA[Unique topic code
+]]></comment>
+			</column>
+			<column name="descr" type="varchar" length="100" jt="12" mandatory="y" >
+				<comment><![CDATA[Topic description]]></comment>
+			</column>
+			<index name="pk_topic" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_fk_comp_nr" unique="NORMAL" >
+				<column name="comp_nr" />
+			</index>
+			<index name="idx_topic_code" unique="UNIQUE" >
+				<column name="comp_nr" />
+				<column name="code" />
+			</index>
+			<fk name="fk_topic_company" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+		</table>
+		<table name="topic_section" >
+			<comment><![CDATA[Sections for a topic]]></comment>
+			<column name="id" type="bigint" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>0</defo>
+				<comment><![CDATA[The default company number is 0. 
+
+Companies can override default language values by using their comp_nr and creating a specific record in this table.
+EG
+Company ABC with number 101 can override the default language value for language key = 'Yes', value in 'en' = 'Yes' to value in 'en' = 'OK'.]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="topic_id" type="bigint" jt="-5" mandatory="y" >
+				<comment><![CDATA[Parent id]]></comment>
+			</column>
+			<column name="code" type="varchar" length="20" jt="12" mandatory="y" >
+				<comment><![CDATA[Unique topic code
+]]></comment>
+			</column>
+			<index name="pk_topic_section" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_topic_section" unique="NORMAL" >
+				<column name="topic_id" />
+			</index>
+			<fk name="fk_topic_section" to_schema="public" to_table="topic" >
+				<fk_column name="topic_id" pk="id" />
+			</fk>
+		</table>
+		<sequence name="seq_id_entity" start="1" >
+			<comment><![CDATA[All entities use this sequence]]></comment>
+		</sequence>
+	</schema>
+	<connector name="style_open" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-9.4.1208.jar" host="localhost" port="5433" instance="style_open" user="postgres" passwd="b3JjYXM=" />
+	<layout id="Layout_1b1d605d" name="cntrl.company" show_schema_name="y" show_relation_columns="y" >
+		<entity schema="cntrl" name="patch" color="b3cef5" x="195" y="45" />
+		<entity schema="cntrl" name="company" color="b3cef5" x="45" y="45" />
+		<script name="Insert" id="Query_9828e75" language="SQL" confirmed="y" >
+			<string><![CDATA[INSERT INTO cntrl.company (id,comp_nr,code,customer_nr,config) VALUES (0,0,'Processing',0,'');]]></string>
+		</script>
+	</layout>
+	<layout id="Layout_4477ce1" name="cntrl.language" show_schema_name="y" show_relation_columns="y" >
+		<comment><![CDATA[cntrl.language]]></comment>
+		<entity schema="cntrl" name="lang_key" color="b3cef5" x="45" y="45" />
+		<entity schema="cntrl" name="lang_code" color="b3cef5" x="300" y="210" />
+	</layout>
+	<layout id="Layout_2753fba4" name="cntrl.tasks" show_schema_name="y" show_relation_columns="y" >
+		<entity schema="cntrl" name="task" color="b3cef5" x="45" y="45" />
+		<entity schema="cntrl" name="task_run" color="b3cef5" x="210" y="105" />
+	</layout>
+	<layout id="Layout_98c2d91" name="cntrl.user" show_schema_name="y" show_relation_columns="y" >
+		<comment><![CDATA[ERP]]></comment>
+		<entity schema="cntrl" name="_yzh_user" color="b3ccf5" x="45" y="75" />
+		<entity schema="cntrl" name="role" color="bef5b3" x="435" y="75" />
+		<entity schema="cntrl" name="user_config" color="b3cef5" x="150" y="450" />
+		<entity schema="cntrl" name="user_role" color="b3ccf5" x="225" y="210" />
+		<callout x="435" y="45" pointer="SV" >
+			<comment><![CDATA[Roles (permissions)]]></comment>
+		</callout>
+		<callout x="60" y="45" pointer="SV" >
+			<comment><![CDATA[Application User Accounts]]></comment>
+		</callout>
+	</layout>
+	<layout id="Layout_1938b341" name="topic" >
+		<entity schema="public" name="topic" color="b3cef5" x="45" y="45" />
+		<entity schema="public" name="topic_section" color="b3cef5" x="270" y="195" />
+	</layout>
+</project>
