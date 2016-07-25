@@ -3127,7 +3127,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
 
   var HOT_KEYS = [9, 13, 27, 38, 40];
   var LOOKUP_DESCR = ":-:"; //CHANGE 4
-  var LOOKUP_DESCR_1 = '  <i style="opacity: 0.7">'; //CHANGE 4
+  var LOOKUP_DESCR_1 = ' - '; // <i style=\'opacity: 0.7\'>'; //CHANGE 4 FIXME
 
   return {
     require:'ngModel',
@@ -3289,7 +3289,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         var locals = {};
 
         //CHANGE 4 - Remove description from lookup
-        var descrIndex = modelValue.indexOf(LOOKUP_DESCR_1);
+        var descrIndex = modelValue !== null? modelValue.indexOf(LOOKUP_DESCR_1) : -1;
         if (descrIndex !== -1){
           modelValue = modelValue.substring(0,descrIndex);
         }
