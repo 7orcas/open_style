@@ -9,10 +9,12 @@
  *  1. 08.07.14 Datepicker customerized  (search CHANGE 1)
  *  2. 16.03.15 typeahead customerized to ignore labels starting with '...+' - these are added to indicate more records to the user (search CHANGE 2)
  *  3. 21.05.15 added extra code to datepicker clear function (search CHANGE 3)
+ *  4. 25.07.16 typeahead customerized to ignore descriptions (annotated via ':') (search CHANGE 4)
  */
 angular.module("ui.bootstrap", ["ui.bootstrap.tpls", "ui.bootstrap.transition","ui.bootstrap.collapse","ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.bindHtml","ui.bootstrap.buttons","ui.bootstrap.carousel","ui.bootstrap.position","ui.bootstrap.datepicker","ui.bootstrap.dropdownToggle","ui.bootstrap.modal","ui.bootstrap.pagination","ui.bootstrap.tooltip","ui.bootstrap.popover","ui.bootstrap.progressbar","ui.bootstrap.rating","ui.bootstrap.tabs","ui.bootstrap.timepicker","ui.bootstrap.typeahead"]);
 angular.module("ui.bootstrap.tpls", ["template/accordion/accordion-group.html","template/accordion/accordion.html","template/alert/alert.html","template/carousel/carousel.html","template/carousel/slide.html","template/datepicker/datepicker.html","template/datepicker/popup.html","template/modal/backdrop.html","template/modal/window.html","template/pagination/pager.html","template/pagination/pagination.html","template/tooltip/tooltip-html-unsafe-popup.html","template/tooltip/tooltip-popup.html","template/popover/popover.html","template/progressbar/bar.html","template/progressbar/progress.html","template/progressbar/progressbar.html","template/rating/rating.html","template/tabs/tab.html","template/tabs/tabset.html","template/timepicker/timepicker.html","template/typeahead/typeahead-match.html","template/typeahead/typeahead-popup.html"]);
 angular.module('ui.bootstrap.transition', [])
+
 
 /**
  * $transition service provides a consistent interface to trigger CSS 3 transitions and to be informed when they complete.
@@ -3124,6 +3126,8 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
     function ($compile, $parse, $q, $timeout, $document, $position, typeaheadParser) {
 
   var HOT_KEYS = [9, 13, 27, 38, 40];
+  var LOOKUP_DESCR = ":-:"; //CHANGE 4
+  var LOOKUP_DESCR_1 = '  <i style="opacity: 0.7">'; //CHANGE 4
 
   return {
     require:'ngModel',
@@ -3202,6 +3206,14 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
 
               //transform labels
               for(var i=0; i<matches.length; i++) {
+            	  
+                //CHANGE 4 - Remove description from lookup
+                var descrIndex = matches[i] !== null? matches[i].l.indexOf(LOOKUP_DESCR) : -1;
+                if (descrIndex !== -1){
+                  matches[i].l = matches[i].l.substring(0,descrIndex) + LOOKUP_DESCR_1 + matches[i].l.substring(descrIndex+3) + '</i>';
+                }
+
+            	  
                 locals[parserResult.itemName] = matches[i];
                 scope.matches.push({
                   label: parserResult.viewMapper(scope, locals),
@@ -3276,6 +3288,12 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         var candidateViewValue, emptyViewValue;
         var locals = {};
 
+        //CHANGE 4 - Remove description from lookup
+        var descrIndex = modelValue.indexOf(LOOKUP_DESCR_1);
+        if (descrIndex !== -1){
+          modelValue = modelValue.substring(0,descrIndex);
+        }
+        
         if (inputFormatter) {
 
           locals['$model'] = modelValue;
@@ -3299,7 +3317,16 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         var locals = {};
         var model, item;
 
-        locals[parserResult.itemName] = item = scope.matches[activeIdx].model;
+        //locals[parserResult.itemName] = item = scope.matches[activeIdx].model;
+
+        //CHANGE 4 - Remove description from lookup
+        item = scope.matches[activeIdx].model;
+        var descrIndex = item !== null? item.l.indexOf(LOOKUP_DESCR_1) : -1;
+        if (descrIndex !== -1){
+          item.l = item.l.substring(0,descrIndex);
+        }
+        
+        locals[parserResult.itemName] = item;
         model = parserResult.modelMapper(originalScope, locals);
         $setModelValue(originalScope, model);
         modelCtrl.$setValidity('editable', true);
