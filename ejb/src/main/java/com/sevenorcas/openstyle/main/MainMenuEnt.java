@@ -27,7 +27,7 @@ import com.sevenorcas.openstyle.app.service.entity.Field;
 @Entity
 @Table(name="main_menu", schema="public")
 @SequenceGenerator(name="ID_SEQUENCE_GEN",sequenceName="seq_id_entity",allocationSize=1)
-public class MainMenu extends BaseEntity implements Serializable {
+public class MainMenuEnt extends BaseEntity implements Serializable {
 
 		
 	/** ID Field. */   
@@ -35,8 +35,8 @@ public class MainMenu extends BaseEntity implements Serializable {
 	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE_GEN")
 	protected Long id;
 	
-	@Field(edit="new", notNull=true, label="Company") 
-	private Integer seq;
+	@Field(edit="new", notNull=true, label="MenuSeq") 
+	private String seq;
 
 	@Field(edit="true", min=1, max=LangKey.KEY_LENGTH) 
 	@Column(name="lang_code")
@@ -49,7 +49,7 @@ public class MainMenu extends BaseEntity implements Serializable {
 	/**
 	 * Default Constructor
 	 */
-	public MainMenu() {
+	public MainMenuEnt() {
 		super();
 	}
 	
@@ -65,10 +65,10 @@ public class MainMenu extends BaseEntity implements Serializable {
 	}
 
 
-	public Integer getSeq() {
+	public String getSeq() {
 		return seq;
 	}
-	public MainMenu setSeq(Integer seq) {
+	public MainMenuEnt setSeq(String seq) {
 		this.seq = seq;
 		return this;
 	}
@@ -76,7 +76,7 @@ public class MainMenu extends BaseEntity implements Serializable {
 	public String getLangCode() {
 		return langCode;
 	}
-	public MainMenu setLangCode(String langCode) {
+	public MainMenuEnt setLangCode(String langCode) {
 		this.langCode = langCode;
 		return this;
 	}

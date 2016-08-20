@@ -9,7 +9,7 @@ import org.jsoup.nodes.Element;
 import com.sevenorcas.openstyle.app.application.html.BaseHtml;
 import com.sevenorcas.openstyle.app.mod.lang.Language;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
-import com.sevenorcas.openstyle.main.MainMenu;
+import com.sevenorcas.openstyle.main.MainMenuEnt;
 
 /**
  * Main html page<p> 
@@ -23,7 +23,7 @@ import com.sevenorcas.openstyle.main.MainMenu;
  */
 public class MainPageHtml extends BaseHtml {
 
-	private List <MainMenu> list;
+	private List <MainMenuEnt> menu;
 	
 	/**
 	 * Constructor
@@ -31,10 +31,10 @@ public class MainPageHtml extends BaseHtml {
 	 * @param language object
 	 * @param Main menu list
 	 */
-	public MainPageHtml(UserParam params, Language lang, List <MainMenu> list) {
+	public MainPageHtml(UserParam params, Language lang, List <MainMenuEnt> list){
 		super (params, lang);
 		
-		this.list = list;
+		this.menu = list;
 		
 		//Special case, main needs the head section 
 		Document doc = Jsoup.parse("<head></head>");
@@ -65,10 +65,6 @@ public class MainPageHtml extends BaseHtml {
     	
     	header(main);
     	
-    	for (MainMenu m: list){
-    		div(body).text(m.getLangCode());	
-    	}
-    	
     	
     	tagScripts(body);
     	
@@ -89,7 +85,7 @@ public class MainPageHtml extends BaseHtml {
    			.attr("style", "margin-bottom: 0;")
     	    .attr("role", "navigation");
     	
-    	new MenuMainHtml(params, lang).view(nav);
+    	new MenuMainHtml(params, lang, menu).view(nav);
     	
     	Element h = div(nav).addClass("navbar-header");
     	

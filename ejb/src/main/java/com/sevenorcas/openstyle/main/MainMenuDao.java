@@ -15,5 +15,5 @@ import com.sevenorcas.openstyle.app.service.repo.EntityRepoI;
  */
 @Local
 public interface MainMenuDao extends EntityRepoI{
-	public List<MainMenu> list (UserParam params, MainMenuSql search) throws Exception;
+	public List<MainMenuEnt> list (UserParam params, MainMenuSql search) throws Exception;
 }

@@ -16,5 +16,5 @@ import com.sevenorcas.openstyle.app.mod.user.UserParam;
 
 @Local
 public interface MainMenuService {
-	public List<MainMenu> list (UserParam userParam, MainMenuSql sql) throws Exception;
+	public List<MainMenuEnt> list (UserParam userParam, MainMenuSql sql) throws Exception;
 }

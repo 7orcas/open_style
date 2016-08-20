@@ -1,13 +1,15 @@
 package com.sevenorcas.openstyle.mod.docu;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import com.sevenorcas.openstyle.app.mod.lang.LanguageService;
+import com.sevenorcas.openstyle.app.mod.user.UserParam;
 
 
 /**
- * Document Service<p>
+ * Document Service
  *  
  * [License] 
  * @author John Stewart
@@ -16,10 +18,19 @@ import com.sevenorcas.openstyle.app.mod.lang.LanguageService;
 //WF10 TODO @Interceptors(ServiceAroundInvoke.class)
 public class DocumentServiceImp implements DocumentService {
 	
-	@EJB private LanguageService   languageService;
+	@EJB private DocumentDao dao;
 	
 	public DocumentServiceImp() {
 	}
 	
+	
+	/**
+	 * Retrieve list of entities.
+	 * @param UserParam object
+	 * @param MainMenu Sql object
+	 */
+	public List<DocumentEnt> list (UserParam params, DocumentSql sql) throws Exception {
+		return dao.list(params, sql == null? new DocumentSql(params) : sql);
+	}
 	    
 }

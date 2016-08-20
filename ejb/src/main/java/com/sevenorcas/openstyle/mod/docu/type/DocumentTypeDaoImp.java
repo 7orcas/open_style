@@ -1,4 +1,4 @@
-package com.sevenorcas.openstyle.main;
+package com.sevenorcas.openstyle.mod.docu.type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +10,16 @@ import javax.persistence.PersistenceContext;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
 import com.sevenorcas.openstyle.app.service.sql.ResultSetX;
 import com.sevenorcas.openstyle.app.service.sql.StatementX;
+import com.sevenorcas.openstyle.main.BaseMainDao;
 
 /**
- * Main Menu Repository 
+ * Document Type Repository 
  * 
  * [License] 
  * @author John Stewart
  */ 
 @Stateless
-public class MainMenuDaoImp extends BaseMainDao implements MainMenuDao{
+public class DocumentTypeDaoImp extends BaseMainDao implements DocumentTypeDao{
 
 	/**
 	 * Persistence context corresponds to the persistence-unit in 
@@ -30,7 +31,7 @@ public class MainMenuDaoImp extends BaseMainDao implements MainMenuDao{
 	/**
 	 * Default Constructor
 	 */
-	public MainMenuDaoImp(){}
+	public DocumentTypeDaoImp(){}
 	
 	
 	/**
@@ -39,31 +40,34 @@ public class MainMenuDaoImp extends BaseMainDao implements MainMenuDao{
 	 * @param Sql object
 	 * @return Entity list
 	 */
-    public List<MainMenuEnt> list (UserParam params, MainMenuSql sql) throws Exception{
+    public List<DocumentTypeEnt> list (UserParam params, DocumentTypeSql sql) throws Exception{
 	    
         StatementX x = StatementX
-				.create("SELECT t.seq, t.lang_code "
-						+ "FROM " + T_MAIN_MENU + " t "
-						+ (sql.isOrderBySeq()?"ORDER BY t.seq ":"")) 
-			    .addActive(sql, "t");
-        
+				.create("SELECT t.code, t.config "
+						+ "FROM " + T_DOCUMENT_TYPE + " t "
+						+ "ORDER BY t.code")
+			    .addActive(sql, "t")
+			    .addCompNr(sql, "t")
+				.appendBaseEntityFields("t");
+		
 		ResultSetX rs = x.executeQuery(sql); 
 		
-		List<MainMenuEnt> list = new ArrayList<MainMenuEnt>();
+		List<DocumentTypeEnt> list = new ArrayList<DocumentTypeEnt>();
 		
 		while(rs.next()){
-			MainMenuEnt m = new MainMenuEnt();
+			DocumentTypeEnt m = new DocumentTypeEnt();
 			list.add(m);
 			
 			int count = 1;
 			
-			m.setSeq(rs.getString(count++));
-			m.setLangCode(rs.getString(count++));
-
+			m.setCode(rs.getString(count++));
+			m.setConfig(rs.getString(count++));
+			m.decode(m.getConfig());
+			rs.setBaseEntityFields(m, "t");
 		}
 				
 		return list;
 	}
 	
-	
+    
 }

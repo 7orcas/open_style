@@ -31,7 +31,7 @@ public class MainMenuServiceImp implements MainMenuService {
 	 * @param UserParam object
 	 * @param Sql object
 	 */
-	public List<MainMenu> list (UserParam params, MainMenuSql sql) throws Exception {
+	public List<MainMenuEnt> list (UserParam params, MainMenuSql sql) throws Exception {
 		return mainMenuDao.list(params, sql == null? new MainMenuSql(params).setOrderBySeq() : sql);
 	}
 	
