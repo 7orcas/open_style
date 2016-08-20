@@ -62,7 +62,7 @@ public class LangListDto extends BaseDto implements Serializable, ValidateI {
 	/**
      * Constructor using LangValue object
      */
-    public LangListDto(LangKey k, LangValue v) {
+    public LangListDto(LangKey k, LangCode v) {
         super(null);
         key      = k.getKey();
         client   = k.isClient();
@@ -112,7 +112,7 @@ public class LangListDto extends BaseDto implements Serializable, ValidateI {
 		
 		setEntityFields (userParam, entity);
 		
-		for (LangValue v: entity.getValues()){
+		for (LangCode v: entity.getValues()){
 			if (v.getLangcode().equals(langcode)){
 				v.setText(text);
 				v.setDelete(d);
@@ -125,7 +125,7 @@ public class LangListDto extends BaseDto implements Serializable, ValidateI {
 			return;
 		}
 		
-		entity.addLangValue(new LangValue(text, langcode));
+		entity.addLangValue(new LangCode(text, langcode));
 		
 	}
 

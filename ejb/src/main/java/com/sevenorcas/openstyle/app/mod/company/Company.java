@@ -30,13 +30,13 @@ import com.sevenorcas.openstyle.app.service.entity.Field;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="company", schema="cntrl")
-@SequenceGenerator(name="ID_SEQUENCE",sequenceName="seq_id_entity",allocationSize=1)
+@SequenceGenerator(name="ID_SEQUENCE_GEN",sequenceName="seq_id_entity",allocationSize=1)
 public class Company extends BaseEntity implements ConfigI, Serializable {
 
 		
 	/** ID Field. */   
 	@Id  
-	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE")
+	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE_GEN")
 	protected Long id;
 	
 	private String config;
@@ -45,8 +45,8 @@ public class Company extends BaseEntity implements ConfigI, Serializable {
 	private String code;
 	
 	@Field(edit="new", notNull=true, label="Company") 
-	@Column(name="customer_nr")
-	private Integer customerNr;
+	@Column(name="organ_nr")
+	private Integer organNr;
 	
     ////////////////////// Transient Fields //////////////////////////////////
 
@@ -110,11 +110,11 @@ public class Company extends BaseEntity implements ConfigI, Serializable {
 		this.code = code;
 	}
 	
-	public Integer getCustomerNr() {
-		return customerNr;
+	public Integer getOrganNr() {
+		return organNr;
 	}
-	public void setCustomerNr(Integer customerNr) {
-		this.customerNr = customerNr;
+	public void setOrganNr(Integer customerNr) {
+		this.organNr = customerNr;
 	}
 	
 	public Boolean getTestCompany() {

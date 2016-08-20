@@ -43,9 +43,6 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
 	 */
     public Hashtable<String, LangKey> list (LangSql sql) throws Exception{
 	    
-		String lk = tableName(LangKey.class);
-		String lv = tableName(LangValue.class);
-		
 		
 		String lookup = null;
 		
@@ -53,23 +50,23 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
 		if (sql.isSearchAdvanced()){
 			lookup = StatementX.appendLookupAnd ("lk.code", sql.getKey(), lookup);
 			lookup = StatementX.appendLookupAnd ("lk.sets", sql.getSets(), lookup);
-			lookup = StatementX.appendLookupAnd ("lv.text", sql.getText(), lookup);
+			lookup = StatementX.appendLookupAnd ("lc.lang_text", sql.getText(), lookup);
 			
 			if (!sql.isMissingCodes()){
-			    lookup = StatementX.appendLookupAnd ("lv.langcode", sql.getCode(), lookup);
+			    lookup = StatementX.appendLookupAnd ("lc.lang_text", sql.getCode(), lookup);
 			}
 		}
 		
 		//User selected code from drop down
 		if (lookup == null){
 			lookup = StatementX.appendLookupAnd ("lk.code", sql.getLookupCode(), lookup);
-			lookup = StatementX.appendLookupAnd ("lv.text", sql.getLookupText(), lookup);
+			lookup = StatementX.appendLookupAnd ("lc.lang_text", sql.getLookupText(), lookup);
 		}
 		
 		//User entered string
 		if (lookup == null && sql.isLookup()){
 			lookup = StatementX.appendLookupOr ("lk.code", sql.getLookup(), lookup);
-			lookup = StatementX.appendLookupOr ("lv.text", sql.getLookup(), lookup);
+			lookup = StatementX.appendLookupOr ("lc.lang_text", sql.getLookup(), lookup);
 		}
 		
 		
@@ -82,7 +79,7 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
 			
 			tt_ids = tempTableDao.getNameNoRegister(null, "lang");
 			
-			StatementX.create("CREATE TABLE " + tt_ids + " (id bigint, langcode character varying);"
+			StatementX.create("CREATE TABLE " + tt_ids + " (id bigint, lang_text character varying);"
 					+ "CREATE INDEX " + tt_ids.replace(".", "_") + "_uc ON " + tt_ids + " USING btree (id);")
 					.executeUpdate();
 			
@@ -93,11 +90,11 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
 				}
 				
 				StatementX.create("INSERT INTO " + tt_ids + " "
-						+ "SELECT lk.id, lv.langcode "
-						+ "FROM " + lk + " lk " 
-						    + "LEFT JOIN " + lv + " lv ON (lk.id = lv.langkey_id AND lv.langcode='" + c + "') "
-						+ "GROUP BY lk.id, lv.langcode "    
-						+ "HAVING lv.langcode IS NULL;")
+						+ "SELECT lk.id, lc.lang_text "
+						+ "FROM " + T_LANG_KEY + " lk " 
+						    + "LEFT JOIN " + T_LANG_CODE + " lc ON (lk.id = lc.lang_key_id AND lc.code='" + c + "') "
+						+ "GROUP BY lk.id, lc.code "    
+						+ "HAVING lc.code IS NULL;")
 						.addWhere(lookup)
 						.executeUpdate();
 			}
@@ -109,20 +106,20 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
 		 * Main query
 		 **************************************************************************************/
 		StatementX stx = StatementX
-				.create("SELECT DISTINCT lk.id, lk.code, lk.sets, lk.client, lv.text, lv.langcode "
-					  + "FROM " + lk + " lk "
-					  		+ "LEFT JOIN " + lv + " lv ON (lk.id = lv.langkey_id) "
+				.create("SELECT DISTINCT lk.id, lk.code, lk.sets, lk.client, lc.code, lc.lang_text "
+					  + "FROM " + T_LANG_KEY + " lk "
+					  		+ "LEFT JOIN " + T_LANG_CODE + " lc ON (lk.id = lc.lang_key_id) "
 					  + (tt_ids != null? ", " + tt_ids + " tid " : "")
-					  + "ORDER BY lk.code, lv.langcode")
-				.appendBaseEntityFields("lk,lv")
-				.addWhere(getCompanyNrSql(sql, "lv"))
+					  + "ORDER BY lk.code, lc.code")
+				.appendBaseEntityFields("lk,lc")
+				.addWhere(getCompanyNrSql(sql, "lc"))
 				.addWhere(lookup)
 				.countIfRequired(sql);
 		
 		
 		if (tt_ids != null){
 			stx.addWhere("tid.id = lk.id");
-			stx.addWhere("lv.langcode='en'");
+			stx.addWhere("lc.lang_text='en'");
 		}
 		if (sql.isClientTrue()){
 			stx.addWhere("lk.client = true");
@@ -156,10 +153,10 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
 				listX.put(id, k);
 			}
 			
-			LangValue v = new LangValue();
+			LangCode v = new LangCode();
 			k.addLangValue(v);
-			v.setText(rs.getString(count++));
 			v.setLangcode(rs.getString(count++));
+			v.setText(rs.getString(count++));
 			rs.setBaseEntityFields(v, "lv");
 		}
 			
@@ -180,24 +177,21 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
 	 */
 	public List<ReturnId> findRecordIds (UserParam params, List<String[]> list, LangSql sql) throws Exception {
 		
-		String lk = tableName(LangKey.class);
-		String lv = tableName(LangValue.class);
-		
-		StringBuffer sb = new StringBuffer("SELECT lv.id, lk.code, lv.langcode "
-				  + "FROM " + lk + " lk,"
-				  		    + lv + " lv "
-				  + "WHERE lk.id = lv.langkey_id "
+		StringBuffer sb = new StringBuffer("SELECT lc.id, lk.code, lc.lang_text "
+				  + "FROM " + T_LANG_KEY + " lk,"
+				  		    + T_LANG_CODE + " lc "
+				  + "WHERE lk.id = lc.lang_key_id "
 				  + "AND (");
 		
 		int count = 0;
 		for (String [] s: list){
-			sb.append((count++ > 0? " OR ":"") + "(lk.code = '" + s[0] + "' AND lv.langcode = '" + s[1] + "')");
+			sb.append((count++ > 0? " OR ":"") + "(lk.code = '" + s[0] + "' AND lc.lang_text = '" + s[1] + "')");
 		}
 		sb.append(")");
 		
 		ResultSetX rs = StatementX
 				.create(sb.toString())
-				.addWhere(getCompanyNrSql(sql, "lv"))
+				.addWhere(getCompanyNrSql(sql, "lc"))
 				.executeQuery(null);
 		
 		
@@ -260,9 +254,9 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
 	 * @return
 	 */
 	public LangKey findLangKeyByLangValueId (Long id) throws Exception{
-		String table = tableName(LangValue.class);
+		
 		ResultSetX rs = StatementX
-				.create("SELECT langkey_id FROM " + table)
+				.create("SELECT lang_key_id FROM " + T_LANG_CODE)
 				.addWhere("id = " + id)
 				.executeQuery();
 		
@@ -281,9 +275,8 @@ public class LanguageDaoImp extends BaseDao implements LanguageDao{
 	 * @return
 	 */
 	public LangKey findLangKeyByCode (String code) throws Exception{
-		String table = tableName(LangKey.class);
 		ResultSetX rs = StatementX
-				.create("SELECT id FROM " + table)
+				.create("SELECT id FROM " + T_LANG_KEY)
 				.addWhere("code = '" + code + "'")
 				.executeQuery();
 		

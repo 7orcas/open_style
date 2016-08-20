@@ -39,7 +39,7 @@ public class CompanyDaoImp extends BaseDao implements CompanyDao{
 	/**
 	 * Retrieve company list
 	 * @param User object
-	 * @param Company Sql object
+	 * @param MainMenu Sql object
 	 * @return Company list
 	 */
     public List<Company> list (UserParam params, CompanySql sql) throws Exception{
@@ -66,7 +66,7 @@ public class CompanyDaoImp extends BaseDao implements CompanyDao{
 			int count = 1;
 			
 			m.setCode(rs.getString(count++));
-			m.setCustomerNr(rs.getInt(count++));
+			m.setOrganNr(rs.getInt(count++));
 			m.setConfig(rs.getString(count++));
 			m.decode(m.getConfig());
 			rs.setBaseEntityFields(m, "t");
@@ -252,7 +252,7 @@ public class CompanyDaoImp extends BaseDao implements CompanyDao{
             
             c.setId(rs.getLong(count++));
             c.setCompanyNr(rs.getInt(count++));
-            c.setCustomerNr(rs.getInt(count++));
+            c.setOrganNr(rs.getInt(count++));
             c.setCode(rs.getString(count++));
             c.setConfig(rs.getString(count++));
             c.decode(c.getConfig());

@@ -34,7 +34,7 @@ public class CompanyServiceImp implements CompanyService {
 	/**
 	 * Retrieve list of companies.
 	 * @param UserParam object
-	 * @param Company Sql object
+	 * @param MainMenu Sql object
 	 */
 	public List<Company> list (UserParam params, CompanySql sql) throws Exception {
 		return companyDao.list(params, sql == null? new CompanySql(params) : sql);
@@ -75,7 +75,7 @@ public class CompanyServiceImp implements CompanyService {
 	/**
 	 * Save new company record.
 	 * @param UserParam object
-	 * @param Company object
+	 * @param MainMenu object
 	 */
 	@Permission(service=true)
 	public Company save (UserParam params, Company recode) throws Exception {

@@ -68,7 +68,7 @@ public class CacheServiceImp implements CacheService{
 	
 	/**
 	 * Company Object
-	 * @param Company object
+	 * @param MainMenu object
 	 */
 	public void putCompany(Company obj){
 		table.put(key("" + obj.getId(), COMPANY_OBJECT), obj);
@@ -77,7 +77,7 @@ public class CacheServiceImp implements CacheService{
 	
 	/**
 	 * Is Company Object in cache?
-	 * @param Company id
+	 * @param MainMenu id
 	 */
 	public boolean isCompany(Long id){
 		return table.containsKey(key("" + id, COMPANY_OBJECT));

@@ -185,20 +185,7 @@ public class UserAdminServiceImp implements UserAdminService {
         userDao.updateUserConfigImport(params, encode, type);
     }
     
-    /**
-     * Return the no repeat codes for the passed in user id
-     * @param userID
-     * @return
-     */
-    public String getNoRepeatCodes (Long userId) throws Exception{
-    	String config = userDao.getUserConfigImport(userId);
-    	Hashtable<String, String> params = Utilities.fromParameterEncode(config);
-    	String codes = "";
-    	if (params.containsKey("" + User.CONFIG_IMPORT_NOREPEAT_MOULDS)){
-    		codes += params.get("" + User.CONFIG_IMPORT_NOREPEAT_MOULDS);
-    	}
-    	return codes;
-    }
+    
     
     /**
      * Clear the config_import field for all users (including service) for the company number in the passed in user parameters 

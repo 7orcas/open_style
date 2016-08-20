@@ -31,9 +31,9 @@ public class LangSql extends BaseSql{
 
 	
 	@JsonProperty(value="la") @Field(edit="true", max=LangKey.KEY_LENGTH,        label="LangKey") private String key;
-	@JsonProperty(value="lb") @Field(edit="true", max=LangValue.LANGCODE_LENGTH, label="LangCode") private String code;
+	@JsonProperty(value="lb") @Field(edit="true", max=LangCode.LANGCODE_LENGTH, label="LangCode") private String code;
 	@JsonProperty(value="lc") @Field(edit="true", max=LangKey.SETS_LENGTH)   private String sets;
-	@JsonProperty(value="ld") @Field(edit="true", max=LangValue.TEXT_LENGTH) private String text;
+	@JsonProperty(value="ld") @Field(edit="true", max=LangCode.TEXT_LENGTH) private String text;
 	@JsonProperty(value="le") @Field(edit="true") private Boolean missingCodes;
 	
 	/** Include/Exclude client flag */     

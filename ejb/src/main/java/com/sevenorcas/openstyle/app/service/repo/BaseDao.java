@@ -8,14 +8,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.naming.InitialContext;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.persistence.PersistenceContext;
 import javax.sound.midi.Patch;
 import javax.sql.DataSource;
 
@@ -24,6 +22,8 @@ import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.application.Utilities;
 import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.mod.company.Company;
+import com.sevenorcas.openstyle.app.mod.lang.LangCode;
+import com.sevenorcas.openstyle.app.mod.lang.LangKey;
 import com.sevenorcas.openstyle.app.mod.user.User;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
 import com.sevenorcas.openstyle.app.mod.user.UserRole;
@@ -64,6 +64,9 @@ public abstract class BaseDao implements ApplicationI {
 	public static String T_PATCH                     = tableName(Patch.class);
 	public static String T_TASK                      = tableName(Task.class);
 	public static String T_TASK_RUN                  = tableName(TaskRun.class);
+	
+	public static String T_LANG_KEY                  = tableName(LangKey.class);
+	public static String T_LANG_CODE                 = tableName(LangCode.class);
 	
 	
 //	/**

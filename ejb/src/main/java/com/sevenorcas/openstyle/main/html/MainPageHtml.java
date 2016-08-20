@@ -1,5 +1,7 @@
 package com.sevenorcas.openstyle.main.html;
 
+import java.util.List;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,6 +9,7 @@ import org.jsoup.nodes.Element;
 import com.sevenorcas.openstyle.app.application.html.BaseHtml;
 import com.sevenorcas.openstyle.app.mod.lang.Language;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.main.MainMenu;
 
 /**
  * Main html page<p> 
@@ -20,14 +23,18 @@ import com.sevenorcas.openstyle.app.mod.user.UserParam;
  */
 public class MainPageHtml extends BaseHtml {
 
+	private List <MainMenu> list;
 	
 	/**
 	 * Constructor
 	 * @param User parameters
 	 * @param language object
+	 * @param Main menu list
 	 */
-	public MainPageHtml(UserParam params, Language lang) {
+	public MainPageHtml(UserParam params, Language lang, List <MainMenu> list) {
 		super (params, lang);
+		
+		this.list = list;
 		
 		//Special case, main needs the head section 
 		Document doc = Jsoup.parse("<head></head>");
@@ -58,7 +65,10 @@ public class MainPageHtml extends BaseHtml {
     	
     	header(main);
     	
-    	div(body).text("TESTING");
+    	for (MainMenu m: list){
+    		div(body).text(m.getLangCode());	
+    	}
+    	
     	
     	tagScripts(body);
     	

@@ -126,7 +126,7 @@ public class LanguageServiceImp implements LanguageService {
 			String key = keys.nextElement();
 			
 			LangKey k = list.get(key);
-			LangValue v = k.findByLangCode(lang);
+			LangCode v = k.findByLangCode(lang);
 			
 			//Find according to language priority
 			if (v == null || !v.isValid()){

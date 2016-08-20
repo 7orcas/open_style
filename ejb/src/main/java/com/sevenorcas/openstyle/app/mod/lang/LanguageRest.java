@@ -111,7 +111,7 @@ public class LanguageRest {
 			if (!k.containsValues()){
 				listX.add(new LookupDto(k.getKey()));
 			}
-			for(LangValue v: k.getValues()){
+			for(LangCode v: k.getValues()){
 				listX.add(new LookupDto(k.getKey() + LangSql.TEXT_SEPARATOR + v.getText()));
 			}
 		}
@@ -191,7 +191,7 @@ public class LanguageRest {
 				l.setKeyOnly(true);
 			}
 			
-			for(LangValue v: k.getValues()){
+			for(LangCode v: k.getValues()){
 				listX.add(l = new LangListDto());
 				l.setId(v.getId());
 				l.setKey(k.getKey());

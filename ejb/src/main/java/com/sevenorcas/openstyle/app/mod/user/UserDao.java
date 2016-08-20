@@ -20,8 +20,7 @@ public interface UserDao extends EntityRepoI{
 	public User save (UserParam params, User entity) throws Exception;
 	
 	public String getUserConfig(UserParam params, int type)throws Exception;
-	public String getUserConfigImport(Long userId)throws Exception;
-	
+		
 	public void updateUserConfig(UserParam params, String encode, int type)throws Exception;
 	public void updateUserConfigImport(UserParam params, String encode, int type) throws Exception;
 	public void deleteUserConfigImport(Integer comp_nr)throws Exception;

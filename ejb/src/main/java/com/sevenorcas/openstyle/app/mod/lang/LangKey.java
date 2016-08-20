@@ -28,8 +28,8 @@ import com.sevenorcas.openstyle.app.service.entity.Field;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="langkey", schema="cntrl")
-@SequenceGenerator(name="ID_SEQUENCE",sequenceName="cntrl.seq_id_language",allocationSize=1)
+@Table(name="lang_key", schema="cntrl")
+@SequenceGenerator(name="ID_SEQUENCE_GEN",sequenceName="cntrl.seq_id_language",allocationSize=1)
 public class LangKey extends BaseEntity implements Serializable {
 	
 	static final public int KEY_LENGTH  = 20;
@@ -44,7 +44,7 @@ public class LangKey extends BaseEntity implements Serializable {
 	/** ID Field. */   
 	@Id  
 	@Field(appType=FIELD_TYPE_ID)
-	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE")
+	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE_GEN")
 	private Long id;
 	
 	
@@ -64,7 +64,7 @@ public class LangKey extends BaseEntity implements Serializable {
 	@Field
 	@OneToMany(cascade={CascadeType.ALL},mappedBy="langkey")
 	@OrderBy("langcode ASC")
-	private List <LangValue> values = new ArrayList<LangValue>(); 
+	private List <LangCode> values = new ArrayList<LangCode>(); 
 	
 	
     ////////////////////// Methods //////////////////////////////////	
@@ -78,9 +78,9 @@ public class LangKey extends BaseEntity implements Serializable {
 	
 	/**
 	 * Add a language value 
-	 * @param LangValue object to add
+	 * @param LangCode object to add
 	 */
-	public void addLangValue(LangValue obj){
+	public void addLangValue(LangCode obj){
 		obj.setLangkey(this);
 		obj.setCompanyNr(companyNr);
 		values.add(obj);
@@ -91,8 +91,8 @@ public class LangKey extends BaseEntity implements Serializable {
 	 * @param langCode
 	 * @return
 	 */
-	public LangValue findByLangCode(String langCode){
-		for (LangValue v: values){
+	public LangCode findByLangCode(String langCode){
+		for (LangCode v: values){
 			if (v.getLangcode().equalsIgnoreCase(langCode)){
 				return v;
 			}
@@ -108,7 +108,7 @@ public class LangKey extends BaseEntity implements Serializable {
 		if (values == null || values.size() == 0){
 			return false;
 		}
-		for (LangValue v: values){
+		for (LangCode v: values){
 			if (!v.isDelete()){
 				return true;
 			}
@@ -126,7 +126,7 @@ public class LangKey extends BaseEntity implements Serializable {
 		if (values == null || values.size() == 0){
 			return false;
 		}
-		for (LangValue v: values){
+		for (LangCode v: values){
 			if (v.isDelete()){
 				return true;
 			}
@@ -199,10 +199,10 @@ public class LangKey extends BaseEntity implements Serializable {
 		this.sets = sets;
 	}
 
-	public List<LangValue> getValues() {
+	public List<LangCode> getValues() {
 		return values;
 	}
-	public void setValues(List<LangValue> values) {
+	public void setValues(List<LangCode> values) {
 		this.values = values;
 	}
 

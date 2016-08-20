@@ -378,8 +378,6 @@ private EntityManager em;
 		login.setMonths(languageService.getMonths(login.getLanguageCode()));
 		login.setMonthsShort(languageService.getMonthsShort(login.getLanguageCode()));
 		
-		login.setNoRepeatCodes(userAdminService.getNoRepeatCodes(login.getId()));
-		
 		return login;
 	}
 

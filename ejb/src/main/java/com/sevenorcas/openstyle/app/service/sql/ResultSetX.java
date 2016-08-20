@@ -22,7 +22,6 @@ public class ResultSetX {
 	final static protected String FIELD_CREATE_TS = "create_ts_stdfield";
 	final static protected String FIELD_CREATE_ID = "create_id_stdfield";
 	final static protected String FIELD_UPDATE_TS = "update_ts_stdfield";
-	final static protected String FIELD_UPDATE_ID = "update_id_stdfield";
 	final static protected String FIELD_ACTIVE    = "active_stdfield";
 	
 	private ArrayList<Object[]> set;

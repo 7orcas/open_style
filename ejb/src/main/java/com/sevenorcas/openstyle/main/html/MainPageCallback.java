@@ -1,10 +1,14 @@
 package com.sevenorcas.openstyle.main.html;
 
+import java.util.List;
+
 import com.sevenorcas.openstyle.app.application.Utilities;
 import com.sevenorcas.openstyle.app.application.html.BaseCallback;
 import com.sevenorcas.openstyle.app.mod.lang.Language;
 import com.sevenorcas.openstyle.app.mod.lang.LanguageService;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.main.MainMenu;
+import com.sevenorcas.openstyle.main.MainMenuService;
 
 /**
  * Main html page call back<p> 
@@ -15,6 +19,7 @@ import com.sevenorcas.openstyle.app.mod.user.UserParam;
 public class MainPageCallback extends BaseCallback {
    
 	static private LanguageService  languageService;
+	static private MainMenuService  mainMenuService;
 	
 	private MainPageHtml page;
 	
@@ -25,7 +30,10 @@ public class MainPageCallback extends BaseCallback {
 		languageService = Utilities.lookupService(languageService, "LanguageServiceImp");
 		Language lang   = languageService.getLanguage(params.getLanguageCode()); 
 
-		page = new MainPageHtml(params, lang);
+		mainMenuService = Utilities.lookupService(mainMenuService, "MainMenuServiceImp");
+		List <MainMenu> l = mainMenuService.list(params, null);
+		
+		page = new MainPageHtml(params, lang, l);
 	}
 	
 	

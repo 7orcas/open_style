@@ -128,25 +128,6 @@ public class UserDaoImp extends BaseDao implements UserDao{
         return User.decodeConfig(config, type);
     }
     
-    /**
-     * Return config_import field as encode parameters
-     * @param user id
-     * @return
-     */
-    public String getUserConfigImport(Long userId)throws Exception{
-        
-        ResultSetX rs = StatementX
-                .create("SELECT t.config_import "
-                      + "FROM " + T_USER + " t "
-                      + "WHERE t.id = " + userId)
-                .executeQuery(null);
-        
-        String config = null;
-        while(rs.next()){
-            config = rs.getString(1);
-        }
-        return config;
-    }
     
     /**
      * Update / Save the config string for passed in config type

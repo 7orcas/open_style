@@ -103,7 +103,7 @@ public class DefinitionServiceImp implements DefinitionService, ApplicationI {
 	 * 
 	 * @param String class name of Entity / DTO object. This can be the fully qualified name or the suffix after the <code>ApplicationI.ENTITY_BASE_PACKAGE</code> prefix.
 	 * @param UserParam contains user permission key-value pairs. 
-	 * @param Company object
+	 * @param MainMenu object
 	 * @return Hashtable containing the field name (as key) and field definition (as value) 
 	 */
 	@SuppressWarnings("rawtypes")

@@ -36,7 +36,7 @@ import com.sevenorcas.openstyle.app.service.entity.Field;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="task", schema="cntrl")
-@SequenceGenerator(name="ID_SEQUENCE",sequenceName="seq_id_entity",allocationSize=1)
+@SequenceGenerator(name="ID_SEQUENCE_GEN",sequenceName="seq_id_entity",allocationSize=1)
 public class Task extends BaseEntity implements Serializable {
 
 	/**
@@ -45,7 +45,7 @@ public class Task extends BaseEntity implements Serializable {
 	 */
 	@Id
 	@Field(appType=FIELD_TYPE_ID)
-	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE")
+	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE_GEN")
 	private Long id;
 	
 	@Field(appType=FIELD_TYPE_KEY, readonly=true)

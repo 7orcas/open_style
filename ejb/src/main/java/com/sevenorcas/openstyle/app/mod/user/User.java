@@ -40,7 +40,7 @@ import com.sevenorcas.openstyle.app.service.entity.ValidationException;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="_yzh_user", schema="cntrl")
-@SequenceGenerator(name="ID_SEQUENCE",sequenceName="seq_id_entity",allocationSize=1)
+@SequenceGenerator(name="ID_SEQUENCE_GEN",sequenceName="seq_id_entity",allocationSize=1)
 public class User extends BaseEntity implements Serializable {
 
 	final static public int    USERID_MIN_LENGTH             = 2;
@@ -67,7 +67,7 @@ public class User extends BaseEntity implements Serializable {
 	/** ID Field. */   
 	@Id  
 	@Field(appType=FIELD_TYPE_ID)
-	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE")
+	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE_GEN")
 	private Long id;
 	
 	

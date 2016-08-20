@@ -52,7 +52,7 @@ public class LangExport implements SpreadSheetI, FreeFormSpreadsSheetI, Serializ
         
         for (LangKey k: list){
             ss.incrementRow();
-            for (LangValue v: k.getValues()){
+            for (LangCode v: k.getValues()){
                 row (k, v, ss, 0);
             }
         }
@@ -61,7 +61,7 @@ public class LangExport implements SpreadSheetI, FreeFormSpreadsSheetI, Serializ
         
     }
 	
-    private void row (LangKey k, LangValue v, SpreadSheet sheet, int startCol){
+    private void row (LangKey k, LangCode v, SpreadSheet sheet, int startCol){
         sheet.setCol(startCol);
         sheet.addCell(k.getKey(), STYLE_NORMAL);
         sheet.addCell(v.getLangcode(), STYLE_NORMAL);

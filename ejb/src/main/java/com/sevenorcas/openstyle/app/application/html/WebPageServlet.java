@@ -320,7 +320,7 @@ public class WebPageServlet extends HttpServlet {
      * @param user parameter object
      * @param langauge code
      * @param Langauge object 
-     * @param Company company
+     * @param MainMenu company
      * @return
      * @throws Exception
      */
@@ -525,7 +525,7 @@ public class WebPageServlet extends HttpServlet {
      * @param user parameter object
      * @param langauge code
      * @param Langauge object 
-     * @param Company company
+     * @param MainMenu company
      * @return
      * @throws Exception
      */
@@ -638,7 +638,7 @@ public class WebPageServlet extends HttpServlet {
      * @param user parameter object
      * @param langauge code
      * @param Langauge object 
-     * @param Company company
+     * @param MainMenu company
      * @return
      * @throws Exception
      */
@@ -855,7 +855,7 @@ public class WebPageServlet extends HttpServlet {
      * Does the passed in line fail a condition?
      * @param String html line
      * @param User parameter object
-     * @param Company company
+     * @param MainMenu company
      * @return
      */
     private boolean isConditionFail (String line, UserParam userParam, Company company){

@@ -24,9 +24,9 @@ import com.sevenorcas.openstyle.app.service.entity.Field;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="langvalue", schema="cntrl")
-@SequenceGenerator(name="ID_SEQUENCE",sequenceName="cntrl.seq_id_language",allocationSize=1)
-public class LangValue extends BaseEntity implements Serializable {
+@Table(name="lang_code", schema="cntrl")
+@SequenceGenerator(name="ID_SEQUENCE_GEN",sequenceName="cntrl.seq_id_language",allocationSize=1)
+public class LangCode extends BaseEntity implements Serializable {
 
 	final static public int  LANGCODE_LENGTH    = 2;
 	final static public int  TEXT_LENGTH        = 100;
@@ -35,7 +35,7 @@ public class LangValue extends BaseEntity implements Serializable {
 	/** ID Field. */   
 	@Id  
 	@Field(appType=FIELD_TYPE_ID)
-	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE")
+	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE_GEN")
 	private Long id;
 	
 
@@ -59,13 +59,13 @@ public class LangValue extends BaseEntity implements Serializable {
 	/**
 	 * Default Constructor
 	 */
-	public LangValue() {
+	public LangCode() {
 	}
 
 	/**
 	 * Constructor with text and langcode
 	 */
-	public LangValue(String text, String langcode) {
+	public LangCode(String text, String langcode) {
 		this.text = text;
 		this.langcode = langcode;
 	}

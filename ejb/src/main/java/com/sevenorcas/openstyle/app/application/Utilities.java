@@ -948,7 +948,7 @@ public class Utilities implements ApplicationI{
 	 * Create object using empty constructor to get defaults 
 	 * @param clazz
 	 * @param UserParam passed to constructor (can be null)
-	 * @param Company object passed to constructor (can be null)  
+	 * @param MainMenu object passed to constructor (can be null)  
 	 * @return
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })

@@ -30,5 +30,5 @@ public interface UserAdminService {
 	
 	public void updateUserConfigImport(UserParam params, String encode, int type) throws Exception;
 	public void deleteUserConfigImport(UserParam params)throws Exception;
-	public String getNoRepeatCodes (Long userId) throws Exception;
+
 }

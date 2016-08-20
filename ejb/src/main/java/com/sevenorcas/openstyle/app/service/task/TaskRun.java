@@ -26,12 +26,12 @@ import com.sevenorcas.openstyle.app.service.entity.Field;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="task_run", schema="cntrl")
-@SequenceGenerator(name="ID_SEQUENCE",sequenceName="seq_id_entity",allocationSize=1)
+@SequenceGenerator(name="ID_SEQUENCE_GEN",sequenceName="seq_id_entity",allocationSize=1)
 public class TaskRun extends BaseEntity implements Serializable {
 
 	/** ID Field. */   
 	@Id  
-	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE")
+	@GeneratedValue (strategy=GenerationType.SEQUENCE, generator="ID_SEQUENCE_GEN")
 	@Field(appType=FIELD_TYPE_ID)
 	protected Long id;
 	

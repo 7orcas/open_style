@@ -173,7 +173,6 @@ public class StatementX implements ApplicationI{
 					+ ", " + t + "create_ts AS " + table + ResultSetX.FIELD_CREATE_TS
 					+ ", " + t + "create_id AS " + table + ResultSetX.FIELD_CREATE_ID
 					+ ", " + t + "update_ts AS " + table + ResultSetX.FIELD_UPDATE_TS
-					+ ", " + t + "update_id AS " + table + ResultSetX.FIELD_UPDATE_ID
 					+ ", " + t + "active AS "    + table + ResultSetX.FIELD_ACTIVE);
 		}
 		query = query.substring(0, index) + sb.toString() + query.substring(index);

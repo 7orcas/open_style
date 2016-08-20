@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1"
-    xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="
-        http://xmlns.jcp.org/xml/ns/persistence
-        http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
 	<persistence-unit name="openstyleDS" transaction-type="JTA">
     	<!-- provider>org.hibernate.jpa.HibernatePersistenceProvider</provider -->
         <jta-data-source>java:jboss/datasources/openstyleDS</jta-data-source>
         
         <properties>
-			<!-- TODO: check value for production system --> 
+			<!-- TODO:  check value for production system --> 
 			<!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
 			
       		<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
@@ -19,6 +18,19 @@
 		    <property name="hibernate.use_sql_comments" value="false"/>
 		</properties>
     </persistence-unit>
+
+
+<!-- 
+
+  Note: I switched of validation in Ecplise because I keep getting the error:
+  -  the persistence.xml file does not have supported content for this jpa platform
+  
+  thanks to http://www-01.ibm.com/support/docview.wss?uid=swg21616684
+  To remove the error "persistence.xml file does not have recognized content" error, disable the JPA Validator:
+     Select Windows > Preferences > Validation
+     Disable the JPA Validator for both Manual validation and Build validation
+
+ -->
 
 
 </persistence>
