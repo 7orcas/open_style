@@ -40,7 +40,7 @@ public class DocumentDaoImp extends BaseMainDao implements DocumentDao{
 	 * @param Sql object
 	 * @return Entity list
 	 */
-    public List<DocumentEnt> list (UserParam params, DocumentSql sql) throws Exception{
+    public List<DocumentEnt> list (UserParam params, DocumentCnt sql) throws Exception{
 	    
         StatementX x = StatementX
 				.create("SELECT t.main_menu_id, t.seq, t.document_type_id, t.document_text "

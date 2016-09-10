@@ -116,6 +116,25 @@ angular.module('home.controller', ['ngResource'])
             };
             
             
+            
+            
+            
+            
+            $scope.showDoc = function(id){
+                $state.go("showDoc");
+            };
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             ///////////////////////////////////////// User Menu /////////////////////////////////////////////////////////            
             /*
              * Logout action

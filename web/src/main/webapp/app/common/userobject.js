@@ -58,6 +58,7 @@ angular.module('app.common.userobject', [])
                 //Set no repeat codes 
                 //TODO split for comma delimited codes
                 if (angular.isDefined(result.nc)
+                		&& result.nc !== null
                 		&& result.nc.length > 0){
                 	$rootScope.norepeat = {};
                 	$rootScope.norepeat[result.nc] = true;

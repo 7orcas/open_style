@@ -39,12 +39,27 @@ public class MenuMainHtml extends BaseHtml {
      * Set the Main Drop Down Menu
      * @param Header element
      */
-    public void view(Element nav){
+    public void view(Element el){
     	
-    	headerShowHideMenu(nav);
+    	headerShowHideMenu(el);
+    	
+    	Element menu1 = div(el)
+			.addClass("navbar-default navbar-static-side")
+	        .attr("id", "sideMenu")
+			.attr("role", "navigation");
+    	
+    	Element menu2 = div(menu1)
+    		.addClass("sidebar-collapse");
+    	
+    	Element menu3 = tagUl(menu2)
+    		.addClass("nav")
+    		.attr("id", "side-menu");
+    	
     	
     	for (MainMenuEnt m: list){
-    		div(body).text(m.getLangCode());	
+    		anchor(tagLi(menu3),"")
+    		    .attr("data-ng-click", "showDoc(" + m.getId() + ")")
+    		    .text(m.getLangCode());	
     	}
     	
     	
@@ -62,7 +77,8 @@ public class MenuMainHtml extends BaseHtml {
 			.attr("style", "display:none")
 		    .attr("data-ng-click", "showSideMenu()");
     		    
-    	show.text(NBSP + label("Menu") + NBSP);
+//    	show.text(NBSP + label("Menu") + NBSP);
+    	show.text(label("Menu") + NBSP);
     	tagI(show, "fa fa-caret-down");
     	
     	Element hide = div(nav)

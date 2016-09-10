@@ -52,6 +52,7 @@ public class MainPageHtml extends BaseHtml {
     	Element body = tag("body");
     	body.attr("data-ng-controller", "mainCtrl");
     	
+    	
     	//set body element as main
     	Element html = page;
     	page = body; 
@@ -61,9 +62,16 @@ public class MainPageHtml extends BaseHtml {
     	Element main = div();
     	main.addClass("page_header")
     		.attr("id", "wrapper")
-    		.attr("style", "display:none");
+//    		.attr("style", "display:none")
+    		;
     	
     	header(main);
+    	
+    	//Add div to display pages
+    	Element view1 = div(main).attr("id", "page-wrapper");
+    	Element view2 = div(view1).addClass("row");
+    	Element view3 = div(view2).addClass("col-lg-12");
+    	div(view3).addClass("row").attr("data-ui-view", "XYZ");
     	
     	
     	tagScripts(body);
@@ -71,7 +79,12 @@ public class MainPageHtml extends BaseHtml {
     	
     	//Need to reset main element
     	page = html;
-        return output();
+    	
+    	//Workaround? to put an element into the div with no attributes
+    	String s = output();
+    	s = s.replace("data-ui-view=\"XYZ\"", "data-ui-view");
+    	
+        return s;
     }
 
     
@@ -119,7 +132,7 @@ public class MainPageHtml extends BaseHtml {
     private void busyIcon(){
     	div().attr("id", "processing")
     	     .attr("style", "position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;background-color:gray;background-color:rgba(70,70,70,0.2);")
-    	     .appendElement("div")
+    	     .appendElement("img")
     	     .attr("style", "position:absolute;top:50%;left:50%;")
     	     .attr("src", "img/ajax-loader.gif")
     	     .attr("alt", "");
@@ -311,6 +324,12 @@ public class MainPageHtml extends BaseHtml {
 	        {"mod",     "app/mod/user/controller.js"},
 	        {"mod",     "app/mod/user/model.js"},
 	        {"mod",     "app/mod/user/service.js"}, 
+	        
+	        {"mod",     "mod/doc/controller.js"},
+	        {"mod",     "mod/doc/model.js"},
+	        {"mod",     "mod/doc/service.js"},
+	        
+	        
 	        {"mod",     "mod/mdata/controller.js"},
 	        {"mod",     "mod/mdata/model.js"},
 	        {"mod",     "mod/mdata/service.js"},

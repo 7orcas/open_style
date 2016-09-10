@@ -29,8 +29,8 @@ public class DocumentServiceImp implements DocumentService {
 	 * @param UserParam object
 	 * @param MainMenu Sql object
 	 */
-	public List<DocumentEnt> list (UserParam params, DocumentSql sql) throws Exception {
-		return dao.list(params, sql == null? new DocumentSql(params) : sql);
+	public List<DocumentEnt> list (UserParam params, DocumentCnt sql) throws Exception {
+		return dao.list(params, sql == null? new DocumentCnt(params) : sql);
 	}
 	    
 }

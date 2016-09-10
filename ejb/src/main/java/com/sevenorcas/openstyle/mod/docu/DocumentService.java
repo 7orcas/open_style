@@ -16,6 +16,6 @@ import com.sevenorcas.openstyle.app.mod.user.UserParam;
 
 @Local
 public interface DocumentService {
-	public List<DocumentEnt> list (UserParam userParam, DocumentSql sql) throws Exception;
+	public List<DocumentEnt> list (UserParam userParam, DocumentCnt sql) throws Exception;
 	
 }

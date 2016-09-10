@@ -59,6 +59,9 @@ var App = angular.module('app', [
     
     //service:end
     
+    'mod.doc.service',
+    'mod.doc.controllers',
+    'mod.doc.model',
     
     'mod.mdata.service',
     'mod.mdata.controllers',

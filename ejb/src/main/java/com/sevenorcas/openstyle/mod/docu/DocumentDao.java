@@ -15,6 +15,6 @@ import com.sevenorcas.openstyle.app.service.repo.EntityRepoI;
  */
 @Local
 public interface DocumentDao extends EntityRepoI{
-	public List<DocumentEnt> list (UserParam params, DocumentSql search) throws Exception;
+	public List<DocumentEnt> list (UserParam params, DocumentCnt search) throws Exception;
 	
 }

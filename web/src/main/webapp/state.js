@@ -19,6 +19,16 @@ pgConfig.remoteException    = {u:'/exception',          t:'template/app/exceptio
 pgConfig.clearPage          = {u:'/clearpage',          t:'template/app/clear_page.html',              c:'clearPageCtrl'};
 pgConfig.userChangePassword = {u:'/changepassword',     t:'app/mod/user/view/change_password.html',    c:'userChangePasswordCtrl',  m:'userModel.changePassword', r:'userChangePasswordRemote'};
 
+
+pgConfig.showDoc            = {u:'/doc',                t:'mod/doc/view/doc.html',                     c:'docCtrl',                 m:'docModel.doc',                r:'docRemote'};
+
+
+
+
+
+
+
+
 //service:start
 pgConfig.langAdmin          = {u:'/lang/all',           t:'app/mod/langadmin/view/lang_admin.html',    c:'langAdminCtrl',           m:'langadminModel.list',         r:'langadminRemote'};
 pgConfig.userAdmin          = {u:'/userAdmin',          t:'app/mod/useradmin/view/user_admin.html',    c:'userAdminCtrl',           m:'useradminModel.userAdmin',    r:'useradminUsersRemote'};
