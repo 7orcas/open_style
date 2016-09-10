@@ -87,7 +87,7 @@ This number is used in a lot of unique indexes in various tables.]]></comment>
 			<column name="organ_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
 				<defo>0</defo>
 				<comment><![CDATA[Number to identify the actual application customer organistion.
-This number is assigned to new organistions during thier setup (to use the application).]]></comment>
+This number is assigned when new organistions during thier setup (to use the application).]]></comment>
 			</column>
 			<index name="company_pkey" unique="PRIMARY_KEY" >
 				<column name="id" />
@@ -130,7 +130,7 @@ de = Deutsch
 
 see https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes]]></comment>
 			</column>
-			<column name="text" type="varchar" length="500" jt="12" mandatory="y" >
+			<column name="lang_text" type="varchar" length="500" jt="12" mandatory="y" >
 				<comment><![CDATA[Language value for:
 comp_nr (0 is default)
 code (i.e. language code, e.g. 'en')]]></comment>
@@ -153,14 +153,8 @@ Company ABC with organ_nr 101 can override the default language value for langua
 			<index name="idx_lang_code" unique="NORMAL" >
 				<column name="organ_nr" />
 			</index>
-			<index name="idx_lang_code_0" unique="NORMAL" >
-				<column name="comp_nr" />
-			</index>
 			<fk name="langvalue_langkey_id_fkey" to_schema="cntrl" to_table="lang_key" >
 				<fk_column name="lang_key_id" pk="id" />
-			</fk>
-			<fk name="fk_lang_code_company" to_schema="cntrl" to_table="company" >
-				<fk_column name="comp_nr" pk="comp_nr" />
 			</fk>
 		</table>
 		<table name="lang_key" >
@@ -221,7 +215,6 @@ After a successful login, clients may download a language package to keep locall
 			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
 				<defo>now()</defo>
-				<comment><![CDATA[Date / Time of implementation]]></comment>
 			</column>
 			<column name="descr" type="varchar" length="500" jt="12" >
 				<comment><![CDATA[Description of changes]]></comment>
@@ -424,107 +417,219 @@ Records within this table originate from hard coded instructions within the appl
 		</table>
 	</schema>
 	<schema name="public" catalogname="postgres" schemaname="public" >
-		<table name="topic" >
-			<comment><![CDATA[Main topic records
-EG sales orders, purchase orders]]></comment>
-			<column name="id" type="integer" jt="4" mandatory="y" />
+		<table name="document" >
+			<comment><![CDATA[Document]]></comment>
+			<column name="id" type="bigint" jt="-5" mandatory="y" />
 			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
-				<defo>0</defo>
-				<comment><![CDATA[The default company number is 0. 
-
-Companies can override default language values by using their comp_nr and creating a specific record in this table.
-EG
-Company ABC with number 101 can override the default language value for language key = 'Yes', value in 'en' = 'Yes' to value in 'en' = 'OK'.]]></comment>
+				<comment><![CDATA[Each company must have a unique number.
+This number is used in a lot of unique indexes in various tables.]]></comment>
 			</column>
 			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
 				<defo>now()</defo>
 			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
 				<defo>now()</defo>
 			</column>
 			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
 				<defo>true</defo>
 			</column>
-			<column name="code" type="varchar" length="20" jt="12" mandatory="y" >
-				<comment><![CDATA[Unique topic code
-]]></comment>
+			<column name="main_menu_id" type="bigint" jt="-5" mandatory="y" >
+				<comment><![CDATA[parent]]></comment>
 			</column>
-			<column name="descr" type="varchar" length="100" jt="12" mandatory="y" >
-				<comment><![CDATA[Topic description]]></comment>
+			<column name="seq" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[Sequence in document]]></comment>
 			</column>
-			<index name="pk_topic" unique="PRIMARY_KEY" >
+			<column name="document_type_id" type="bigint" jt="-5" mandatory="y" >
+				<comment><![CDATA[E.g. user help, programming]]></comment>
+			</column>
+			<column name="document_text" type="varchar" length="1000" jt="12" />
+			<index name="pk_document" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
-			<index name="idx_fk_comp_nr" unique="NORMAL" >
+			<index name="idx_document" unique="NORMAL" >
 				<column name="comp_nr" />
 			</index>
-			<index name="idx_topic_code" unique="UNIQUE" >
+			<index name="idx_document_0" unique="UNIQUE" >
+				<column name="main_menu_id" />
+				<column name="seq" />
+			</index>
+			<fk name="fk_document" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+			<fk name="fk_document_main_menu" to_schema="public" to_table="main_menu" >
+				<fk_column name="main_menu_id" pk="id" />
+			</fk>
+			<fk name="fk_document_0" to_schema="public" to_table="document_type" >
+				<fk_column name="document_type_id" pk="id" />
+			</fk>
+		</table>
+		<table name="document_section" >
+			<comment><![CDATA[Table holds partial document sections]]></comment>
+			<column name="id" type="bigint" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[Each company must have a unique number.
+This number is used in a lot of unique indexes in various tables.]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="document_id" type="bigint" jt="-5" mandatory="y" >
+				<comment><![CDATA[Parent id]]></comment>
+			</column>
+			<column name="seq" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[Sequence in document]]></comment>
+			</column>
+			<column name="document_section_type_id" type="bigint" jt="-5" />
+			<column name="section_text" type="varchar" length="10000" jt="12" />
+			<index name="pk_document_section" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_document_section" unique="NORMAL" >
+				<column name="comp_nr" />
+			</index>
+			<index name="idx_document_section_0" unique="NORMAL" >
+				<column name="document_id" />
+			</index>
+			<index name="idx_document_section_1" unique="NORMAL" >
+				<column name="document_section_type_id" />
+			</index>
+			<fk name="fk_document_section" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+			<fk name="fk_document_section_document" to_schema="public" to_table="document" >
+				<fk_column name="document_id" pk="id" />
+			</fk>
+			<fk name="fk_document_section_type" to_schema="public" to_table="document_section_type" >
+				<fk_column name="document_section_type_id" pk="id" />
+			</fk>
+		</table>
+		<table name="document_section_type" >
+			<comment><![CDATA[Document Section type (e.g.text, images)]]></comment>
+			<column name="id" type="bigint" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[Each company must have a unique number.
+This number is used in a lot of unique indexes in various tables.]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="code" type="varchar" length="10" jt="12" mandatory="y" />
+			<column name="config" type="varchar" length="1000" jt="12" >
+				<comment><![CDATA[Type configurations]]></comment>
+			</column>
+			<index name="pk_document_type_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_document_type_0" unique="NORMAL" >
 				<column name="comp_nr" />
 				<column name="code" />
 			</index>
-			<fk name="fk_topic_company" to_schema="cntrl" to_table="company" >
+			<fk name="fk_document_section_type_0" to_schema="cntrl" to_table="company" >
 				<fk_column name="comp_nr" pk="comp_nr" />
 			</fk>
 		</table>
-		<table name="topic_section" >
-			<comment><![CDATA[Sections for a topic]]></comment>
+		<table name="document_type" >
+			<comment><![CDATA[Document type (e.g. user help, design, programming notes)]]></comment>
 			<column name="id" type="bigint" jt="-5" mandatory="y" />
 			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
-				<defo>0</defo>
-				<comment><![CDATA[The default company number is 0. 
-
-Companies can override default language values by using their comp_nr and creating a specific record in this table.
-EG
-Company ABC with number 101 can override the default language value for language key = 'Yes', value in 'en' = 'Yes' to value in 'en' = 'OK'.]]></comment>
+				<comment><![CDATA[Each company must have a unique number.
+This number is used in a lot of unique indexes in various tables.]]></comment>
 			</column>
 			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
 				<defo>now()</defo>
 			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
 				<defo>now()</defo>
 			</column>
 			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
 				<defo>true</defo>
 			</column>
-			<column name="topic_id" type="bigint" jt="-5" mandatory="y" >
-				<comment><![CDATA[Parent id]]></comment>
+			<column name="code" type="varchar" length="10" jt="12" mandatory="y" />
+			<column name="config" type="varchar" length="1000" jt="12" >
+				<comment><![CDATA[Type configurations]]></comment>
 			</column>
-			<column name="code" type="varchar" length="20" jt="12" mandatory="y" >
-				<comment><![CDATA[Unique topic code
-]]></comment>
-			</column>
-			<index name="pk_topic_section" unique="PRIMARY_KEY" >
+			<index name="pk_document_type" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
-			<index name="idx_topic_section" unique="NORMAL" >
-				<column name="topic_id" />
+			<index name="idx_document_type" unique="NORMAL" >
+				<column name="comp_nr" />
+				<column name="code" />
 			</index>
-			<fk name="fk_topic_section" to_schema="public" to_table="topic" >
-				<fk_column name="topic_id" pk="id" />
+			<fk name="fk_document_type" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
 			</fk>
 		</table>
-		<sequence name="seq_id_entity" start="1" >
-			<comment><![CDATA[All entities use this sequence]]></comment>
-		</sequence>
+		<table name="main_menu" >
+			<comment><![CDATA[Main left menu]]></comment>
+			<column name="id" type="bigint" jt="-5" mandatory="y" >
+				<comment><![CDATA[Primary key]]></comment>
+			</column>
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[Each company must have a unique number.
+This number is used in a lot of unique indexes in various tables.]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="seq" type="varchar" length="10" jt="12" mandatory="y" >
+				<comment><![CDATA[Men item sequence.
+]]></comment>
+			</column>
+			<column name="lang_code" type="varchar" length="20" jt="12" mandatory="y" >
+				<comment><![CDATA[Menu item code]]></comment>
+			</column>
+			<index name="pk_main_menu" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_main_menu" unique="NORMAL" >
+				<column name="comp_nr" />
+			</index>
+			<fk name="fk_main_menu" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+		</table>
 	</schema>
-	<connector name="style_open" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-9.4.1208.jar" host="localhost" port="5433" instance="style_open" user="postgres" passwd="b3JjYXM=" />
-	<layout id="Layout_1b1d605d" name="cntrl.company" show_schema_name="y" show_relation_columns="y" >
+	<connector name="PostgreSQL" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-9.4.1208.jar" host="localhost" port="5432" instance="openstyle" user="postgres" passwd="b3JjYXM=" />
+	<layout name="cntrl.company" id="Layout_1b1d605d" show_schema_name="y" show_relation_columns="y" >
 		<entity schema="cntrl" name="patch" color="b3cef5" x="195" y="45" />
 		<entity schema="cntrl" name="company" color="b3cef5" x="45" y="45" />
 		<script name="Insert" id="Query_9828e75" language="SQL" confirmed="y" >
 			<string><![CDATA[INSERT INTO cntrl.company (id,comp_nr,code,customer_nr,config) VALUES (0,0,'Processing',0,'');]]></string>
 		</script>
 	</layout>
-	<layout id="Layout_4477ce1" name="cntrl.language" show_schema_name="y" show_relation_columns="y" >
+	<layout name="cntrl.language" id="Layout_4477ce1" show_schema_name="y" show_relation_columns="y" >
 		<comment><![CDATA[cntrl.language]]></comment>
 		<entity schema="cntrl" name="lang_key" color="b3cef5" x="45" y="45" />
-		<entity schema="cntrl" name="lang_code" color="b3cef5" x="300" y="210" />
+		<entity schema="cntrl" name="lang_code" color="b3cef5" x="195" y="210" />
 	</layout>
-	<layout id="Layout_2753fba4" name="cntrl.tasks" show_schema_name="y" show_relation_columns="y" >
+	<layout name="cntrl.tasks" id="Layout_2753fba4" show_schema_name="y" show_relation_columns="y" >
 		<entity schema="cntrl" name="task" color="b3cef5" x="45" y="45" />
 		<entity schema="cntrl" name="task_run" color="b3cef5" x="210" y="105" />
 	</layout>
-	<layout id="Layout_98c2d91" name="cntrl.user" show_schema_name="y" show_relation_columns="y" >
+	<layout name="cntrl.user" id="Layout_98c2d91" show_schema_name="y" show_relation_columns="y" >
 		<comment><![CDATA[ERP]]></comment>
 		<entity schema="cntrl" name="_yzh_user" color="b3ccf5" x="45" y="75" />
 		<entity schema="cntrl" name="role" color="bef5b3" x="435" y="75" />
@@ -537,8 +642,40 @@ Company ABC with number 101 can override the default language value for language
 			<comment><![CDATA[Application User Accounts]]></comment>
 		</callout>
 	</layout>
-	<layout id="Layout_1938b341" name="topic" >
-		<entity schema="public" name="topic" color="b3cef5" x="45" y="45" />
-		<entity schema="public" name="topic_section" color="b3cef5" x="270" y="195" />
+	<layout name="pub.main" id="Layout_1015b07f" show_relation_columns="y" >
+		<entity schema="public" name="main_menu" color="c1d8ee" x="240" y="165" />
+		<entity schema="public" name="document_type" color="c1d8ee" x="375" y="45" />
+		<entity schema="public" name="document" color="c1d8ee" x="555" y="180" />
+		<entity schema="cntrl" name="company" color="c1d8ee" x="45" y="60" />
+		<entity schema="public" name="document_section_type" color="c1d8ee" x="870" y="45" />
+		<entity schema="public" name="document_section" color="c1d8ee" x="810" y="300" />
+		<script name="insert_test" id="Query_2b2364fe" language="SQL" >
+			<string><![CDATA[DELETE FROM document_section;
+DELETE FROM document_section_type;
+DELETE FROM document;
+DELETE FROM document_type;
+DELETE FROM main_menu;
+
+INSERT INTO document_type (id,comp_nr,code) VALUES (1,1,'Help');
+INSERT INTO document_type (id,comp_nr,code) VALUES (2,1,'Design');
+INSERT INTO document_type (id,comp_nr,code) VALUES (3,1,'Prog');
+
+INSERT INTO document_section_type (id,comp_nr,code) VALUES (1,1,'Text');
+INSERT INTO document_section_type (id,comp_nr,code) VALUES (2,1,'Image');
+
+INSERT INTO main_menu (id,comp_nr,seq,lang_code) VALUES (1,1,'1','Section1');
+INSERT INTO main_menu (id,comp_nr,seq,lang_code) VALUES (2,1,'2','Section2');
+INSERT INTO main_menu (id,comp_nr,seq,lang_code) VALUES (3,1,'2.1','Section2.1');
+INSERT INTO main_menu (id,comp_nr,seq,lang_code) VALUES (4,1,'2.2','Section2.2');
+INSERT INTO main_menu (id,comp_nr,seq,lang_code) VALUES (5,1,'3','Section3');
+
+INSERT INTO document (id,comp_nr,main_menu_id,seq,document_type_id,document_text) VALUES (1,1,1,1,1,'Text 1');
+INSERT INTO document (id,comp_nr,main_menu_id,seq,document_type_id,document_text) VALUES (2,1,1,2,1,'Text 2');
+INSERT INTO document (id,comp_nr,main_menu_id,seq,document_type_id,document_text) VALUES (3,1,1,3,2,'Design 1');
+
+INSERT INTO document_section (id,comp_nr,document_id,seq,document_section_type,section_text) VALUES (1,1,1,1,1,'Section 1');
+INSERT INTO document_section (id,comp_nr,document_id,seq,document_section_type,section_text) VALUES (2,1,1,2,1,'Section 2');
+INSERT INTO document_section (id,comp_nr,document_id,seq,document_section_type,section_text) VALUES (3,1,1,3,1,'Section 3');]]></string>
+		</script>
 	</layout>
 </project>

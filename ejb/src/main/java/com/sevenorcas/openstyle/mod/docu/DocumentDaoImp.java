@@ -11,6 +11,7 @@ import com.sevenorcas.openstyle.app.mod.user.UserParam;
 import com.sevenorcas.openstyle.app.service.sql.ResultSetX;
 import com.sevenorcas.openstyle.app.service.sql.StatementX;
 import com.sevenorcas.openstyle.main.BaseMainDao;
+import com.sevenorcas.openstyle.mod.docu.ent.DocumentEnt;
 
 /**
  * Document Repository 
@@ -60,15 +61,26 @@ public class DocumentDaoImp extends BaseMainDao implements DocumentDao{
 			
 			int count = 1;
 			
-			m.setMainMenuId(rs.getLong(count++));
-			m.setSeq(rs.getInt(count++));
-			m.setTypeId(rs.getLong(count++));
-			m.setText(rs.getString(count++));
+			m.setMainMenuId(rs.getLong(count++))
+			 .setSeq(rs.getInt(count++))
+			 .setTypeId(rs.getLong(count++))
+			 .setText(rs.getString(count++));
+			
 			rs.setBaseEntityFields(m, "t");
 		}
 				
 		return list;
 	}
 	
+    
+    /**
+   	 * Find an entity by its ID
+   	 * @param Long id
+   	 * @return
+   	 */
+   	public DocumentEnt findById (Long id) throws Exception{
+   	    return super.findById(DocumentEnt.class, id, em);
+   	}
+    
     
 }

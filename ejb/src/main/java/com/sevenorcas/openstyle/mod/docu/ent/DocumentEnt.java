@@ -1,20 +1,21 @@
-package com.sevenorcas.openstyle.mod.docu;
+package com.sevenorcas.openstyle.mod.docu.ent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import com.sevenorcas.openstyle.app.application.Utilities;
 import com.sevenorcas.openstyle.app.service.entity.BaseEntity;
-import com.sevenorcas.openstyle.app.service.entity.ConfigI;
 import com.sevenorcas.openstyle.app.service.entity.Field;
 
 
@@ -28,7 +29,7 @@ import com.sevenorcas.openstyle.app.service.entity.Field;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="document_type", schema="public")
+@Table(name="document", schema="public")
 @SequenceGenerator(name="ID_SEQUENCE_GEN",sequenceName="seq_id_entity",allocationSize=1)
 public class DocumentEnt extends BaseEntity implements Serializable {
 
@@ -64,6 +65,16 @@ public class DocumentEnt extends BaseEntity implements Serializable {
 	private String text;
 	
 	    
+	/**
+     * Sections.
+     */
+    @Field
+    @OneToMany(cascade={CascadeType.ALL},mappedBy="parent")
+    @OrderBy("seq")
+    private List <SectionEnt> sections = new ArrayList<SectionEnt>(); 
+    
+	
+	
     ////////////////////// Methods //////////////////////////////////	
 	
 	/**
@@ -87,29 +98,41 @@ public class DocumentEnt extends BaseEntity implements Serializable {
 	public Long getMainMenuId() {
 		return mainMenuId;
 	}
-	public void setMainMenuId(Long mainMenuId) {
+	public DocumentEnt setMainMenuId(Long mainMenuId) {
 		this.mainMenuId = mainMenuId;
+		return this;
 	}
 
 	public Long getTypeId() {
 		return typeId;
 	}
-	public void setTypeId(Long typeId) {
+	public DocumentEnt setTypeId(Long typeId) {
 		this.typeId = typeId;
+		return this;
 	}
 
 	public int getSeq() {
 		return seq;
 	}
-	public void setSeq(int seq) {
+	public DocumentEnt setSeq(int seq) {
 		this.seq = seq;
+		return this;
 	}
 
 	public String getText() {
 		return text;
 	}
-	public void setText(String text) {
+	public DocumentEnt setText(String text) {
 		this.text = text;
+		return this;
+	}
+
+    public List<SectionEnt> getSections() {
+		return sections;
+	}
+    public DocumentEnt setSections(List<SectionEnt> sections) {
+		this.sections = sections;
+		return this;
 	}
 
 	

@@ -50,6 +50,17 @@ public class DocumentCnt extends BaseSql{
 		this.activeOnly = true;
 		return this;
 	}
+
+	
+	@JsonIgnore
+	public Long getDocId() {
+		return docId;
+	}
+	public void setDocId(Long docId) {
+		this.docId = docId;
+	}
+	
+	
 	
 	
 }

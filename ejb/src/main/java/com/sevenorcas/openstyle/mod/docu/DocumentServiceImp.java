@@ -5,7 +5,10 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import com.sevenorcas.openstyle.app.mod.lang.LanguageService;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.mod.docu.ent.DocumentEnt;
+import com.sevenorcas.openstyle.mod.docu.html.DocumentHtml;
 
 
 /**
@@ -18,7 +21,8 @@ import com.sevenorcas.openstyle.app.mod.user.UserParam;
 //WF10 TODO @Interceptors(ServiceAroundInvoke.class)
 public class DocumentServiceImp implements DocumentService {
 	
-	@EJB private DocumentDao dao;
+	@EJB private LanguageService    langService;
+	@EJB private DocumentDao        dao;
 	
 	public DocumentServiceImp() {
 	}
@@ -32,5 +36,19 @@ public class DocumentServiceImp implements DocumentService {
 	public List<DocumentEnt> list (UserParam params, DocumentCnt sql) throws Exception {
 		return dao.list(params, sql == null? new DocumentCnt(params) : sql);
 	}
-	    
+	  
+	/**
+	 * Retrieve the html object for the passed in control object.
+	 * @param UserParam object
+	 * @param Control object
+	 */
+	public DocumentHtml html (UserParam params, DocumentCnt ctl) throws Exception {
+		
+		DocumentEnt ent = dao.findById(ctl.getDocId());
+		DocumentHtml html = new DocumentHtml(params, langService.getLanguage(params.getLanguageCode()), ent);
+		
+		return html;
+	}
+	
+	
 }

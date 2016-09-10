@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.Local;
 
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.mod.docu.ent.DocumentEnt;
+import com.sevenorcas.openstyle.mod.docu.html.DocumentHtml;
 
 
 /**
@@ -18,4 +20,5 @@ import com.sevenorcas.openstyle.app.mod.user.UserParam;
 public interface DocumentService {
 	public List<DocumentEnt> list (UserParam userParam, DocumentCnt sql) throws Exception;
 	
+	public DocumentHtml html (UserParam params, DocumentCnt ctl) throws Exception;
 }

@@ -464,6 +464,85 @@ This number is used in a lot of unique indexes in various tables.]]></comment>
 				<fk_column name="document_type_id" pk="id" />
 			</fk>
 		</table>
+		<table name="document_section" >
+			<comment><![CDATA[Table holds partial document sections]]></comment>
+			<column name="id" type="bigint" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[Each company must have a unique number.
+This number is used in a lot of unique indexes in various tables.]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="document_id" type="bigint" jt="-5" mandatory="y" >
+				<comment><![CDATA[Parent id]]></comment>
+			</column>
+			<column name="seq" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[Sequence in document]]></comment>
+			</column>
+			<column name="document_section_type_id" type="bigint" jt="-5" />
+			<column name="section_text" type="varchar" length="10000" jt="12" />
+			<index name="pk_document_section" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_document_section" unique="NORMAL" >
+				<column name="comp_nr" />
+			</index>
+			<index name="idx_document_section_0" unique="NORMAL" >
+				<column name="document_id" />
+			</index>
+			<index name="idx_document_section_1" unique="NORMAL" >
+				<column name="document_section_type_id" />
+			</index>
+			<fk name="fk_document_section" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+			<fk name="fk_document_section_document" to_schema="public" to_table="document" >
+				<fk_column name="document_id" pk="id" />
+			</fk>
+			<fk name="fk_document_section_type" to_schema="public" to_table="document_section_type" >
+				<fk_column name="document_section_type_id" pk="id" />
+			</fk>
+		</table>
+		<table name="document_section_type" >
+			<comment><![CDATA[Document Section type (e.g.text, images)]]></comment>
+			<column name="id" type="bigint" jt="-5" mandatory="y" />
+			<column name="comp_nr" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<comment><![CDATA[Each company must have a unique number.
+This number is used in a lot of unique indexes in various tables.]]></comment>
+			</column>
+			<column name="create_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="create_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="update_ts" type="timestamptz" length="35" decimal="6" jt="93" >
+				<defo>now()</defo>
+			</column>
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" >
+				<defo>true</defo>
+			</column>
+			<column name="code" type="varchar" length="10" jt="12" mandatory="y" />
+			<column name="config" type="varchar" length="1000" jt="12" >
+				<comment><![CDATA[Type configurations]]></comment>
+			</column>
+			<index name="pk_document_type_0" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_document_type_0" unique="NORMAL" >
+				<column name="comp_nr" />
+				<column name="code" />
+			</index>
+			<fk name="fk_document_section_type_0" to_schema="cntrl" to_table="company" >
+				<fk_column name="comp_nr" pk="comp_nr" />
+			</fk>
+		</table>
 		<table name="document_type" >
 			<comment><![CDATA[Document type (e.g. user help, design, programming notes)]]></comment>
 			<column name="id" type="bigint" jt="-5" mandatory="y" />
@@ -564,18 +643,25 @@ This number is used in a lot of unique indexes in various tables.]]></comment>
 		</callout>
 	</layout>
 	<layout name="pub.main" id="Layout_1015b07f" show_relation_columns="y" >
-		<entity schema="cntrl" name="company" color="c1d8ee" x="45" y="60" />
 		<entity schema="public" name="main_menu" color="c1d8ee" x="240" y="165" />
-		<entity schema="public" name="document_type" color="c1d8ee" x="615" y="45" />
-		<entity schema="public" name="document" color="c1d8ee" x="435" y="150" />
+		<entity schema="public" name="document_type" color="c1d8ee" x="375" y="45" />
+		<entity schema="public" name="document" color="c1d8ee" x="555" y="180" />
+		<entity schema="cntrl" name="company" color="c1d8ee" x="45" y="60" />
+		<entity schema="public" name="document_section_type" color="c1d8ee" x="870" y="45" />
+		<entity schema="public" name="document_section" color="c1d8ee" x="810" y="300" />
 		<script name="insert_test" id="Query_2b2364fe" language="SQL" >
-			<string><![CDATA[DELETE FROM document;
+			<string><![CDATA[DELETE FROM document_section;
+DELETE FROM document_section_type;
+DELETE FROM document;
 DELETE FROM document_type;
 DELETE FROM main_menu;
 
 INSERT INTO document_type (id,comp_nr,code) VALUES (1,1,'Help');
 INSERT INTO document_type (id,comp_nr,code) VALUES (2,1,'Design');
 INSERT INTO document_type (id,comp_nr,code) VALUES (3,1,'Prog');
+
+INSERT INTO document_section_type (id,comp_nr,code) VALUES (1,1,'Text');
+INSERT INTO document_section_type (id,comp_nr,code) VALUES (2,1,'Image');
 
 INSERT INTO main_menu (id,comp_nr,seq,lang_code) VALUES (1,1,'1','Section1');
 INSERT INTO main_menu (id,comp_nr,seq,lang_code) VALUES (2,1,'2','Section2');
@@ -585,7 +671,11 @@ INSERT INTO main_menu (id,comp_nr,seq,lang_code) VALUES (5,1,'3','Section3');
 
 INSERT INTO document (id,comp_nr,main_menu_id,seq,document_type_id,document_text) VALUES (1,1,1,1,1,'Text 1');
 INSERT INTO document (id,comp_nr,main_menu_id,seq,document_type_id,document_text) VALUES (2,1,1,2,1,'Text 2');
-INSERT INTO document (id,comp_nr,main_menu_id,seq,document_type_id,document_text) VALUES (3,1,1,3,2,'Design 1');]]></string>
+INSERT INTO document (id,comp_nr,main_menu_id,seq,document_type_id,document_text) VALUES (3,1,1,3,2,'Design 1');
+
+INSERT INTO document_section (id,comp_nr,document_id,seq,document_section_type_id,section_text) VALUES (1,1,1,1,1,'Section 1');
+INSERT INTO document_section (id,comp_nr,document_id,seq,document_section_type_id,section_text) VALUES (2,1,1,2,1,'Section 2');
+INSERT INTO document_section (id,comp_nr,document_id,seq,document_section_type_id,section_text) VALUES (3,1,1,3,1,'Section 3');]]></string>
 		</script>
 	</layout>
 </project>

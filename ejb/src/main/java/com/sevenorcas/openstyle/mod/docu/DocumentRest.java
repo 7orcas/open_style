@@ -47,8 +47,8 @@ public class DocumentRest {
 	@SuppressWarnings("unused")
 	private final static Logger LOG = Logger.getLogger(DocumentRest.class);
 	
-	@EJB private LoginService       loginService;
-	@EJB private LanguageService    langService;
+	@EJB private DocumentService    documentService;
+	
 	@EJB private CompanyService     companyService;
 	@EJB private ApplicationService appService;
 	
@@ -70,6 +70,7 @@ private EntityManager em;
 	public ReturnDto selection(@QueryParam(UserParam.QUERY_PARAM) UserParam params) throws Exception {
 		
 		DocumentCnt cnt = new DocumentCnt (params);
+		cnt.setDocId(1L);
 		ReturnDto r = new ReturnDto(cnt);
 		
 		r.setModel(definitionService.definitions(cnt.getClass().getName(), params));
@@ -94,8 +95,7 @@ private EntityManager em;
 	        @QueryParam("rl")   Boolean removeLoading,
 	        @QueryParam("rs")   String resetScroll) throws Exception {
 		
-		return "XXXX";
-		
+		return documentService.html(params, cnt).view();
 	}
 
 

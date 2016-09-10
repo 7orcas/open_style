@@ -1,7 +1,7 @@
 package com.sevenorcas.openstyle.main;
 
 import com.sevenorcas.openstyle.app.service.repo.BaseDao;
-import com.sevenorcas.openstyle.mod.docu.DocumentEnt;
+import com.sevenorcas.openstyle.mod.docu.ent.DocumentEnt;
 import com.sevenorcas.openstyle.mod.docu.type.DocumentTypeEnt;
 
 /**
