@@ -13,6 +13,7 @@ import com.sevenorcas.openstyle.app.application.exception.AppException;
 import com.sevenorcas.openstyle.app.mod.lang.Language;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
 import com.sevenorcas.openstyle.app.service.dto.FieldDefDto;
+import com.sevenorcas.openstyle.app.service.sql.BaseCnt;
 
 
 /**
@@ -33,6 +34,7 @@ public class BaseHtml implements ApplicationI {
 	
 	protected UserParam params;
 	protected Language  lang;
+	protected BaseCnt   ctl;
 	protected Element   page;
 	
 	
@@ -47,10 +49,12 @@ public class BaseHtml implements ApplicationI {
 	 * Constructor
 	 * @param User parameters
 	 * @param language object
+	 * @param Base controller
 	 */
-	public BaseHtml(UserParam params, Language lang) {
+	public BaseHtml(UserParam params, Language lang, BaseCnt ctl) {
 		this.params = params;
 		this.lang = lang;
+		this.ctl  = ctl;
 	}
 
 	/**
@@ -161,7 +165,7 @@ public class BaseHtml implements ApplicationI {
 	 * @param Href attribute 
 	 * @return <code>a</code> element
 	 */
-	public Element anchor(Element el, String href){
+	public Element tagA(Element el, String href){
 		return el.appendElement("a").attr("href", href);
 	}
 	

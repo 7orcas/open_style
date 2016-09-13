@@ -121,7 +121,7 @@ angular.module('home.controller', ['ngResource'])
             
             
             $scope.showDoc = function(id){
-                $state.go("showDoc");
+                $state.go("showDoc", {id:id}, {reload:true});
             };
             
             

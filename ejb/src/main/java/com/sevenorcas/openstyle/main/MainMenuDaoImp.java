@@ -42,7 +42,7 @@ public class MainMenuDaoImp extends BaseMainDao implements MainMenuDao{
     public List<MainMenuEnt> list (UserParam params, MainMenuSql sql) throws Exception{
 	    
         StatementX x = StatementX
-				.create("SELECT t.seq, t.lang_code "
+				.create("SELECT t.id, t.seq, t.lang_code "
 						+ "FROM " + T_MAIN_MENU + " t "
 						+ (sql.isOrderBySeq()?"ORDER BY t.seq ":"")) 
 			    .addActive(sql, "t");
@@ -57,6 +57,7 @@ public class MainMenuDaoImp extends BaseMainDao implements MainMenuDao{
 			
 			int count = 1;
 			
+			m.setId(rs.getLong(count++));
 			m.setSeq(rs.getString(count++));
 			m.setLangCode(rs.getString(count++));
 

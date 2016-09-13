@@ -63,17 +63,19 @@ private EntityManager em;
 	 * Call to get a document control object.<p>
 	 * 
 	 * @param standard parameters
+	 * @param document id
 	 * @return ReturnDto object containing the <code>Control</code> object
 	 */
 	@GET
 	@Path("selection")
-	public ReturnDto selection(@QueryParam(UserParam.QUERY_PARAM) UserParam params) throws Exception {
+	public ReturnDto selection(@QueryParam(UserParam.QUERY_PARAM) UserParam params,
+			@QueryParam("id")   Long id) throws Exception {
 		
-		DocumentCnt cnt = new DocumentCnt (params);
-		cnt.setDocId(1L);
-		ReturnDto r = new ReturnDto(cnt);
+		DocumentCtl ctl = new DocumentCtl (params);
+		ctl.setDocId(id);
+		ReturnDto r = new ReturnDto(ctl);
 		
-		r.setModel(definitionService.definitions(cnt.getClass().getName(), params));
+		r.setModel(definitionService.definitions(ctl.getClass().getName(), params));
 		
 		return r;
 	}
@@ -91,7 +93,7 @@ private EntityManager em;
 	@Path("view")
 	@Produces({"text/html;charset=UTF-8"})
 	public String view(@QueryParam(UserParam.QUERY_PARAM) UserParam params,
-	        @QueryParam("cco")  DocumentCnt cnt,
+	        @QueryParam("cco")  DocumentCtl cnt,
 	        @QueryParam("rl")   Boolean removeLoading,
 	        @QueryParam("rs")   String resetScroll) throws Exception {
 		

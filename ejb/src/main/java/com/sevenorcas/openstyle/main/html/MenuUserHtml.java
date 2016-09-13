@@ -7,6 +7,7 @@ import org.jsoup.nodes.Element;
 import com.sevenorcas.openstyle.app.application.html.BaseHtml;
 import com.sevenorcas.openstyle.app.mod.lang.Language;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.app.service.sql.BaseCnt;
 
 /**
  * User Menu for Main html page<p> 
@@ -58,7 +59,7 @@ public class MenuUserHtml extends BaseHtml {
 	 * @param language object
 	 */
 	public MenuUserHtml(UserParam params, Language lang) {
-		super (params, lang);
+		super (params, lang, new BaseCnt(params));
 		
 		//Special case, main needs the head section 
 		Document doc = Jsoup.parse("<head></head>");
@@ -74,7 +75,7 @@ public class MenuUserHtml extends BaseHtml {
     	Element ul = tagUl(nav).addClass("nav navbar-top-links navbar-right");
     	Element li = tagLi(ul).addClass("dropdown");
     	
-    	Element a = anchor(li, "#").addClass("dropdown-toggle").attr("data-toggle", "dropdown");
+    	Element a = tagA(li, "#").addClass("dropdown-toggle").attr("data-toggle", "dropdown");
     	tagI(a, "fa fa-user fa-fw");
     	tagI(a, "fa fa-caret-down");
     	
@@ -122,7 +123,7 @@ public class MenuUserHtml extends BaseHtml {
     		String id    = tag.length>4?tag[4]:null;
     		
     		item = tagLi(ul);
-    		Element z = anchor(item, "")
+    		Element z = tagA(item, "")
     			   .addClass(service?"user-menu-service":"user-menu")
     		       .attr("data-ng-click", fn + "()");
     		

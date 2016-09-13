@@ -9,6 +9,7 @@ import org.jsoup.nodes.Element;
 import com.sevenorcas.openstyle.app.application.html.BaseHtml;
 import com.sevenorcas.openstyle.app.mod.lang.Language;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.app.service.sql.BaseCnt;
 import com.sevenorcas.openstyle.main.MainMenuEnt;
 
 /**
@@ -27,7 +28,7 @@ public class MenuMainHtml extends BaseHtml {
 	 * @param language object
 	 */
 	public MenuMainHtml(UserParam params, Language lang, List <MainMenuEnt> list) {
-		super (params, lang);
+		super (params, lang, new BaseCnt(params));
 		this.list = list;
 		
 		//Special case, main needs the head section 
@@ -57,7 +58,7 @@ public class MenuMainHtml extends BaseHtml {
     	
     	
     	for (MainMenuEnt m: list){
-    		anchor(tagLi(menu3),"")
+    		tagA(tagLi(menu3),"")
     		    .attr("data-ng-click", "showDoc(" + m.getId() + ")")
     		    .text(m.getLangCode());	
     	}

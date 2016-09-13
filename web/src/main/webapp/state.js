@@ -8,7 +8,8 @@
  *    c = controller
  *    m = model
  *    r = remote
- *    p = remote parameters
+ *    p = parameters
+ *    d = default parameters (inserted)
  */
 var pgConfig = {};
 
@@ -20,14 +21,14 @@ pgConfig.clearPage          = {u:'/clearpage',          t:'template/app/clear_pa
 pgConfig.userChangePassword = {u:'/changepassword',     t:'app/mod/user/view/change_password.html',    c:'userChangePasswordCtrl',  m:'userModel.changePassword', r:'userChangePasswordRemote'};
 
 
-pgConfig.showDoc            = {u:'/doc',                t:'mod/doc/view/doc.html',                     c:'docCtrl',                 m:'docModel.doc',                r:'docRemote'};
+pgConfig.showDoc            = {u:'/doc',                t:'mod/doc/view/doc.html',                     c:'docCtrl',                 m:'docModel.doc',                r:'docRemote',          p:{id:null}};
 
 
 
 
 
 
-
+/*
 
 //service:start
 pgConfig.langAdmin          = {u:'/lang/all',           t:'app/mod/langadmin/view/lang_admin.html',    c:'langAdminCtrl',           m:'langadminModel.list',         r:'langadminRemote'};
@@ -40,10 +41,10 @@ pgConfig.dataImport         = {u:'/configImport',       t:'app/mod/configimport/
 //Application pages
 pgConfig.mouldGroup         = {u:'/mouldgroup',         t:'mod/mdata/view/mould_group_list.html',      c:'mdataMouldGroupCtrl',     m:'mdataModel.mouldGroup',       r:'mdataMouldGroupRemote'};
 pgConfig.mouldMap           = {u:'/mouldmap',           t:'mod/mdata/view/mould_map.html',             c:'mdataMouldMapCtrl',       m:'mdataModel.mouldMap',         r:'mdataMouldMapRemote'};
-pgConfig.mouldCodeList      = {u:'/mouldcodelist',      t:'mod/mdata/view/mouldcode_list.html',        c:'mdataMouldCodeCtrl',      m:'mdataModel.mouldCode',        r:'mdataMouldCodeRemote',   p:null};
-pgConfig.lastGroup          = {u:'/lastgroup',          t:'mod/mdata/view/last_group_list.html',       c:'mdataLastGroupCtrl',      m:'mdataModel.lastGroup',        r:'mdataLastGroupRemote',   p:{mg:true}};
+pgConfig.mouldCodeList      = {u:'/mouldcodelist',      t:'mod/mdata/view/mouldcode_list.html',        c:'mdataMouldCodeCtrl',      m:'mdataModel.mouldCode',        r:'mdataMouldCodeRemote',   l};
+pgConfig.lastGroup          = {u:'/lastgroup',          t:'mod/mdata/view/last_group_list.html',       c:'mdataLastGroupCtrl',      m:'mdataModel.lastGroup',        r:'mdataLastGroupRemote',   d:{mg:true}};
 pgConfig.lastMap            = {u:'/lastmap',            t:'mod/mdata/view/last_map.html',              c:'mdataLastMapCtrl',        m:'mdataModel.lastMap',          r:'mdataLastMapRemote'};
-pgConfig.lastCodeList       = {u:'/lastcodelist',       t:'mod/mdata/view/lastcode_list.html',         c:'mdataLastCodeCtrl',       m:'mdataModel.lastCode',         r:'mdataLastCodeRemote',    p:null};
+pgConfig.lastCodeList       = {u:'/lastcodelist',       t:'mod/mdata/view/lastcode_list.html',         c:'mdataLastCodeCtrl',       m:'mdataModel.lastCode',         r:'mdataLastCodeRemote',    l};
 pgConfig.machineList        = {u:'/machineList',        t:'mod/mdata/view/machine_list.html',          c:'mdataMachineCtrl',        m:'mdataModel.machine',          r:'mdataMachineRemote'};
 pgConfig.puConfig           = {u:'/puconfigList',       t:'mod/mdata/view/puconfig_list.html',         c:'mdataPUConfigCtrl',       m:'mdataModel.puconfig',         r:'mdataPUConfigRemote'};
 
@@ -58,7 +59,7 @@ pgConfig.styleAttrList      = {u:'/styleAttrList',      t:'mod/mdata/view/style_
 pgConfig.colorList          = {u:'/colorList',          t:'mod/mdata/view/color_list.html',            c:'mdataColorCtrl',          m:'mdataModel.color',            r:'mdataColorRemote'};
 pgConfig.attributetypeList  = {u:'/attributetypeList',  t:'mod/mdata/view/attributetype_list.html',    c:'mdataAttributeTypeCtrl',  m:'mdataModel.attributeType',    r:'mdataAttributeTypeRemote'};
 pgConfig.materialtypeList   = {u:'/materialtypeList',   t:'mod/mdata/view/materialtype_list.html',     c:'mdataMaterialTypeCtrl',   m:'mdataModel.materialType',     r:'mdataMaterialTypeRemote'};
-pgConfig.sizeList           = {u:'/sizeList',           t:'mod/mdata/view/size_list.html',             c:'mdataSizeCtrl',           m:'mdataModel.size',             r:'mdataSizeRemote',        p:null};
+pgConfig.sizeList           = {u:'/sizeList',           t:'mod/mdata/view/size_list.html',             c:'mdataSizeCtrl',           m:'mdataModel.size',             r:'mdataSizeRemote'};
 pgConfig.reqtypeList        = {u:'/reqtypeList',        t:'mod/mdata/view/reqtype_list.html',          c:'mdataReqtypeCtrl',        m:'mdataModel.reqtype',          r:'mdataReqtypeRemote'};
 pgConfig.putypeList         = {u:'/putypeList',         t:'mod/mdata/view/putype_list.html',           c:'mdataPUTypeCtrl',         m:'mdataModel.putype',           r:'mdataPUTypeRemote'};
 
@@ -73,9 +74,10 @@ pgConfig.prepMatRpt         = {u:'/prepmatrpt',         t:'mod/rpt/view/prepmat.
 pgConfig.fixList            = {u:'/fixList',            t:'mod/fix/view/selection.html',               c:'fixListCtrl',             m:'fixModel.list',               r:'fixListRemote'};
 pgConfig.startMoulds        = {u:'/startmoulds',        t:'mod/simu/view/startmould_list.html',        c:'simuStartMouldCtrl',      m:'simuModel.startMould',        r:'simuStartMouldRemote'};
 pgConfig.simuconfig         = {u:'/simuconfig',         t:'mod/simu/view/config.html',                 c:'simuConfigCtrl',          m:'simuModel.config',            r:'simuConfigRemote'};
-pgConfig.calendarMap        = {u:'/calendarmap',        t:'mod/calendar/view/calendar_map.html',       c:'calendarMapCtrl',         m:'calendarModel.calendarMap',   r:'calendarMapRemote',      p:null};
+pgConfig.calendarMap        = {u:'/calendarmap',        t:'mod/calendar/view/calendar_map.html',       c:'calendarMapCtrl',         m:'calendarModel.calendarMap',   r:'calendarMapRemote'};
 pgConfig.exportFix          = {u:'/exportFix',          t:'mod/export/view/export.html',               c:'exportCtrl',              m:'exportModel.exportselection', r:'exportRemote'};
 
+*/
 
 /**
  * @doc model
@@ -99,10 +101,15 @@ app.config(['$stateProvider', function ($stateProvider) {
             pgConfig[c].p = null;
         }
 
+        //Add in default parameter attribute
+        if (!angular.isDefined(pgConfig[c].d)){
+            pgConfig[c].d = null;
+        }
+        
         //control to prevent multiple firing if dependencies can't be loaded
         pgConfig[c].fire = false;
         
-        $stateProvider.state(c, {url: pgConfig[c].u, templateUrl: pgConfig[c].t, controller: pgConfig[c].c});
+        $stateProvider.state(c, {url: pgConfig[c].u, templateUrl: pgConfig[c].t, controller: pgConfig[c].c, params: pgConfig[c].p});
     }
 
 }]);
@@ -114,8 +121,8 @@ app.config(['$stateProvider', function ($stateProvider) {
  *     <li>manage errors and exceptions with redirections</li>
  * </ul>
  */
-app.run(['$injector','$state', '$rootScope', '$interval', 'acGlobal', 'acModel', 'acCache', 'acDefinition', 
-          function($injector, $state, $rootScope, $interval, acGlobal, acModel, acCache, acDefinition) {
+app.run(['$injector','$state', '$stateParams', '$rootScope', '$interval', 'acGlobal', 'acModel', 'acCache', 'acDefinition', 
+          function($injector, $state, $stateParams, $rootScope, $interval, acGlobal, acModel, acCache, acDefinition) {
 
     $rootScope.pgConfig = pgConfig;
     
@@ -130,9 +137,9 @@ app.run(['$injector','$state', '$rootScope', '$interval', 'acGlobal', 'acModel',
             return;
         }
         
-        //Get passed in parameters
-        if (pgConfig[toState.name].p !== null){
-            toParams = pgConfig[toState.name].p;
+        //Insert default parameters
+        if (pgConfig[toState.name].d !== null){
+            toParams = pgConfig[toState.name].d;
         }
 
         

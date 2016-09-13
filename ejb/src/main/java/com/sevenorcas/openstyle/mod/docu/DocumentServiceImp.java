@@ -33,8 +33,8 @@ public class DocumentServiceImp implements DocumentService {
 	 * @param UserParam object
 	 * @param MainMenu Sql object
 	 */
-	public List<DocumentEnt> list (UserParam params, DocumentCnt sql) throws Exception {
-		return dao.list(params, sql == null? new DocumentCnt(params) : sql);
+	public List<DocumentEnt> list (UserParam params, DocumentCtl sql) throws Exception {
+		return dao.list(params, sql == null? new DocumentCtl(params) : sql);
 	}
 	  
 	/**
@@ -42,10 +42,10 @@ public class DocumentServiceImp implements DocumentService {
 	 * @param UserParam object
 	 * @param Control object
 	 */
-	public DocumentHtml html (UserParam params, DocumentCnt ctl) throws Exception {
+	public DocumentHtml html (UserParam params, DocumentCtl ctl) throws Exception {
 		
 		DocumentEnt ent = dao.findById(ctl.getDocId());
-		DocumentHtml html = new DocumentHtml(params, langService.getLanguage(params.getLanguageCode()), ent);
+		DocumentHtml html = new DocumentHtml(params, langService.getLanguage(params.getLanguageCode()), ctl, ent);
 		
 		return html;
 	}

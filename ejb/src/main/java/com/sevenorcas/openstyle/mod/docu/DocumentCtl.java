@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sevenorcas.openstyle.app.mod.user.BaseUserParam;
 import com.sevenorcas.openstyle.app.service.entity.Field;
 import com.sevenorcas.openstyle.app.service.rest.RestUtilities;
-import com.sevenorcas.openstyle.app.service.sql.BaseSql;
+import com.sevenorcas.openstyle.app.service.sql.BaseCnt;
 
 /**
  * Document Controller object
@@ -15,7 +15,7 @@ import com.sevenorcas.openstyle.app.service.sql.BaseSql;
  * @author John Stewart
  */
 @SuppressWarnings("serial")
-public class DocumentCnt extends BaseSql{
+public class DocumentCtl extends BaseCnt{
 	
 	
 	/**
@@ -28,7 +28,7 @@ public class DocumentCnt extends BaseSql{
 	 * Default Constructor.<p>
 	 * @param params
 	 */
-	public DocumentCnt(BaseUserParam params) {
+	public DocumentCtl(BaseUserParam params) {
 		super(params);
 	}
 	
@@ -36,7 +36,8 @@ public class DocumentCnt extends BaseSql{
 	 * JSON string constructor
 	 * @param String JSON object
 	 */
-	public DocumentCnt(String json) throws Exception{
+	public DocumentCtl(String json) throws Exception{
+		super(json);
 	    RestUtilities.deserializeJson(this, json);
 	}
 
@@ -46,7 +47,7 @@ public class DocumentCnt extends BaseSql{
 	 */
 	@Override
 	@JsonIgnore
-	public DocumentCnt setActiveOnly() {
+	public DocumentCtl setActiveOnly() {
 		this.activeOnly = true;
 		return this;
 	}

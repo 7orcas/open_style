@@ -140,6 +140,14 @@ angular.module('app.common.cache', [])
         };
 
         /**
+         * Remove a cached <code>Model</code> object (if exists in cache)
+         */
+        self.removeModel = function (key){
+        	return self.invalidate(modelCacheKey(key));
+        };
+        
+        
+        /**
          * Is there a cached  non-obsolete model object
          * @param cache key
          */

@@ -9,6 +9,7 @@ import org.jsoup.nodes.Element;
 import com.sevenorcas.openstyle.app.application.html.BaseHtml;
 import com.sevenorcas.openstyle.app.mod.lang.Language;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
+import com.sevenorcas.openstyle.app.service.sql.BaseCnt;
 import com.sevenorcas.openstyle.main.MainMenuEnt;
 
 /**
@@ -32,7 +33,7 @@ public class MainPageHtml extends BaseHtml {
 	 * @param Main menu list
 	 */
 	public MainPageHtml(UserParam params, Language lang, List <MainMenuEnt> list){
-		super (params, lang);
+		super (params, lang, new BaseCnt(params));
 		
 		this.menu = list;
 		
@@ -252,7 +253,7 @@ public class MainPageHtml extends BaseHtml {
 	        
 	        //3rd-party module to manage routing (more powerful than standard Angular angular-route library 
 	        //https://github.com/angular-ui/ui-router/wiki 
-	        {"app",     "lib/angular/angular-ui-router-0.2.10.js"},
+	        {"app",     "lib/angular/angular-ui-router-0.2.18.js"},
 	        
 	        //factory which creates a resource object to interact with RESTful server-side data sources 
 	        //http://docs.angularjs.org/api/ngResource/service/$resource 
