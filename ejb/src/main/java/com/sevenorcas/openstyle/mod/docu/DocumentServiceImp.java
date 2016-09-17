@@ -36,7 +36,17 @@ public class DocumentServiceImp implements DocumentService {
 	public List<DocumentEnt> list (UserParam params, DocumentCtl sql) throws Exception {
 		return dao.list(params, sql == null? new DocumentCtl(params) : sql);
 	}
-	  
+	
+	
+	/**
+	 * Retrieve entity by it's primary id.
+	 * @param UserParam object
+	 * @param Long entity id
+	 */
+	public DocumentEnt findById (UserParam params, Long id) throws Exception {
+		return dao.findById(id);
+	}
+	
 	/**
 	 * Retrieve the html object for the passed in control object.
 	 * @param UserParam object

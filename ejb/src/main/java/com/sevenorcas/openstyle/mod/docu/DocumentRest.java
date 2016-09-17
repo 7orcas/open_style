@@ -18,12 +18,11 @@ import org.jboss.resteasy.annotations.interception.HeaderDecoratorPrecedence;
 import com.sevenorcas.openstyle.app.application.ApplicationParameters;
 import com.sevenorcas.openstyle.app.application.ApplicationService;
 import com.sevenorcas.openstyle.app.mod.company.CompanyService;
-import com.sevenorcas.openstyle.app.mod.lang.LanguageService;
-import com.sevenorcas.openstyle.app.mod.login.LoginService;
 import com.sevenorcas.openstyle.app.mod.login.RestAroundInvoke;
 import com.sevenorcas.openstyle.app.mod.user.UserParam;
 import com.sevenorcas.openstyle.app.service.dto.DefinitionService;
 import com.sevenorcas.openstyle.app.service.dto.ReturnDto;
+import com.sevenorcas.openstyle.mod.docu.ent.DocumentDto;
 
 
 /**
@@ -73,9 +72,11 @@ private EntityManager em;
 		
 		DocumentCtl ctl = new DocumentCtl (params);
 		ctl.setDocId(id);
-		ReturnDto r = new ReturnDto(ctl);
 		
-		r.setModel(definitionService.definitions(ctl.getClass().getName(), params));
+		ReturnDto r = new ReturnDto(new DocumentDto(documentService.findById(params, id)));
+		r.setControlObject(ctl);
+		
+r.setModel(definitionService.definitions(ctl.getClass().getName(), params));
 		
 		return r;
 	}
@@ -93,10 +94,11 @@ private EntityManager em;
 	@Path("view")
 	@Produces({"text/html;charset=UTF-8"})
 	public String view(@QueryParam(UserParam.QUERY_PARAM) UserParam params,
-	        @QueryParam("cco")  DocumentCtl cnt,
+	        @QueryParam("cnt")  DocumentCtl cnt,
 	        @QueryParam("rl")   Boolean removeLoading,
 	        @QueryParam("rs")   String resetScroll) throws Exception {
 		
+
 		return documentService.html(params, cnt).view();
 	}
 

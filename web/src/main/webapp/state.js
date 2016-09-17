@@ -291,7 +291,8 @@ app.run(['$injector','$state', '$stateParams', '$rootScope', '$interval', 'acGlo
                     function(result){
                         if (result.isOk()){
                             pgConfig[toState.name].fire = false;
-                            $state.go(toState);
+                            //$state.go(toState);  << reload is needed to force section
+                            $state.go(toState, null, {reload:true});
                         }
                     }, error);
             }

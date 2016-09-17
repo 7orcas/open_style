@@ -1,4 +1,6 @@
 
 
-State.go reload page in one click for a document
+State.go reload page in one click for a document OK
+- However does this work ok in edit mode? May need to check for changes.
  
+Rest not working, cnt object is null 

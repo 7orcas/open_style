@@ -44,13 +44,15 @@ public class DocumentHtml extends BaseHtml {
     	
     	div(page).text(ent.getText());
     	
-    	for (SectionEnt s : ent.getSections()){
+    	for (int i=0;i<ent.getSections().size();i++){
+    	    SectionEnt s = ent.getSections().get(i);
+    	    
     		Element el = div(page);
     		
     		if (ctl.isEditMode()){
     			el.appendElement("input")
 				  .attr("type", "text")
-				  .attr("ng-model", "dto." + s.getId());
+				  .attr("ng-model", "dto.sc[" + i + "]");
     		}
     		else{
     			el.text(s.getText());

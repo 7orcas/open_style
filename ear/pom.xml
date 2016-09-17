@@ -72,6 +72,11 @@
                         are in easy way to package any libraries needed in the ear, and automatically
                         have any modules (EJB-JARs and WARs) use them -->
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    
+<!-- DEVELOPMENT: deliver un-zipped war and ejb for debugging and development
+<unpackTypes>war,ejb</unpackTypes>
+-->
+                    
                     <modules>
                     <!-- Default context root of the web app is /jboss-ejb-in-ear-web.
                         If a custom context root is needed, uncomment the following snippet to

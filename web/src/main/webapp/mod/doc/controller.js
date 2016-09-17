@@ -36,18 +36,19 @@ angular.module('mod.doc.controllers', ['ngDragDrop', 'pasvaz.bindonce'])
                 //Allow reloads
                 acCache.removeModel(docModel.doc.model);
                 
-                var cco =  $scope.cacheObj;
+                $scope.dto =  $scope.cacheObj;
+                $scope.cnt =  $scope.sqlObj;
                 
                 $scope.viewLinkId  = $scope.getNextId();
                 
                 //Provide view link
                 $scope.getViewLink = function(){
-                    return 'rest/doc/view?cco=' + encodeURIComponent($scope.model.json(cco) + '&lk=' + $scope.viewLinkId);
+                    return 'rest/doc/view?cnt=' + encodeURIComponent($scope.model.json($scope.cnt) + '&lk=' + $scope.viewLinkId);
                 };
                 
                 
                 $scope._edit = function(){
-                	cco.setEditMode(!cco.isEditMode());
+                	$scope.cnt.setEditMode(!$scope.cnt.isEditMode());
                 	$scope.viewLinkId  = $scope.getNextId();
                 };
                 

@@ -19,6 +19,7 @@ import com.sevenorcas.openstyle.mod.docu.html.DocumentHtml;
 @Local
 public interface DocumentService {
 	public List<DocumentEnt> list (UserParam userParam, DocumentCtl sql) throws Exception;
+	public DocumentEnt findById (UserParam params, Long id) throws Exception;
 	
 	public DocumentHtml html (UserParam params, DocumentCtl ctl) throws Exception;
 }
